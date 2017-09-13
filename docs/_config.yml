@@ -2,6 +2,8 @@ name: Istvan Csabai
 markdown: kramdown
 permalink: /blog/:year/:month/:day/:title
 
+baseurl: /simulationsMsc
+
 collections:
   classes:
     output: true
