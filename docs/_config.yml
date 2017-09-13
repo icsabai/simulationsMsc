@@ -1,0 +1,8 @@
+name: Istvan Csabai
+markdown: kramdown
+permalink: /blog/:year/:month/:day/:title
+
+collections:
+  classes:
+    output: true
+    permalink: /:collection/:name
