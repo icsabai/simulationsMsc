@@ -8,6 +8,13 @@ compsimf17em
 
 ### Topics
 - Background
+	- Role of simulations
+	- Simulations vs. data analysis vs. modeling
+	- Hardware architectures
+	- Computer languages
+	- High performance computing, parallelization
+	- Development environment, versioning
+- Python warmup
 - Computer Science Warmup
 	- Matrices, Linear algebra, Linear equations, Eigenproblems
 	- Integration
@@ -24,5 +31,21 @@ compsimf17em
 	- Fourier
 	- Wavelets
 	- Principal components
-- 
+- Statistical growths ???
+	- Fractals
+	- Cellular automata
+- Thermodynamics simulations, phase transitions
+	- Ising model
+	- Feynman path integral ???
+- Molecular dynamics
+- Partial differential equations - methods
+	- Finite elements
+	- Finite differences
+	- Fourier solution
+- Partial differential equations - problems
+	- Electrostatic potentials
+	- Heat flow, diffusion
+	- Vibrations, waves, quantum waves
+	- Hydrodynamics
+	
 
