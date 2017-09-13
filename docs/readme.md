@@ -3,6 +3,9 @@ compsimf17em
 
 ---
 
+1. TOC
+{:toc}
+
 ### Topics
 - Background
 - Computer Science Warmup
