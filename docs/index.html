@@ -1,285 +1,856 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<!--
-Design by TEMPLATED
-http://templated.co
-Released for free under the Creative Commons Attribution License
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Computer Simulations in Physics</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+    <link href="https://fonts.googleapis.com/css?family=Work+Sans:100,200,300,400,500,600,700,800,900" rel="stylesheet">
 
-Name       : GrassyGreen 
-Description: A two-column, fixed-width design with dark color scheme.
-Version    : 1.0
-Released   : 20140310
+    <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+    
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
 
--->
-<html xmlns="http://www.w3.org/1999/xhtml">
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>Computer Simulations in Physics</title>
-		<meta name="keywords" content="" />
-		<meta name="description" content="" />
-		<link href="https://fonts.googleapis.com/css?family=Raleway:400,200,500,600,700,800,300" rel="stylesheet" />
-		<link href="default.css" rel="stylesheet" type="text/css" media="all" />
-		<link href="fonts.css" rel="stylesheet" type="text/css" media="all" />
-		<!--[if IE 6]>
-		<link href="default_ie6.css" rel="stylesheet" type="text/css" />
-		<![endif]-->
-	</head>
-	<body>
-		<div id="wrapper">
-			<div id="menu-wrapper">
-				<div id="menu" class="container">
-					<ul>
-						<li><a href="#topics">Topics</a></li>
-						<li><a href="#deadlines">Deadlines</a></li>
-						<li><a href="#req">Requirements</a></li>
-						<li><a href="#short">Short descriptions</li>
-						<li><a href="#templ">Project report templates</a></li>
-					</ul>
-				</div>
-				<!-- end #menu --> 
-				<div id="header-wrapper">
-					<div id="header" class="container">
-						<div id="logo">
-							<h1>Computer Simulations in Physics</h1>
-							<p>until next deadline</p>	
-							<p><iframe src="https://free.timeanddate.com/countdown/i5la1p1l/n50/cf11/cm0/cu4/ct0/cs0/ca0/co0/cr0/ss0/cacfff/cpc000/pc333/tcfff/fs100/szw320/szh135/iso2021-10-01T23:59:59/pa5" allowTransparency="true" frameborder="0" width="308" height="29"></iframe></p>
-							<p>Submit to <a href="https://kooplex-edu.elte.hu">Kooplex-edu</a> IN ENGLISH</p>
+    <link rel="stylesheet" href="css/aos.css">
+
+    <link rel="stylesheet" href="css/ionicons.min.css">
+
+    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="css/jquery.timepicker.css">
+
+    
+    <link rel="stylesheet" href="css/flaticon.css">
+    <link rel="stylesheet" href="css/icomoon.css">
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
+    
+	  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+	    <div class="container">
+	      <a class="navbar-brand" href="index.html">Computer<span>Simulations</span>in<span>Physics</span></a>
+	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+	        <span class="oi oi-menu"></span> Menu
+	      </button>
+
+	      <div class="collapse navbar-collapse" id="ftco-nav">
+	        <ul class="navbar-nav ml-auto">
+	          <li class="nav-item active"><a href="index.html" class="nav-link">Home</a></li>
+	          <li class="nav-item"><a href="#schedule" class="nav-link">Deadlines</a></li>			  
+			  <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+	          <li class="nav-item"><a href="#reqs" class="nav-link">Requirements</a></li>
+	          <li class="nav-item"><a href="#templates" class="nav-link">Templates</a></li>
+	          <li class="nav-item"><a href="#results" class="nav-link">Results</a></li>
+			  <li class="nav-item cta mr-md-2"><a href="https://kooplex-edu.elte.hu/hub" class="nav-link">Kooplex</a></li>
+
+	        </ul>
+	      </div>
+	    </div>
+	  </nav>
+    <!-- END nav -->
+    
+    <div class="hero-wrap js-fullheight" style="background-image: url('images/bg_1.jpg');" data-stellar-background-ratio="0.5">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-start" data-scrollax-parent="true">
+          <div class="col-xl-10 ftco-animate" data-scrollax=" properties: { translateY: '70%' }">
+            <h1 class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"> Until <br><span>next deadline</span></h1>
+            <p class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">October 1, 2021 (Friday) - short description for Project 1</p>
+            <div id="timer" class="d-flex mb-3">
+						  <div class="time" id="days"></div>
+						  <div class="time pl-4" id="hours"></div>
+						  <div class="time pl-4" id="minutes"></div>
+						  <div class="time pl-4" id="seconds"></div>
 						</div>
-						<!--<iframe src="https://free.timeanddate.com/countdown/i5la1p1l/n50/cf11/cm0/cu4/ct0/cs0/ca0/co0/cr0/ss0/cacfff/cpc000/pc333/tcfff/fs100/szw320/szh135/iso2018-11-13T23:59:59/pa5" allowTransparency="true" frameborder="0" width="308" height="29"></iframe>-->
-					</div>
-				</div>
-			</div>
-			
-			
-			<div id="page" class="container">
-				<div id="content">
+          </div>
+        </div>
+      </div>
+    </div>
 
-<!--				<div class="title">      				      
-			      <h2 id="results">Project results</h2>
-				</div>
-			<ul>
-		        <li><a href="https://docs.google.com/spreadsheets/d/1wok3SSp8B7BiOWqgaLFOn9t9cMQJjguENWK-_ybnjnI/edit?usp=sharing">2017 spring (Google sheet)</a></li>
-		      </ul>-->
-<div class="title">
-<h2 id="topics">Topics</h2>
-</div>
-<ul>
-<li>Project1: Topics related to book chapters 9-13 </li>
-<li>Project2: Topics related to book chapters 15-20 </li>
-	</ul>
-<!--
-<ul>
-<li>Background<ul>
-<li>Role of simulations</li>
-<li>Simulations vs. data analysis vs. modeling</li>
-<li>Hardware architectures</li>
-<li>Computer languages</li>
-<li>High performance computing, parallelization</li>
-<li>Development environment, versioning</li>
-</ul>
-</li>
-<li>Python warmup</li>
-<li>Computer Science Warmup<ul>
-<li>Matrices, Linear algebra, Linear equations, Eigenproblems</li>
-<li>Integration</li>
-<li>Data fitting, Interpolation</li>
-<li>Differentiation</li>
-<li>Nonlinear set of equations</li>
-</ul>
-</li>
-<li>Ordinary differential equations and discrete dynamics<ul>
-<li>Oscillations</li>
-<li>Quantum particle</li>
-<li>Chaos<ul>
-<li>Nonlinear differential equations</li>
-<li>Nonlinear discrete maps</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>Orthogonal expansion<ul>
-<li>Fourier</li>
-<li>Wavelets</li>
-<li>Principal components</li>
-</ul>
-</li>
-<li>Statistical growths ???<ul>
-<li>Fractals</li>
-<li>Cellular automata</li>
-</ul>
-</li>
-<li>Thermodynamics simulations, phase transitions<ul>
-<li>Ising model</li>
-<li>Feynman path integral ???</li>
-</ul>
-</li>
-<li>Molecular dynamics</li>
-<li>Partial differential equations - methods<ul>
-<li>Finite elements</li>
-<li>Finite differences</li>
-<li>Fourier solution</li>
-</ul>
-</li>
-<li>Partial differential equations - problems<ul>
-<li>Electrostatic potentials</li>
-<li>Heat flow, diffusion</li>
-<li>Vibrations, waves, quantum waves</li>
-<li>Hydrodynamics</li>
-</ul>
-</li>
-</ul>
--->
+<!--     <section class="ftco-section services-section bg-light">
+      <div class="container">
+        <div class="row d-flex">
+          <div class="col-md-3 d-flex align-self-stretch ftco-animate">
+            <div class="media block-6 services d-block">
+              <div class="icon"><span class="flaticon-placeholder"></span></div>
+              <div class="media-body">
+                <h3 class="heading mb-3">Venue</h3>
+                <p>	203 Fake St. Mountain View, San Francisco, California, USA</p>
+              </div>
+            </div>      
+          </div>
+          <div class="col-md-3 d-flex align-self-stretch ftco-animate">
+            <div class="media block-6 services d-block">
+              <div class="icon"><span class="flaticon-world"></span></div>
+              <div class="media-body">
+                <h3 class="heading mb-3">Transport</h3>
+                <p>A small river named Duden flows by their place and supplies.</p>
+              </div>
+            </div>    
+          </div>
+          <div class="col-md-3 d-flex align-self-stretch ftco-animate">
+            <div class="media block-6 services d-block">
+              <div class="icon"><span class="flaticon-hotel"></span></div>
+              <div class="media-body">
+                <h3 class="heading mb-3">Hotel</h3>
+                <p>A small river named Duden flows by their place and supplies.</p>
+              </div>
+            </div>      
+          </div>
+          <div class="col-md-3 d-flex align-self-stretch ftco-animate">
+            <div class="media block-6 services d-block">
+              <div class="icon"><span class="flaticon-cooking"></span></div>
+              <div class="media-body">
+                <h3 class="heading mb-3">Restaurant</h3>
+                <p>A small river named Duden flows by their place and supplies.</p>
+              </div>
+            </div>      
+          </div>
+        </div>
+      </div>
+    </section> -->
+   	
+<!--     <section class="ftco-counter img" id="section-counter">
+    	<div class="container">
+    		<div class="row d-flex">
+    			<div class="col-md-6 d-flex">
+    				<div class="img d-flex align-self-stretch" style="background-image:url(images/about.jpg);"></div>
+    			</div>
+    			<div class="col-md-6 pl-md-5 py-5">
+    				<div class="row justify-content-start pb-3">
+		          <div class="col-md-12 heading-section ftco-animate">
+		          	<span class="subheading">Fun Facts</span>
+		            <h2 class="mb-4"><span>Fun</span> Facts</h2>
+		            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
+		          </div>
+		        </div>
+		    		<div class="row">
+		          <div class="col-md-6 justify-content-center counter-wrap ftco-animate">
+		            <div class="block-18 text-center py-4 bg-light mb-4">
+		              <div class="text">
+		              	<div class="icon d-flex justify-content-center align-items-center">
+		              		<span class="flaticon-guest"></span>
+		              	</div>
+		                <strong class="number" data-number="30">0</strong>
+		                <span>Speakers</span>
+		              </div>
+		            </div>
+		          </div>
+		          <div class="col-md-6 justify-content-center counter-wrap ftco-animate">
+		            <div class="block-18 text-center py-4 bg-light mb-4">
+		              <div class="text">
+		              	<div class="icon d-flex justify-content-center align-items-center">
+		              		<span class="flaticon-handshake"></span>
+		              	</div>
+		                <strong class="number" data-number="200">0</strong>
+		                <span>Sponsor</span>
+		              </div>
+		            </div>
+		          </div>
+		          <div class="col-md-6 justify-content-center counter-wrap ftco-animate">
+		            <div class="block-18 text-center py-4 bg-light mb-4">
+		              <div class="text">
+		              	<div class="icon d-flex justify-content-center align-items-center">
+		              		<span class="flaticon-chair"></span>
+		              	</div>
+		                <strong class="number" data-number="2500">0</strong>
+		                <span>Total Seats</span>
+		              </div>
+		            </div>
+		          </div>
+		          <div class="col-md-6 justify-content-center counter-wrap ftco-animate">
+		            <div class="block-18 text-center py-4 bg-light mb-4">
+		              <div class="text">
+		              	<div class="icon d-flex justify-content-center align-items-center">
+		              		<span class="flaticon-idea"></span>
+		              	</div>
+		                <strong class="number" data-number="40">0</strong>
+		                <span>Topics</span>
+		              </div>
+		            </div>
+		          </div>
+		        </div>
+	        </div>
+        </div>
+    	</div>
+    </section> -->
 
-				<div class="title">      				      
-			      <h2 id="deadlines">Deadlines</h2>
-				</div>
-		      <br>
-		       <table align="center">
-		        <tr>
-		          <th>Project</th>
-		          <th>Short plan deadline</th> 
-			  <th>Deadline</th>
-		        </tr>
-		        <tr>
-		          <td>#1 From topics of Chapters 9-13</td>
-		          <td>1 October 2021 (Friday) </td>
-			  <td>22 October 2021 (Friday)</td> 
-		        </tr>
-		        <tr>
-		          <td>#2 From topics of Chapters 15-20</td>
-		          <td>5 November 2021 (Friday)</td> 
-			  <td>19 November 2021 (Friday)</td>
-		        </tr>
-		      </table>
-		       <br>
-		       <br>
-		       
-				<p>		       
-		       Keep the deadlines! Late submissions will be punished with decaying grades. See the detailed requirements below.
-				</p>				
-				<div class="title">      	
-		      	<h2 id="req">Results</h2>
-				</div>		      
-		      <ul>
-		        <li> <a href="https://docs.google.com/spreadsheets/d/1uRz0JQpukFYZHLIzdJmrGRq1KLqyEPEP4LeAXOYGwNc/edit?usp=sharing">Results </a></li>
-			<!--<li> <a href="#">Results </a></li>-->
-		      </ul>
-					
-				<div class="title">      	
-		      	<h2 id="req">Requirements</h2>
-				</div>		      
-		      <ul>
-		        <li> <a href="szamszim.pdf">Requirements </a> (grading, expectations) for the reports</li>
-		      </ul>
-				<div class="title">
-				<h2 id="short">Short descriptions</h2>
-				</div>		      
-		      	<ul>
-		        	<li> Introduce your chosen topic in the following way:</li>
-					<ul>
-						<li>describe the problem you chose in some sentences, give the most important equations, figures etc. (topic)</li>
-						<li>introduce it in broader context (background)</li>
-						<li>give reasons why you chose this particular problem (motivation)</li>
-						<li>list the necessary methods and tools you plan to use for the solution (proposed solution)</li>
-						<li>discuss potential error and difficulty sources (obstacles?)</li>
-						<li>describe wat your expected outcomes and results will be, and how you can test their validity, if applicable - e.g. how you can compare your results to literature values or results (hypothesis)</li>
-					</ul>
-					<li>Please upload your document in PDF to the assignment directory on Kooplex-edu! (<a href="kooplex_tutorial2019.pdf">Kooplex tutorial</a>)</li>
-		     	</ul>
-				<div class="title">
-				<h2 id="short">Presentations</h2>
-				</div>		      
-		      	<ul>
-		        	<li> Final grades will be determined as the average of the grades of the submitted projects and the grade for the short presentation on the last few classes. 
-					Your presentation should</li>
-					<ul>
-						<li>be 10-minute long, and thus very concise,</li>
-						<li>summarize your results for <b>both</b> of the submitted projects,</li>
-						<li>include your most important work on the topics,</li>
-						<li>underline your own contribution,</li>
-						<li>be relatively easy to understand,</li>
-						<li>be prepared in English with appropriate slides whenever possible.</li>
-					</ul>
-					<li>Expect to answer a few basic questions regarding your submissions and the course material.</li>
-		     	</ul>
+<!--     <section class="ftco-section">
+    	<div class="container">
+    		<div class="row justify-content-center mb-5 pb-3">
+          <div class="col-md-7 text-center heading-section ftco-animate">
+          	<span class="subheading">Speaker</span>
+            <h2 class="mb-4"><span>Our</span> Speakers</h2>
+          </div>
+        </div>
+        <div class="row">
+        	<div class="col-md-12 ftco-animate">
+        		<div class="carousel-testimony owl-carousel">
+        			<div class="item">
+        				<div class="speaker">
+			        		<img src="images/speaker-1.jpg" class="img-fluid" alt="Colorlib HTML5 Template">
+			        		<div class="text text-center py-3">
+			        			<h3>John Adams</h3>
+			        			<span class="position">Web Developer</span>
+			        			<ul class="ftco-social mt-3">
+			                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+			                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+			                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+			              </ul>
+			        		</div>
+			        	</div>
+        			</div>
 
-					<div class="title">      		
-		      	<h2 id="templ">Project report templates</h2>
-				</div>	      
-		      <ul>
-		       <li>Latex empty template sources (<a href="template.tex">main</a>,<a href="sample.bib">bibliography file</a>,<a href="ising.png"> sample image</a>)</li>
-		       <li>Latex empty template <a href="template.pdf">PDF</a></li>
-		       <li>Example nice project report <a href="example_report.pdf">from two years ago</a> (Hungarian). </li>
-                       <li>Example nice project report <a href="LotkaVolterra_final.pdf">from last year</a> (English).</li>			      
-		       <li>Example nice project report <a href="ProjectFPU.pdf">from last year</a> (English).</li>			      
-		      </ul>
+        			<div class="item">
+        				<div class="speaker">
+			        		<img src="images/speaker-2.jpg" class="img-fluid" alt="Colorlib HTML5 Template">
+			        		<div class="text text-center py-3">
+			        			<h3>Paul George</h3>
+			        			<span class="position">Web Developer</span>
+			        			<ul class="ftco-social mt-3">
+			                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+			                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+			                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+			              </ul>
+			        		</div>
+			        	</div>
+        			</div>
 
-    				<!-- <div id="sidebar">
-						<div class="box2">
-							<div class="title">
-								<h2>Integer gravida</h2>
-							</div>
-							<ul class="style2">
-								<li><a href="#">Amet turpis, feugiat et sit amet</a></li>
-								<li><a href="#">Ornare in hendrerit in lectus</a></li>
-								<li><a href="#">Semper mod quis eget mi dolore</a></li>
-								<li><a href="#">Quam turpis feugiat sit dolor</a></li>
-								<li><a href="#">Amet ornare in hendrerit in lectus</a></li>
-								<li><a href="#">Quam turpis feugiat sit dolor</a></li>
-								<li><a href="#">Consequat etiam lorem phasellus</a></li>
-							</ul>
-						</div>
-					</div> -->
-				</div>
-			</div>
-			
+        			<div class="item">
+        				<div class="speaker">
+			        		<img src="images/speaker-3.jpg" class="img-fluid" alt="Colorlib HTML5 Template">
+			        		<div class="text text-center py-3">
+			        			<h3>James Smith</h3>
+			        			<span class="position">Web Developer</span>
+			        			<ul class="ftco-social mt-3">
+			                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+			                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+			                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+			              </ul>
+			        		</div>
+			        	</div>
+        			</div>
+
+        			<div class="item">
+        				<div class="speaker">
+			        		<img src="images/speaker-4.jpg" class="img-fluid" alt="Colorlib HTML5 Template">
+			        		<div class="text text-center py-3">
+			        			<h3>Angelie Crawford</h3>
+			        			<span class="position">Web Developer</span>
+			        			<ul class="ftco-social mt-3">
+			                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+			                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+			                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+			              </ul>
+			        		</div>
+			        	</div>
+        			</div>
+
+        			<div class="item">
+        				<div class="speaker">
+			        		<img src="images/speaker-5.jpg" class="img-fluid" alt="Colorlib HTML5 Template">
+			        		<div class="text text-center py-3">
+			        			<h3>Jackie Spears</h3>
+			        			<span class="position">Entrepreneur</span>
+			        			<ul class="ftco-social mt-3">
+			                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+			                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+			                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+			              </ul>
+			        		</div>
+			        	</div>
+        			</div>
+        		</div>
+        	</div>
+        </div>
+    	</div>
+    </section> -->
 		
-			<div id="footer-wrapper">
-				<div id="footer" class="container">
-					<!-- <div id="box1">
-						<div class="title">
-							<h2>Latest Post</h2>
+
+		<section class="ftco-section bg-light" id="schedule">
+			<div class="container">
+				<div class="row justify-content-center mb-5 pb-3">
+          <div class="col-md-7 text-center heading-section ftco-animate">
+          	<span class="subheading">Submission deadlines</span>
+            <h2 class="mb-4"><span>Course</span> Schedule</h2>
+          </div>
+        </div>
+        <div class="ftco-search">
+					<div class="row">
+            <div class="col-md-12 nav-link-wrap">
+	            <div class="nav nav-pills d-flex text-center" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+	              <a class="nav-link ftco-animate active" id="v-pills-1-tab" data-toggle="pill" href="#v-pills-1" role="tab" aria-controls="v-pills-1" aria-selected="true">SD Project 1 <span>1 Oct. 2021</span></a>
+
+	              <a class="nav-link ftco-animate" id="v-pills-2-tab" data-toggle="pill" href="#v-pills-2" role="tab" aria-controls="v-pills-2" aria-selected="false">Project 1 <span>22 Oct. 2021</span></a>
+
+	              <a class="nav-link ftco-animate" id="v-pills-3-tab" data-toggle="pill" href="#v-pills-3" role="tab" aria-controls="v-pills-3" aria-selected="false">SD Project 2 <span>5 Nov. 2021</span></a>
+
+	              <a class="nav-link ftco-animate" id="v-pills-4-tab" data-toggle="pill" href="#v-pills-4" role="tab" aria-controls="v-pills-4" aria-selected="false">Project 2 <span>19 Nov. 2021</span></a>
+
+				  <a class="nav-link ftco-animate" id="v-pills-5-tab" data-toggle="pill" href="#v-pills-5" role="tab" aria-controls="v-pills-5" aria-selected="false">Presentations <span>23 Nov. 2021</span></a>
+
+				  <a class="nav-link ftco-animate" id="v-pills-6-tab" data-toggle="pill" href="#v-pills-6" role="tab" aria-controls="v-pills-6" aria-selected="false">Presentations <span>30 Nov. 2021</span></a>
+
+				  <a class="nav-link ftco-animate" id="v-pills-7-tab" data-toggle="pill" href="#v-pills-7" role="tab" aria-controls="v-pills-7" aria-selected="false">Presentations <span>7 Dec. 2021</span></a>
+
+	            </div>
+	          </div>
+	          <div class="col-md-12 tab-wrap">
+	            
+	            <div class="tab-content" id="v-pills-tabContent">
+
+	              <div class="tab-pane fade show active" id="v-pills-1" role="tabpanel" aria-labelledby="day-1-tab">
+	              	<div class="speaker-wrap ftco-animate d-flex">
+	              		<div class="img speaker-img" style="background-image: url(images/person_1.jpg);"></div>
+	              		<div class="text pl-md-5">
+	              			<span class="time">Until 23:59, 1 Oct. 2021</span>
+	              			<h2><a href="#">Deadline for short description of Project 1</a></h2>
+	              			<p>Upload a PDF document to <a href="https://kooplex-edu.elte.hu/hub">Kooplex</a> introducing your chosen topic and your plans in a concise manner. 
+								You will receive feedback that will help with your final submission. (<a href="kooplex_tutorial2019.pdf">Kooplex tutorial</a>)</p>
+	              		</div>
+	              	</div>
+				  </div>
+				<div class="tab-pane fade" id="v-pills-2" role="tabpanel" aria-labelledby="day-2-tab">
+					<div class="speaker-wrap ftco-animate d-flex">
+						<div class="img speaker-img" style="background-image: url(images/person_2.jpg);"></div>
+						<div class="text pl-md-5">
+							<span class="time">Until 23:59, 22 Oct. 2021</span>
+							<h2><a href="#">Deadline for Project 1</a></h2>
+							<p>Upload a PDF document and appropriate code/notebook files to <a href="https://kooplex-edu.elte.hu/hub">Kooplex</a> as your final 
+								submission for Project 1. (<a href="kooplex_tutorial2019.pdf">Kooplex tutorial</a>)</p>
 						</div>
-						<ul class="style1">
-							<li><a href="#">Semper mod quis eget mi dolore</a></li>
-							<li><a href="#">Quam turpis feugiat sit dolor</a></li>
-							<li><a href="#">Amet ornare in hendrerit in lectus</a></li>
-							<li><a href="#">Consequat etiam lorem phasellus</a></li>
-							<li><a href="#">Amet turpis, feugiat et sit amet</a></li>
-							<li><a href="#">Semper mod quisturpis nisi</a></li>
-						</ul>
-					</div>
-					<div id="box2">
-						<div class="title">
-							<h2>Popular Links</h2>
-						</div>
-						<ul class="style1">
-							<li><a href="#">Semper mod quis eget mi dolore</a></li>
-							<li><a href="#">Quam turpis feugiat sit dolor</a></li>
-							<li><a href="#">Amet ornare in hendrerit in lectus</a></li>
-							<li><a href="#">Consequat etiam lorem phasellus</a></li>
-							<li><a href="#">Amet turpis, feugiat et sit amet</a></li>
-							<li><a href="#">Semper mod quisturpis nisi</a></li>
-						</ul>
-					</div>
-					<div id="box3">
-						<div class="title">
-							<h2>Follow Us</h2>
-						</div>
-						<p>Proin eu wisi suscipit nulla suscipit interdum. Aenean lectus lorem, imperdiet magna.</p>
-						<ul class="contact">
-							<li><a href="#" class="icon icon-twitter"><span>Twitter</span></a></li>
-							<li><a href="#" class="icon icon-facebook"><span>Facebook</span></a></li>
-							<li><a href="#" class="icon icon-dribbble"><span>Dribbble</span></a></li>
-							<li><a href="#" class="icon icon-tumblr"><span>Tumblr</span></a></li>
-							<li><a href="#" class="icon icon-rss"><span>Pinterest</span></a></li>
-						</ul>
-							<a href="#" class="button">Read More</a> -->
 					</div>
 				</div>
+				<div class="tab-pane fade" id="v-pills-3" role="tabpanel" aria-labelledby="day-3-tab">
+					<div class="speaker-wrap ftco-animate d-flex">
+						<div class="img speaker-img" style="background-image: url(images/person_3.jpg);"></div>
+						<div class="text pl-md-5">
+							<span class="time">Until 23:59, 5 Nov. 2021</span>
+							<h2><a href="#">Deadline for short description of Project 2</a></h2>
+							<p>Upload a PDF document to <a href="https://kooplex-edu.elte.hu/hub">Kooplex</a> introducing your chosen topic and your plans in a 
+								concise manner. You will receive feedback that will help with your final submission. (<a href="kooplex_tutorial2019.pdf">Kooplex tutorial</a>)</p>
+					  </div>
+					</div>
+				</div>				
+				<div class="tab-pane fade" id="v-pills-4" role="tabpanel" aria-labelledby="day-4-tab">
+					<div class="speaker-wrap ftco-animate d-flex">
+						<div class="img speaker-img" style="background-image: url(images/person_4.jpg);"></div>
+						<div class="text pl-md-5">
+							<span class="time">Until 23:59, 19 Nov. 2021</span>
+							<h2><a href="#">Deadline for Project 2</a></h2>
+							<p>Upload a PDF document and appropriate code/notebook files to <a href="https://kooplex-edu.elte.hu/hub">Kooplex</a> as your final submission 
+								for Project 2. (<a href="kooplex_tutorial2019.pdf">Kooplex tutorial</a>)</p>
+						</div>
+					</div>
+				</div>
+				<div class="tab-pane fade" id="v-pills-5" role="tabpanel" aria-labelledby="day-5-tab">
+					<div class="speaker-wrap ftco-animate d-flex">
+						<div class="img speaker-img" style="background-image: url(images/person_5.jpg);"></div>
+						<div class="text pl-md-5">
+							<span class="time">12:00-14:00, 23 Nov. 2021</span>
+							<h2><a href="#">Presentations</a></h2>
+							<p>Prepare a 10-minute presentation based on your project submissions summarizing your most important results and figures. 
+								List of speakers to be determined.</p>
+						</div>
+					</div>
+				</div>
+				<div class="tab-pane fade" id="v-pills-6" role="tabpanel" aria-labelledby="day-6-tab">
+					<div class="speaker-wrap ftco-animate d-flex">
+						<div class="img speaker-img" style="background-image: url(images/person_6.jpg);"></div>
+						<div class="text pl-md-5">
+							<span class="time">12:00-14:00, 30 Nov. 2021</span>
+							<h2><a href="#">Presentations</a></h2>
+							<p>Prepare a 10-minute presentation based on your project submissions summarizing your most important results and figures. List of speakers to be determined.</p>
+						</div>
+					</div>
+				</div>
+				<div class="tab-pane fade" id="v-pills-7" role="tabpanel" aria-labelledby="day-7-tab">
+					<div class="speaker-wrap ftco-animate d-flex">
+						<div class="img speaker-img" style="background-image: url(images/person_7.jpg);"></div>
+						<div class="text pl-md-5">
+							<span class="time">12:00-14:00, 7 Dec. 2021</span>
+							<h2><a href="#">Presentations</a></h2>
+							<p>Prepare a 10-minute presentation based on your project submissions summarizing your most important results and figures. List of speakers to be determined.</p>
+						</div>
+					</div>
+				</div>				
+	            </div>
+	          </div>
+	        </div>
+        </div>
 			</div>
+		</section>
+		
+
+    <section class="ftco-section testimony-section" id="about">
+      <div class="container">
+        <div class="row justify-content-center mb-5 pb-3">
+          <div class="col-md-7 text-center heading-section ftco-animate">
+          	<span class="subheading">About the course</span>
+            <h2 class="mb-4"><span>Computer</span> Simulations <span>in</span> Physics</h2>
+          </div>
+        </div>
+		<h3>Textbook</h3>
+		<ul>
+			<li><a href="http://www.physics.orst.edu/~rubin/">Rubin H Landau</a>, Manuel J Paez, & Cristian Bordeianu: <a href="http://www.physics.orst.edu/~rubin/Books/Survey/index.html">A Survey of Computational Physics</a> - introductory computational science, 
+				Princeton University Press, 2008 (<a href="http://www.compadre.org/psrc/items/detail.cfm?ID=11578">download PDF</a> from Compadre, the author's <a href="http://physics.oregonstate.edu/~landaur/">website</a> or see the <a href="https://kooplex-fiek.elte.hu/seafile/f/cf29591fa4a64b45b212/">annotated local copy</a>)</li>
+		</ul>
+		<h3>Department server</h3>
+		<ul>
+			<li><b>Department server: <a href="https://kooplex-edu.elte.hu/hub">Kooplex</a></b> Use this to upload the project reports! You can log in with your Neptun or Caesar (ELTE) account and find the course by Neptun ID.</li>
+			<li><a href="kooplex_tutorial2019.pdf">Kooplex tutorial</a></li>
+		</ul>		
+		<h3>Lecture recordings of 2020</h3>
+		<ul>
+			<li><a href="https://teams.microsoft.com/_#/school/files/General?threadId=19%3A-_KLlYSIqD4RS8kkrBxh9E7I1DqLBDqLzU6lDmVLTJI1%40thread.tacv2&ctx=channel&context=lecture2020_recordings&rootfolder=%252Fsites%252FCrs21-22-1compsimf20em1Szmtgpesszimulcik%252FClass%2520Materials%252Flecture2020_recordings">Recordings</a> of the 2020/2021 semester</li>
+		</ul>	
+		<h3>Resources</h3>
+		<ul>
+			<li><b>Contact: szamszimmsc(at)gmail.com</b> Questions, requests, etc. concerning the class</li>
+			<li><a href="https://icsabai.github.io/classes/compsimf17em/">News and announcements</a></li>
+			<li><a href="http://classes.soe.ucsc.edu/ams206/Winter03/h26m16.pdf">Neumann rejection sampling</a></li>
+			<li><a href="https://jupyter.org/">Jupyter project</a></li>
+			<li><a href="https://cloud.sagemath.com/">Sagemath Cloud</a> - free of charge access to linux virtual machines with Jupyter Notebooks</li>
+			<li><a href="https://docs.python.org/2/tutorial/">Python intro</a> - English</li>
+			<li><a href="http://harp.pythonanywhere.com/python_doc/tutorial">Python bevezető </a> - magyarul (Python Software Foundation)</li>
+			<li>Crash Course in Python for Scientists <a href="http://csabai.web.elte.hu/http/szamSzimMsc/CrashCourse.html">html</a> version, 
+				<a href="http://csabai.web.elte.hu/http/szamSzimMsc/CrashCourse.ipynb">notebook</a> version (notebooks can be downloaded/uploaded to sagemathcloud, and run)</li>
+			<li><a href="https://github.com/jupyter/jupyter/wiki/A-gallery-of-interesting-Jupyter-Notebooks">Example</a> Jupyter Notebooks</li>
+		</ul>		
+		<h3>Books and similar courses</h3>
+		<ul>
+			<li>Andi Klein, Alexander Godunov: Introductory Computational Physics, Cambridge University Press; 1 edition (March 20, 2006)</li>
+			<li>Eric Ayars: <a href="http://www.e-booksdirectory.com/details.php?ebook=10286">Computational Physics with Python</a>, California State University (2013)</li>
+			<li>Franz J. Vesely: Computational Physics. An Introduction, Springer; 2nd edition (September 30, 2001)</li>
+			<li>Huff, Kathryn D.; Scopatz, Anthony: Effective computation in physics field guide to research with Python, O'Reilly Media; 1 edition (July 5, 2015)</li>
+			<li>Danaila, I., Joly, P., Kaber, S.M., Postel, M: An introduction to scientific computing. Twelve computational projects solved with MATLAB, Springer 2006</li>
+			<li>Morten Hjorth-Jensen: Computational Physics, University of Oslo, 2012</li>
+			<li>Paul L. DeVries: A first course in computational physics, Jones & Bartlett Learning; 2 edition (March 26, 2010)</li>
+			<li>Tao Pang: An Introduction to Computational Physics, Cambridge University Press; 2 edition (February 13, 2006)</li>
+			<li>Gould, Tobochnik, Christian: <a href="https://www.compadre.org/osp/items/detail.cfm?ID=7375">An Introduction to Computer Simulation Methods</a> Addison-Wesley 2006-2016</li>
+			<li>Some of the books are available free <a href="http://www.freebookcentre.net/Physics/Computational-Physics-Books.html">here</a>.</li>
+			<li>Nice set of notebooks and related teaching materials at <a href="http://asu-compmethodsphysics-phy494.github.io/ASU-PHY494/">ASU</a>, Arizona, USA. (navigation buttons at the bottom)</li>
+		</ul>				
+<!--         <div class="row ftco-animate">
+          <div class="col-md-12">
+            <div class="carousel-testimony owl-carousel ftco-owl">
+              <div class="item">
+                <div class="testimony-wrap text-center py-4 pb-5">
+                  <div class="user-img mb-4" style="background-image: url(images/person_1.jpg)">
+                    <span class="quote d-flex align-items-center justify-content-center">
+                      <i class="icon-quote-left"></i>
+                    </span>
+                  </div>
+                  <div class="text">
+                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                    <p class="name">Roger Scott</p>
+                    <span class="position">Marketing Manager</span>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="testimony-wrap text-center py-4 pb-5">
+                  <div class="user-img mb-4" style="background-image: url(images/person_2.jpg)">
+                    <span class="quote d-flex align-items-center justify-content-center">
+                      <i class="icon-quote-left"></i>
+                    </span>
+                  </div>
+                  <div class="text">
+                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                    <p class="name">Roger Scott</p>
+                    <span class="position">Interface Designer</span>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="testimony-wrap text-center py-4 pb-5">
+                  <div class="user-img mb-4" style="background-image: url(images/person_3.jpg)">
+                    <span class="quote d-flex align-items-center justify-content-center">
+                      <i class="icon-quote-left"></i>
+                    </span>
+                  </div>
+                  <div class="text">
+                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                    <p class="name">Roger Scott</p>
+                    <span class="position">UI Designer</span>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="testimony-wrap text-center py-4 pb-5">
+                  <div class="user-img mb-4" style="background-image: url(images/person_1.jpg)">
+                    <span class="quote d-flex align-items-center justify-content-center">
+                      <i class="icon-quote-left"></i>
+                    </span>
+                  </div>
+                  <div class="text">
+                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                    <p class="name">Roger Scott</p>
+                    <span class="position">Web Developer</span>
+                  </div>
+                </div>
+              </div>
+              <div class="item">
+                <div class="testimony-wrap text-center py-4 pb-5">
+                  <div class="user-img mb-4" style="background-image: url(images/person_1.jpg)">
+                    <span class="quote d-flex align-items-center justify-content-center">
+                      <i class="icon-quote-left"></i>
+                    </span>
+                  </div>
+                  <div class="text">
+                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                    <p class="name">Roger Scott</p>
+                    <span class="position">System Analyst</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+ -->     
+	 </div>
+    </section>
+
+    <section class="ftco-section bg-light" id="reqs">
+      <div class="container">
+        <div class="row justify-content-center mb-5 pb-3">
+          <div class="col-md-7 heading-section ftco-animate text-center">
+            <span class="subheading">Submissions</span>
+            <h2 class="mb-1"><span>Submission</span> requirements</h2>
+			<p>Details on requirements and grading can be found <a href="szamszim_req2021.pdf">here</a>.</p>
+          </div>
+        </div>
+        <div class="row">
+	        <div class="col-md-4 ftco-animate">
+	          <div class="block-7">
+	            <div class="text-center">
+	            <h2 class="heading"><b>Short description</b></h2>
+<!-- 	            <span class="price"><span class="number">Short description</span></span> -->
+<!-- 	            <span class="excerpt d-block">per Month</span> -->
+	            
+	            <h3 class="heading-2 my-4"></h3>
+	            
+	            <ul class="pricing-text mb-5">
+	              <li>Introduction (most important equations, figures)</li>
+	              <li>Background, broader context</li>
+	              <li>Motivation (why you chose the topic)</li>
+	              <li>Proposed solution (methods and tools you will need)</li>
+	              <li>Obstacles (potentional difficulties)</li>
+	              <li>Expected results, hypothesis</li>
+				  <li>About 1-page long</li>
+	              <li>Upload as PDF to Kooplex</li>
+	            </ul>
+
+<!-- 	            <a href="#" class="btn btn-primary d-block px-2 py-3">Buy Ticket</a> -->
+	            </div>
+	          </div>
+	        </div>
+	        <div class="col-md-4 ftco-animate">
+	          <div class="block-7">
+	            <div class="text-center">
+	            <h2 class="heading"><b>Project report</b></h2>
+<!-- 	            <span class="price"><sup>$</sup> <span class="number">200</span></span>
+	            <span class="excerpt d-block">per Month</span> -->
+	            
+	            <h3 class="heading-2 my-4"></h3>
+	            
+	            <ul class="pricing-text mb-5">
+	              <li>Introduction with motivation and theoretical background</li>
+	              <li>Methods</li>
+	              <li>Results, emphasizing your own contribution</li>
+	              <li>Discussion, Conclusion</li>
+	              <li>Format (scientific language!)</li>
+	              <li>Figures (easily understandable, asthetic figures with legends)</li>
+				  <li>References</li>
+				  <li>Upload as PDF to Kooplex, with additional code files</li>
+				  <li>Grades decay after deadline</li>
+	            </ul>
+
+	            <a href="szamszim_req2021.pdf" class="btn btn-primary d-block px-2 py-3">Details</a>
+	            </div>
+	          </div>
+	        </div>
+	        <div class="col-md-4 ftco-animate">
+	          <div class="block-7">
+	            <div class="text-center">
+	            <h2 class="heading"><b>Presentation</b></h2>
+<!-- 	            <span class="price"><sup>$</sup> <span class="number">499</span></span>
+	            <span class="excerpt d-block">per Month</span> -->
+	            
+	            <h3 class="heading-2 my-4"></h3>
+	            
+	            <ul class="pricing-text mb-5">
+	              <li>10-minute long!</li>
+	              <li>prepared in English (if possible)</li>
+	              <li>appropriate slides</li>
+	              <li>about <b>both</b> projects</li>
+	              <li>concise</li>
+	              <li>special emphasis on own contribution</li>
+	              <li>questions about submissions and course material</li>
+	            </ul>
+
+<!-- 	            <a href="#" class="btn btn-primary d-block px-2 py-3">Buy Ticket</a> -->
+	            </div>
+	          </div>
+	        </div>
+	      </div>
+      </div>
+    </section>
+
+    <section class="ftco-section bg-light" id="templates">
+      <div class="container">
+        <div class="row justify-content-center mb-5 pb-3">
+          <div class="col-md-7 heading-section text-center ftco-animate">
+          	<span class="subheading">Templates</span>
+            <h2><span>Submission</span> examples</h2>
+          </div>
+        </div>
+        <div class="row d-flex">
+          <div class="col-md-4 d-flex ftco-animate">
+          	<div class="blog-entry justify-content-end">
+<!--               <a href="" class="block-20" style="background-image: url('images/image_1.jpg');">
+              </a> -->
+			  <img style="width: 100%;" src="images/image_1.jpg">
+              <div class="text p-4 float-right d-block">
+<!--               	<div class="d-flex align-items-center pt-2 mb-4">
+              		<div class="one">
+              			<span class="day">07</span>
+              		</div>
+              		<div class="two">
+              			<span class="yr">2019</span>
+              			<span class="mos">January</span>
+              		</div>
+              	</div> -->
+                <h3 class="heading mt-2">Empty Latex project templates</h3>
+                <p><a href="template.pdf">PDF</a></p>
+				<p><a href="template.tex">tex file</a></p>
+				<p><a href="sample.bib">bibliography</a></p>
+				<p><a href="ising.png">sample image</a></p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 d-flex ftco-animate">
+          	<div class="blog-entry justify-content-center">
+<!--               <a href="" class="block-20" style="background-image: url('images/image_2.jpg');">
+              </a> -->
+			  <img style="width: 100%;" src="images/image_2.jpg">
+              <div class="text p-4 float-right d-block">
+<!--               	<div class="d-flex align-items-center pt-2 mb-4">
+              		<div class="one">
+              			<span class="day">07</span>
+              		</div>
+              		<div class="two">
+              			<span class="yr">2019</span>
+              			<span class="mos">January</span>
+              		</div>
+              	</div> -->
+                <h3 class="heading mt-2">Example reports (English)</h3>
+                <p><a href="LotkaVolterra_final.pdf">Lotka-Volterra models</a></p>
+				<p><a href="ProjectFPU.pdf">Fermi-Pasta-Ulam problem</a></p>
+				<p><a href="kai83h.pdf">Projectile motion simulation</a></p>
+				<p><a href="bkf0jp.pdf">Fractal dimension of the Julia set</a></p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 d-flex ftco-animate">
+          	<div class="blog-entry justify-content-center">
+<!--               <a href="" class="block-20" style="background-image: url('images/image_3.jpg');">
+              </a> -->
+			  <img style="width: 100%;" src="images/image_3.jpg">
+              <div class="text p-4 float-right d-block">
+<!--               	<div class="d-flex align-items-center pt-2 mb-4">
+              		<div class="one">
+              			<span class="day">06</span>
+              		</div>
+              		<div class="two">
+              			<span class="yr">2019</span>
+              			<span class="mos">January</span>
+              		</div>
+              	</div> -->
+                <h3 class="heading mt-2">Example reports (Hungarian)</h3>
+                <p><a href="example_report.pdf">Kaotikus dinamika</a></p>
+				<p><a href="q9nw33.pdf">Másodrendű fázisátalakulás az Ising-modellben</a></p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 d-flex ftco-animate">
+			<div class="blog-entry justify-content-center">
+<!--               <a href="" class="block-20" style="background-image: url('images/image_3.jpg');">
+			</a> -->
+			<img style="width: 100%;" src="images/image_4.jpg">
+			<div class="text p-4 float-right d-block">
+<!--               	<div class="d-flex align-items-center pt-2 mb-4">
+					<div class="one">
+						<span class="day">06</span>
+					</div>
+					<div class="two">
+						<span class="yr">2019</span>
+						<span class="mos">January</span>
+					</div>
+				</div> -->
+			  <h3 class="heading mt-2">Example short descriptions</h3>
+			  <p><a href="c0ko9h_sd.pdf">Atomic motion in a magnetic trap</a></p>
+			  <p><a href="dvtulf_sd.pdf">Double pendulum and deep learning</a></p>
+			  <p><a href="kai83h_sd.pdf">Path integral on the lattice</a></p>
+			</div>
+		  </div>
+		</div>		  
+        </div>
+      </div>
+    </section>
+		
+		<section class="ftco-section-parallax" id="results">
+      <div class="parallax-img d-flex align-items-center">
+        <div class="container">
+          <div class="row d-flex justify-content-center">
+            <div class="col-md-7 text-center heading-section heading-section-white ftco-animate">
+              <h2>Feedback and grades</h2>
+              <p>Results of submissions and detailed feedback can be found <a style="color: #343a40; font-weight: bold;" href="https://docs.google.com/spreadsheets/d/1CkLiJGEl_4owuiroIYY3GvDtMHWM4TXB99joZ0VxDBU/edit?usp=sharing">here</a>.</p>
+<!--               <div class="row d-flex justify-content-center mt-4 mb-4">
+                <div class="col-md-8">
+                  <form action="#" class="subscribe-form">
+                    <div class="form-group d-flex">
+                      <input type="text" class="form-control" placeholder="Enter email address">
+                      <input type="submit" value="Subscribe" class="submit px-3">
+                    </div>
+                  </form>
+                </div>
+              </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+<!--     <section class="ftco-gallery">
+    	<div class="container-wrap">
+    		<div class="row no-gutters">
+					<div class="col-md-3 ftco-animate">
+						<a href="images/image_1.jpg" class="gallery image-popup img d-flex align-items-center" style="background-image: url(images/image_1.jpg);">
+							<div class="icon mb-4 d-flex align-items-center justify-content-center">
+    						<span class="icon-instagram"></span>
+    					</div>
+						</a>
+					</div>
+					<div class="col-md-3 ftco-animate">
+						<a href="images/image_2.jpg" class="gallery image-popup img d-flex align-items-center" style="background-image: url(images/image_2.jpg);">
+							<div class="icon mb-4 d-flex align-items-center justify-content-center">
+    						<span class="icon-instagram"></span>
+    					</div>
+						</a>
+					</div>
+					<div class="col-md-3 ftco-animate">
+						<a href="images/image_3.jpg" class="gallery image-popup img d-flex align-items-center" style="background-image: url(images/image_3.jpg);">
+							<div class="icon mb-4 d-flex align-items-center justify-content-center">
+    						<span class="icon-instagram"></span>
+    					</div>
+						</a>
+					</div>
+					<div class="col-md-3 ftco-animate">
+						<a href="images/image_4.jpg" class="gallery image-popup img d-flex align-items-center" style="background-image: url(images/image_4.jpg);">
+							<div class="icon mb-4 d-flex align-items-center justify-content-center">
+    						<span class="icon-instagram"></span>
+    					</div>
+						</a>
+					</div>
+        </div>
+    	</div>
+    </section> -->
+
+    <footer class="ftco-footer ftco-bg-dark ftco-section">
+      <div class="container">
+<!--         <div class="row mb-5">
+          <div class="col-md">
+            <div class="ftco-footer-widget mb-4">
+              <h2 class="ftco-heading-2">Eventalk</h2>
+              <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+              <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
+                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
+                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
+                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md">
+            <div class="ftco-footer-widget mb-4 ml-md-5">
+              <h2 class="ftco-heading-2">Useful Links</h2>
+              <ul class="list-unstyled">
+                <li><a href="#" class="py-2 d-block">Speakers</a></li>
+                <li><a href="#" class="py-2 d-block">Shcedule</a></li>
+                <li><a href="#" class="py-2 d-block">Events</a></li>
+                <li><a href="#" class="py-2 d-block">Blog</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md">
+             <div class="ftco-footer-widget mb-4">
+              <h2 class="ftco-heading-2">Privacy</h2>
+              <ul class="list-unstyled">
+                <li><a href="#" class="py-2 d-block">Career</a></li>
+                <li><a href="#" class="py-2 d-block">About Us</a></li>
+                <li><a href="#" class="py-2 d-block">Contact Us</a></li>
+                <li><a href="#" class="py-2 d-block">Services</a></li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-md">
+            <div class="ftco-footer-widget mb-4">
+            	<h2 class="ftco-heading-2">Have a Questions?</h2>
+            	<div class="block-23 mb-3">
+	              <ul>
+	                <li><span class="icon icon-map-marker"></span><span class="text">203 Fake St. Mountain View, San Francisco, California, USA</span></li>
+	                <li><a href="#"><span class="icon icon-phone"></span><span class="text">+2 392 3929 210</span></a></li>
+	                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">info@yourdomain.com</span></a></li>
+	              </ul>
+	            </div>
+            </div>
+          </div>
+        </div> -->
+        <div class="row">
+			<div class="col-md-6 text-center">
+			  <p><i class="icon-info-circle" aria-hidden="false"></i> szamszimmsc[at]gmail.com</p>
+			</div>
+			<div class="col-md-6 text-center">
+				<p><i class="icon-wrench" aria-hidden="false"></i> kooplex[at]complex.elte.hu</p>
+			  </div>
 		</div>
-		<div id="copyright" class="container">
-			<p>&copy; Untitled. All rights reserved. | Design by <a href="http://templated.co" rel="nofollow">TEMPLATED</a>.</p>
-		</div>
-	</body>
+		<br><br><br>		
+        <div class="row">
+          <div class="col-md-12 text-center">
+
+            <p style="font-size: small;"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart color-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+          </div>
+        </div>
+      </div>
+    </footer>
+    
+  
+
+  <!-- loader -->
+  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
+
+
+  <script src="js/jquery.min.js"></script>
+  <script src="js/jquery-migrate-3.0.1.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/jquery.easing.1.3.js"></script>
+  <script src="js/jquery.waypoints.min.js"></script>
+  <script src="js/jquery.stellar.min.js"></script>
+  <script src="js/owl.carousel.min.js"></script>
+  <script src="js/jquery.magnific-popup.min.js"></script>
+  <script src="js/aos.js"></script>
+  <script src="js/jquery.animateNumber.min.js"></script>
+  <script src="js/bootstrap-datepicker.js"></script>
+  <script src="js/jquery.timepicker.min.js"></script>
+  <script src="js/scrollax.min.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+  <script src="js/google-map.js"></script>
+  <script src="js/main.js"></script>
+    
+  </body>
 </html>
