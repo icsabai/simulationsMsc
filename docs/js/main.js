@@ -325,7 +325,7 @@
 function makeTimer() {
 
 		/* change date for deadline counter */			
-		var endTime = new Date("23 November 2021 12:15:00 GMT+01:00");
+		var endTime = new Date("30 November 2021 12:00:00 GMT+01:00");
 		endTime = (Date.parse(endTime) / 1000);
 
 		var now = new Date();
