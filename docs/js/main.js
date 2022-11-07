@@ -325,7 +325,7 @@
 function makeTimer() {
 
 		/* change date for deadline counter */			
-		var endTime = new Date("4 November 2022 23:59:59 GMT+01:00");
+		var endTime = new Date("25 November 2022 23:59:59 GMT+01:00");
 		endTime = (Date.parse(endTime) / 1000);
 
 		var now = new Date();
