@@ -325,7 +325,7 @@
 function makeTimer() {
 
 		/* change date for deadline counter */			
-		var endTime = new Date("13 October 2023 23:59:59 GMT+02:00");
+		var endTime = new Date("27 October 2023 23:59:59 GMT+02:00");
 		endTime = (Date.parse(endTime) / 1000);
 
 		var now = new Date();
