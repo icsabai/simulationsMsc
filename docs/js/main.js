@@ -351,17 +351,17 @@
 */
 
 // var dates = ["5 December 2023 08:00:00 GMT+01:00", "12 December 2023 08:00:00 GMT+01:00"]; // Add your dates here
-var dates = ["22 September 2023 23:59:59 GMT+02:00", "13 October 2023 23:59:59 GMT+02:00", "27 October 2023 23:59:59 GMT+02:00",
-			"17 November 2023 23:59:59 GMT+01:00", "21 November 2023 08:00:00 GMT+01:00", "28 November 2023 08:00:00 GMT+01:00",
-			"5 December 2023 08:00:00 GMT+01:00", "12 December 2023 08:00:00 GMT+01:00"];
-var date_texts = ["September 22, 2023 (Friday) - Short description 1", 
-				"October 13, 2023 (Friday) - Project 1",
-				"October 27, 2023 (Friday) - Short description 2",
-				"November 17, 2023 (Friday) - Project 2",
-				"November 21, 2023 (Tuesday) - Presentations day 1",
-				"November 28, 2023 (Tuesday) - Presentations day 2",
-				"December 5, 2023 (Tuesday) - Presentations day 3",
-				"December 12, 2023 (Tuesday) - Presentations day 4"];
+var dates = ["20 September 2024 23:59:59 GMT+02:00", "11 October 2024 23:59:59 GMT+02:00", "25 October 2024 23:59:59 GMT+02:00",
+			"15 November 2024 23:59:59 GMT+01:00", "18 November 2024 16:00:00 GMT+01:00", "25 November 2024 16:00:00 GMT+01:00",
+			"2 December 2024 16:00:00 GMT+01:00", "9 December 2024 16:00:00 GMT+01:00"];
+var date_texts = ["September 20, 2024 (Friday) - Short description 1", 
+				"October 11, 2024 (Friday) - Project 1",
+				"October 25, 2024 (Friday) - Short description 2",
+				"November 15, 2024 (Friday) - Project 2",
+				"November 18, 2024 (Monday) - Presentations day 1",
+				"November 25, 2024 (Monday) - Presentations day 2",
+				"December 2, 2024 (Monday) - Presentations day 3",
+				"December 9, 2024 (Monday) - Presentations day 4"];
 
 /* var dates = ["28 November 2023 21:32:00 GMT+01:00", "28 November 2023 21:33:00 GMT+01:00"]				
 var date_texts = ["September 22, 2023 (Friday) - Short description 1", 
@@ -370,11 +370,15 @@ var date_texts = ["September 22, 2023 (Friday) - Short description 1",
 dates.sort((a, b) => new Date(a) - new Date(b)); // Sort dates in ascending order
 var currentDateIndex = 0;
 
+/* $(document).ready(function() {
+    makeTimer();
+}); */
+
 function makeTimer() {
     var now = new Date();
     now = (Date.parse(now) / 1000);
 	var first_change = true;
-	var first_change_last = true
+	var first_change_last = true;
 
     if (currentDateIndex < dates.length) {
         var endTime = new Date(dates[currentDateIndex]);
@@ -401,6 +405,95 @@ function makeTimer() {
 				$("#deadline_text").html(" Until <br><span>next deadline</span>");
 				$("#date_text").html(date_texts[currentDateIndex]); 
 	
+/* 				var element_id = "#v-pills-" + (currentDateIndex + 1) + "-tab";
+				$(element_id).addClass("active");
+				$(element_id).attr("aria-selected", true);
+				var element_id = "#v-pills-" + (currentDateIndex + 1);
+				$(element_id).addClass("show active"); */
+			}
+			first_change = false;
+		} else {
+				currentDateIndex++;
+				// the time left until the current deadline is zero or negative, so we move on to the next one
+				$("#deadline_text").html(" Until <br><span>next deadline</span>");
+				$("#date_text").html(date_texts[currentDateIndex]); 
+
+/* 				var element_id = "#v-pills-" + (currentDateIndex + 1) + "-tab";
+				$(element_id).addClass("active");
+				$(element_id).attr("aria-selected", true);
+				if (currentDateIndex > 0) {
+					var prev_element_id = "#v-pills-" + (currentDateIndex) + "-tab";
+					$(prev_element_id).removeClass("active");
+					$(prev_element_id).attr("aria-selected", false);
+				}
+
+				var element_id = "#v-pills-" + (currentDateIndex + 1);
+				$(element_id).addClass("show active");
+				if (currentDateIndex > 0) {
+					var prev_element_id = "#v-pills-" + (currentDateIndex);
+					$(prev_element_id).removeClass("show active");
+				} */
+				makeTimer();
+        }
+    } else {
+         // console.log("No deadlines left in the semester");
+		$("#days").html("");
+		$("#hours").html("");
+		$("#minutes").html("");
+		$("#seconds").html(""); 
+		$("#deadline_text").html("<span>No deadlines left</span>");
+		$("#date_text").html("Next semester: 2025/26 Fall Term");
+/* 		if (first_change_last) {
+			$("#v-pills-1-tab").addClass("active");
+			$("#v-pills-1-tab").attr("aria-selected", true);
+			$("#v-pills-1").addClass("show active");
+			var prev_element_id = "#v-pills-" + (dates.length) + "-tab";
+			$(prev_element_id).attr("aria-selected", false);
+			$(prev_element_id).removeClass("active");
+			var prev_element_id = "#v-pills-" + (dates.length);
+			$(prev_element_id).removeClass("show active");	
+		} */
+    }
+}
+
+setInterval(makeTimer, 1000);
+/* setInterval(function() { makeTimer(); }, 1000); */
+
+$(document).ready(function() {
+    activateTabs();
+});
+
+function activateTabs() {
+    var now = new Date();
+    now = (Date.parse(now) / 1000);
+	var first_change = true;
+	var first_change_last = true;
+
+    if (currentDateIndex < dates.length) {
+        var endTime = new Date(dates[currentDateIndex]);
+        endTime = (Date.parse(endTime) / 1000);
+
+        var timeLeft = endTime - now;
+
+        if (timeLeft > 0) {
+            var days = Math.floor(timeLeft / 86400); 
+            var hours = Math.floor((timeLeft - (days * 86400)) / 3600);
+            var minutes = Math.floor((timeLeft - (days * 86400) - (hours * 3600 )) / 60);
+            var seconds = Math.floor((timeLeft - (days * 86400) - (hours * 3600) - (minutes * 60)));
+
+            if (hours < "10") { hours = "0" + hours; }
+            if (minutes < "10") { minutes = "0" + minutes; }
+            if (seconds < "10") { seconds = "0" + seconds; }
+
+/*             $("#days").html(days + "<span>Days</span>");
+            $("#hours").html(hours + "<span>Hours</span>");
+            $("#minutes").html(minutes + "<span>Minutes</span>");
+            $("#seconds").html(seconds + "<span>Seconds</span>"); */
+			
+			if (currentDateIndex == 0 && first_change) {
+/* 				$("#deadline_text").html(" Until <br><span>next deadline</span>");
+				$("#date_text").html(date_texts[currentDateIndex]);  */
+	
 				var element_id = "#v-pills-" + (currentDateIndex + 1) + "-tab";
 				$(element_id).addClass("active");
 				$(element_id).attr("aria-selected", true);
@@ -411,8 +504,8 @@ function makeTimer() {
 		} else {
 				currentDateIndex++;
 				// the time left until the current deadline is zero or negative, so we move on to the next one
-				$("#deadline_text").html(" Until <br><span>next deadline</span>");
-				$("#date_text").html(date_texts[currentDateIndex]); 
+/* 				$("#deadline_text").html(" Until <br><span>next deadline</span>");
+				$("#date_text").html(date_texts[currentDateIndex]);  */
 
 				var element_id = "#v-pills-" + (currentDateIndex + 1) + "-tab";
 				$(element_id).addClass("active");
@@ -433,12 +526,12 @@ function makeTimer() {
         }
     } else {
          // console.log("No deadlines left in the semester");
-		$("#days").html("");
+/* 		$("#days").html("");
 		$("#hours").html("");
 		$("#minutes").html("");
 		$("#seconds").html(""); 
 		$("#deadline_text").html("<span>No deadlines left</span>");
-		$("#date_text").html("Next semester: 2024/25 Fall Term");
+		$("#date_text").html("Next semester: 2024/25 Fall Term"); */
 		if (first_change_last) {
 			$("#v-pills-1-tab").addClass("active");
 			$("#v-pills-1-tab").attr("aria-selected", true);
@@ -452,12 +545,6 @@ function makeTimer() {
     }
 }
 
-setInterval(makeTimer, 1000);
-
-
-
-
-setInterval(function() { makeTimer(); }, 1000);
 
 
 
