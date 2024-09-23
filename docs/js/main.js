@@ -404,7 +404,7 @@ function makeTimer() {
             $("#minutes").html(minutes + "<span>Minutes</span>");
             $("#seconds").html(seconds + "<span>Seconds</span>");
 			
-			if (currentDateIndex == 0 && first_change) {
+			if (currentDateIndex >= 0 && first_change) {
 				$("#deadline_text").html(" Until <br><span>next deadline</span>");
 				$("#date_text").html(date_texts[currentDateIndex]); 
 	
