@@ -351,19 +351,23 @@
 */
 
 // var dates = ["5 December 2023 08:00:00 GMT+01:00", "12 December 2023 08:00:00 GMT+01:00"]; // Add your dates here
-var dates = ["20 September 2024 23:59:59 GMT+02:00", "11 October 2024 23:59:59 GMT+02:00", "25 October 2024 23:59:59 GMT+02:00",
-			"15 November 2024 23:59:59 GMT+01:00", 
-			/* "18 November 2024 16:00:00 GMT+01:00" */
-			"25 November 2024 16:00:00 GMT+01:00",
-			"2 December 2024 16:00:00 GMT+01:00", "9 December 2024 16:00:00 GMT+01:00"];
-var date_texts = ["September 20, 2024 (Friday) - Short description 1", 
-				"October 11, 2024 (Friday) - Project 1",
-				"October 25, 2024 (Friday) - Short description 2",
-				"November 15, 2024 (Friday) - Project 2",
-				"November 18, 2024 (Monday) - Presentations day 1",
-				"November 25, 2024 (Monday) - Presentations day 2",
-				"December 2, 2024 (Monday) - Presentations day 3"
-				/* "December 9, 2024 (Monday) - Presentations day 4" */
+// var dates = ["20 September 2024 23:59:59 GMT+02:00", "11 October 2024 23:59:59 GMT+02:00", "25 October 2024 23:59:59 GMT+02:00",
+// 			"15 November 2024 23:59:59 GMT+01:00", 
+// 			/* "18 November 2024 16:00:00 GMT+01:00" */
+// 			"25 November 2024 16:00:00 GMT+01:00",
+// 			"2 December 2024 16:00:00 GMT+01:00", "9 December 2024 16:00:00 GMT+01:00"];
+var dates = ["21 September 2025 23:59:59 GMT+02:00", "12 October 2025 23:59:59 GMT+02:00", "9 November 2025 23:59:59 GMT+01:00",
+	"18 November 2025 12:00:00 GMT+01:00",
+	"25 November 2025 12:00:00 GMT+01:00",
+	"2 December 2025 12:00:00 GMT+01:00", 
+	"9 December 2025 12:00:00 GMT+01:00"];
+var date_texts = ["September 21, 2025 (Sunday) - Short description", 
+				"October 12, 2025 (Sunday) - Project v1.0",
+				"November 9, 2025 (Sunday) - Project v2.0",
+				"November 18, 2025 (Tuesday) - Presentations day 1",
+				"November 25, 2025 (Tuesday) - Presentations day 2",
+				"December 2, 2025 (Tuesday) - Presentations day 3",
+				"December 9, 2025 (Tuesday) - Presentations day 4"
 			];
 
 /* var dates = ["28 November 2023 21:32:00 GMT+01:00", "28 November 2023 21:33:00 GMT+01:00"]				
