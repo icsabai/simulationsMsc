@@ -25,6 +25,63 @@
     <link rel="stylesheet" href="css/flaticon.css">
     <link rel="stylesheet" href="css/icomoon.css">
     <link rel="stylesheet" href="css/style.css">
+    <style>
+      .slot-dots { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 0.5rem; }
+      .slot-dot { width: 10px; height: 10px; border-radius: 50%; background: #dee2e6; }
+      .slot-dot.taken { background: #007bff; }
+      .neptun-not-eligible { color: #c0392b; font-weight: 600; }
+      #api-spinner { position: fixed; inset: 0; background: rgba(255,255,255,0.85); display: none; align-items: center; justify-content: center; z-index: 9999; flex-direction: column; gap: 1rem; }
+      #api-spinner.show { display: flex; }
+      #api-spinner .api-spinner-circle { width: 56px; height: 56px; border: 4px solid #e9ecef; border-top-color: #007bff; border-radius: 50%; animation: api-spinner-rotate 0.9s linear infinite; }
+      #api-spinner .api-spinner-text { font-size: 0.95rem; color: #6c757d; }
+      @keyframes api-spinner-rotate { to { transform: rotate(360deg); } }
+      .result-card .row { margin-bottom: 0.35rem; }
+      .result-card .text-muted { font-size: 0.875rem; }
+      .deadline-cards { display: flex; flex-wrap: wrap; margin: 0 -0.25rem; flex-direction: column; }
+      .deadline-cards .deadline-row { display: flex; width: 100%; margin: 0; margin-bottom: 0.25rem; }
+      .deadline-cards .deadline-row:last-child { margin-bottom: 0; }
+      .deadline-cards .deadline-row .deadline-card { flex: 1 1 0; min-width: 0; padding: 0.25rem; }
+      .deadline-card .card { height: 100%; cursor: pointer; transition: box-shadow 0.2s, border-color 0.2s, background-color 0.2s; background: #f8f9fa; display: flex; align-items: center; }
+      .deadline-card .card:hover { box-shadow: 0 0.25rem 0.5rem rgba(0,0,0,0.1); }
+      .deadline-card .card.active { border-color: #007bff; background: #cce5ff !important; box-shadow: 0 0 0 2px #007bff; }
+      .deadline-card .card-body { display: flex; align-items: center; width: 100%; text-align: left; }
+      .deadline-logo-wrap { flex-shrink: 0; margin-right: 1.5rem; min-width: 2.5rem; }
+      .deadline-logo { font-family: "Work Sans", sans-serif; font-weight: 700; font-size: 1.5rem; letter-spacing: 0.02em; line-height: 1.2; }
+      .deadline-details { flex: 1; min-width: 0; }
+      .deadline-subtitle { font-size: 0.875rem; color: #212529; line-height: 1.3; margin-bottom: 0.15rem; }
+      .deadline-date { font-size: 0.8rem; color: #6c757d; }
+      .deadline-logo.sd { color: #495057; }
+      .deadline-logo.pv { color: #007bff; }
+      .deadline-logo.pr { color: #343a40; }
+      #schedule-description { min-height: 80px; }
+      /* Nav: Kooplex = plain link; Results = emphasized (black bold); Sign up = button */
+      /* At top (desktop): brand is black so area is light – use dark text for Kooplex and Results */
+      @media (min-width: 992px) {
+        #ftco-navbar .nav-item.nav-item-kooplex .nav-link { color: rgba(0,0,0,0.75); }
+        #ftco-navbar .nav-item.nav-item-kooplex .nav-link:hover { color: #000; }
+        #ftco-navbar .nav-item.nav-item-results .nav-link { font-weight: 600; color: rgba(0,0,0,0.9); }
+        #ftco-navbar .nav-item.nav-item-results .nav-link:hover { color: #000; }
+      }
+      /* When scrolled (or mobile): black bold for Results, dark link for Kooplex */
+      #ftco-navbar.scrolled .nav-item.nav-item-kooplex .nav-link { color: rgba(0,0,0,0.7); }
+      #ftco-navbar.scrolled .nav-item.nav-item-kooplex .nav-link:hover { color: #000; }
+      #ftco-navbar.scrolled .nav-item.nav-item-results .nav-link { font-weight: 600; color: rgba(0,0,0,0.9); }
+      #ftco-navbar.scrolled .nav-item.nav-item-results .nav-link:hover { color: #000; }
+      #ftco-navbar .nav-item.nav-item-results.active .nav-link { font-weight: 600; color: rgba(0,0,0,0.9); }
+      #ftco-navbar.scrolled .nav-item.nav-item-results.active .nav-link { font-weight: 600; color: rgba(0,0,0,0.9); }
+      #ftco-navbar .nav-item.nav-item-signup .nav-link {
+        background: #6b76ff; color: #fff !important; border-radius: 6px; padding: 0.45rem 1rem !important;
+        font-weight: 600; margin-left: 0.25rem;
+      }
+      #ftco-navbar .nav-item.nav-item-signup .nav-link:hover { background: #5a65e6; color: #fff !important; }
+      #ftco-navbar.scrolled .nav-item.nav-item-signup .nav-link { background: #6b76ff !important; color: #fff !important; border: none !important; }
+      #ftco-navbar.scrolled .nav-item.nav-item-signup .nav-link:hover { background: #5a65e6 !important; color: #fff !important; }
+      #ftco-navbar .nav-item.nav-item-signup.active .nav-link,
+      #ftco-navbar.scrolled .nav-item.nav-item-signup.active .nav-link { background: #6b76ff !important; color: #fff !important; }
+      @media (max-width: 991.98px) {
+        #ftco-navbar .nav-item.nav-item-signup .nav-link { margin-left: 0; margin-top: 0.5rem; }
+      }
+    </style>
   </head>
   <body>
     
@@ -36,22 +93,21 @@
 	      </button>
 
 	      <div class="collapse navbar-collapse" id="ftco-nav">
-	        <ul class="navbar-nav ml-auto">
-	          <li class="nav-item active"><a href="index.html" class="nav-link">Home</a></li>
-	          <li class="nav-item"><a href="#schedule" class="nav-link">Deadlines</a></li>			  
-			  <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+	        <ul class="navbar-nav ml-auto align-items-center">
+	          <li class="nav-item active"><a href="#home" class="nav-link">Home</a></li>
+	          <li class="nav-item"><a href="#schedule" class="nav-link">Deadlines</a></li>
+	          <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
 	          <li class="nav-item"><a href="#reqs" class="nav-link">Requirements</a></li>
-	          <li class="nav-item"><a href="#templates" class="nav-link">Templates</a></li>
-	          <li class="nav-item"><a href="#results" class="nav-link">Results</a></li>
-			  <li class="nav-item cta mr-md-2"><a href="https://k8plex-edu.elte.hu/hub/" class="nav-link">Kooplex</a></li>
-
+	          <li class="nav-item nav-item-kooplex"><a href="https://k8plex-edu.elte.hu/hub/" class="nav-link" target="_blank" rel="noopener noreferrer">Kooplex</a></li>
+	          <li class="nav-item nav-item-results"><a href="#results" class="nav-link">Results</a></li>
+	          <li class="nav-item nav-item-signup"><a href="#signup" class="nav-link">Sign Up</a></li>
 	        </ul>
 	      </div>
 	    </div>
 	  </nav>
     <!-- END nav -->
     
-    <div class="hero-wrap js-fullheight" style="background-image: url('images/bg_1.jpg');" data-stellar-background-ratio="0.5">
+    <div class="hero-wrap js-fullheight" id="home" style="background-image: url('images/bg_1.jpg');" data-stellar-background-ratio="0.5">
       <div class="overlay"></div>
       <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-start" data-scrollax-parent="true">
@@ -275,169 +331,13 @@
 		<section class="ftco-section bg-light" id="schedule">
 			<div class="container">
 				<div class="row justify-content-center mb-5 pb-3">
-          <div class="col-md-7 text-center heading-section ftco-animate">
-          	<span class="subheading">Submission deadlines</span>
-            <h2 class="mb-4"><span>Course</span> Schedule</h2>
-          </div>
-        </div>
-        <div class="ftco-search">
-					<div class="row">
-            <div class="col-md-12 nav-link-wrap">
-	            <div class="nav nav-pills d-flex text-center" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-	              <a class="nav-link ftco-animate" id="v-pills-1-tab" data-toggle="pill" href="#v-pills-1" role="tab" aria-controls="v-pills-1" aria-selected="false">Short description <span>21 Sept. 2025</span></a>
-
-	              <a class="nav-link ftco-animate" id="v-pills-2-tab" data-toggle="pill" href="#v-pills-2" role="tab" aria-controls="v-pills-2" aria-selected="false">Project v1.0 <span>12 Oct. 2025</span></a>
-
-	              <a class="nav-link ftco-animate" id="v-pills-3-tab" data-toggle="pill" href="#v-pills-3" role="tab" aria-controls="v-pills-3" aria-selected="false">Project v2.0 <span>9 Nov. 2025</span></a>
-
-	              <a class="nav-link ftco-animate" id="v-pills-4-tab" data-toggle="pill" href="#v-pills-4" role="tab" aria-controls="v-pills-4" aria-selected="false">Presentations<span>18 Nov. 2025</span></a>
-
-				  <a class="nav-link ftco-animate" id="v-pills-5-tab" data-toggle="pill" href="#v-pills-5" role="tab" aria-controls="v-pills-5" aria-selected="false">Presentations <span>25 Nov. 2025</span></a>
-
-				  <a class="nav-link ftco-animate" id="v-pills-6-tab" data-toggle="pill" href="#v-pills-6" role="tab" aria-controls="v-pills-6" aria-selected="false">Presentations <span>2 Dec. 2025</span></a>
-
-				  <a class="nav-link ftco-animate" id="v-pills-7-tab" data-toggle="pill" href="#v-pills-7" role="tab" aria-controls="v-pills-7" aria-selected="false">Presentations <span>9 Dec. 2025</span></a>
-
-<!-- 				  <a class="nav-link ftco-animate" id="v-pills-8-tab" data-toggle="pill" href="#v-pills-8" role="tab" aria-controls="v-pills-8" aria-selected="false">Presentations <span>9 Dec. 2024</span></a> -->
-
-				  <!-- <a class="nav-link ftco-animate active" id="v-pills-7-tab" data-toggle="pill" href="#v-pills-7" role="tab" aria-controls="v-pills-7" aria-selected="true">Presentations <span>7 Dec. 2021</span></a> -->
-
-	            </div>
-	          </div>
-	          <div class="col-md-12 tab-wrap">
-	            
-	            <div class="tab-content" id="v-pills-tabContent">
-
-	              <div class="tab-pane fade" id="v-pills-1" role="tabpanel" aria-labelledby="day-1-tab">
-	              	<div class="speaker-wrap ftco-animate d-flex">
-	              		<div class="img speaker-img" style="background-image: url(images/person_1.jpg);"></div>
-	              		<div class="text pl-md-5">
-	              			<span class="time">Until 23:59, 21 Sept. 2025</span>
-	              			<h2><a href="#">Deadline for short description</a></h2>
-	              			<p>Upload a PDF document to <a href="https://k8plex-edu.elte.hu/hub/">Kooplex</a> into <span style='font-family: "Lucida Console", "Courier New", monospace; size: 6px;'>courses/2025-szmitgpesszimulcikcompsimf20em2025.assignments/2025sd</span> introducing your chosen topic and your plans in a concise manner. 
-								You will receive feedback that will help with your final submission. (<a href="kooplex_tutorial2019.pdf">Kooplex tutorial</a>)</p>
-	              		</div>
-	              	</div>
-				  </div>
-				<div class="tab-pane fade" id="v-pills-2" role="tabpanel" aria-labelledby="day-2-tab">
-					<div class="speaker-wrap ftco-animate d-flex">
-						<div class="img speaker-img" style="background-image: url(images/person_2.jpg);"></div>
-						<div class="text pl-md-5">
-							<span class="time">Until 23:59, 12 Oct. 2025</span>
-							<h2><a href="#">Deadline for Project v1.0</a></h2>
-							<p>Upload a PDF document and appropriate code/notebook files to <a href="https://k8plex-edu.elte.hu/hub/">Kooplex</a> into <span style='font-family: "Lucida Console", "Courier New", monospace; size: 6px;'>courses/2025-szmitgpesszimulcikcompsimf20em2025.assignments/2025p1</span> as your first 
-								submission. (<a href="kooplex_tutorial2019.pdf">Kooplex tutorial</a>)</p>
-						</div>
+					<div class="col-md-7 text-center heading-section ftco-animate">
+						<span class="subheading">Submission deadlines</span>
+						<h2 class="mb-4"><span>Course</span> Schedule</h2>
 					</div>
 				</div>
-				<div class="tab-pane fade" id="v-pills-3" role="tabpanel" aria-labelledby="day-3-tab">
-					<div class="speaker-wrap ftco-animate d-flex">
-						<div class="img speaker-img" style="background-image: url(images/person_4.jpg);"></div>
-						<div class="text pl-md-5">
-							<span class="time">Until 23:59, 9 Nov. 2025</span>
-							<h2><a href="#">Deadline for Project v2.0 and response letter</a></h2>
-							<p>Upload two PDF documents (updated project report and response letter) to <a href="https://k8plex-edu.elte.hu/hub/">Kooplex</a> into <span style='font-family: "Lucida Console", "Courier New", monospace; size: 6px;'>courses/2025-szmitgpesszimulcikcompsimf20em2025.assignments/2025p2</span> as your final submission. (<a href="kooplex_tutorial2019.pdf">Kooplex tutorial</a>)</p>
-					  </div>
-					</div>
-				</div>				
-				<!-- <div class="tab-pane fade" id="v-pills-4" role="tabpanel" aria-labelledby="day-4-tab">
-					<div class="speaker-wrap ftco-animate d-flex">
-						<div class="img speaker-img" style="background-image: url(images/person_4.jpg);"></div>
-						<div class="text pl-md-5">
-							<span class="time">Until 23:59, 15 Nov. 2024</span>
-							<h2><a href="#">Deadline for Project 2</a></h2>
-							<p>Upload a PDF document and appropriate code/notebook files to <a href="https://k8plex-edu.elte.hu/hub/">Kooplex</a> into <span style='font-family: "Lucida Console", "Courier New", monospace; size: 6px;'>courses/compsimf20_2024.assignments/2024p2</span> as your final submission 
-								for Project 2. (<a href="kooplex_tutorial2019.pdf">Kooplex tutorial</a>)</p>
-						</div>
-					</div>
-				</div> -->
-				<div class="tab-pane fade" id="v-pills-4" role="tabpanel" aria-labelledby="day-4-tab">
-					<div class="speaker-wrap ftco-animate d-flex">
-						<div class="img speaker-img" style="background-image: url(images/person_5.jpg);"></div>
-						<div class="text pl-md-5">
-							<span class="time">12:00-14:00, 18 Nov. 2025</span>
-							<h2><a href="#">Presentations</a></h2>
-							<p>Prepare a 10-minute presentation based on your project submissions summarizing your most important results and figures. 
-								<!-- Register for a time slot <a href="https://www.signupgenius.com/go/10C0845A4A92BABFBC43-45819327-sign#/">HERE</a>.
-								<a href="https://docs.google.com/spreadsheets/d/1EJKbNh4f7QzGXoTQdZscpFfH5f-LbbtkMSaEPfbmMko/edit#gid=0">TIMETABLE with timeslots</a> -->
-							</p>
-							<p><b>Presentations will be held online, on Microsoft Teams.</b></p>
-						</div>
-					</div>
-				</div>
-				<div class="tab-pane fade" id="v-pills-5" role="tabpanel" aria-labelledby="day-5-tab">
-					<div class="speaker-wrap ftco-animate d-flex">
-						<div class="img speaker-img" style="background-image: url(images/person_6.jpg);"></div>
-						<div class="text pl-md-5">
-							<span class="time">12:00-14:00, 25 Nov. 2025</span>
-							<h2><a href="#">Presentations</a></h2>
-							<p>Prepare a 10-minute presentation based on your project submissions summarizing your most important results and figures. 
-<!-- 								Register for a time slot <a href="https://www.signupgenius.com/go/10C0845A4A92BABFBC43-45819327-sign#/">HERE</a>.
-								<a href="https://docs.google.com/spreadsheets/d/1EJKbNh4f7QzGXoTQdZscpFfH5f-LbbtkMSaEPfbmMko/edit#gid=0">TIMETABLE with timeslots</a>
- -->							</p>
-							<p><b>Presentations will be held online, on Microsoft Teams.</b></p>
-						</div>
-					</div>
-				</div>
-				<div class="tab-pane fade" id="v-pills-6" role="tabpanel" aria-labelledby="day-6-tab">
-					<div class="speaker-wrap ftco-animate d-flex">
-						<div class="img speaker-img" style="background-image: url(images/person_7.jpg);"></div>
-						<div class="text pl-md-5">
-							<span class="time">12:00-14:00, 2 Dec. 2025</span>
-							<h2><a href="#">Presentations</a></h2>
-							<p>Prepare a 10-minute presentation based on your project submissions summarizing your most important results and figures. 
-<!-- 								Register for a time slot <a href="https://www.signupgenius.com/go/10C0845A4A92BABFBC43-45819327-sign#/">HERE</a>.
-								<a href="https://docs.google.com/spreadsheets/d/1EJKbNh4f7QzGXoTQdZscpFfH5f-LbbtkMSaEPfbmMko/edit#gid=0">TIMETABLE with timeslots</a> -->
-							</p>
-							<p><b>Presentations will be held online, on Microsoft Teams.</b></p>
-						</div>
-					</div>
-				</div>
-				<div class="tab-pane fade" id="v-pills-7" role="tabpanel" aria-labelledby="day-7-tab">
-					<div class="speaker-wrap ftco-animate d-flex">
-						<div class="img speaker-img" style="background-image: url(images/person_8.jpg);"></div>
-						<div class="text pl-md-5">
-							<span class="time">12:00-14:00, 9 Dec. 2025</span>
-							<h2><a href="#">Presentations</a></h2>
-							<p>Prepare a 10-minute presentation based on your project submissions summarizing your most important results and figures. 
-<!-- 								Register for a time slot <a href="https://www.signupgenius.com/go/10C0845A4A92BABFBC43-45819327-sign#/">HERE</a>.
-								<a href="https://docs.google.com/spreadsheets/d/1EJKbNh4f7QzGXoTQdZscpFfH5f-LbbtkMSaEPfbmMko/edit#gid=0">TIMETABLE with timeslots</a> -->
-							</p>
-							<p><b>Presentations will be held online, on Microsoft Teams.</b></p>
-						</div>
-					</div>
-				</div>
-<!-- 				<div class="tab-pane fade" id="v-pills-8" role="tabpanel" aria-labelledby="day-8-tab">
-					<div class="speaker-wrap ftco-animate d-flex">
-						<div class="img speaker-img" style="background-image: url(images/person_8.jpg);"></div>
-						<div class="text pl-md-5">
-							<span class="time">16:00-18:00, 9 Dec. 2024</span>
-							<h2><a href="#">Presentations</a></h2>
-							<p>Prepare a 10-minute presentation based on your project submissions summarizing your most important results and figures. 
- 								Register for a time slot <a href="https://www.signupgenius.com/go/10C0845A4A92BABFBC43-45819327-sign#/">HERE</a>.
-								<a href="https://docs.google.com/spreadsheets/d/1EJKbNh4f7QzGXoTQdZscpFfH5f-LbbtkMSaEPfbmMko/edit#gid=0">TIMETABLE with timeslots</a>
-							</p>
-							<p><b>Presentations will be held online, on Microsoft Teams.</b></p>
-						</div>
-					</div>
-				</div> -->								
-<!-- 				<div class="tab-pane fade show active" id="v-pills-7" role="tabpanel" aria-labelledby="day-7-tab">
-					<div class="speaker-wrap ftco-animate d-flex">
-						<div class="img speaker-img" style="background-image: url(images/person_7.jpg);"></div>
-						<div class="text pl-md-5">
-							<span class="time">12:00-14:00, 7 Dec. 2021</span>
-							<h2><a href="#">Presentations</a></h2>
-							<p>Prepare a 10-minute presentation based on your project submissions summarizing your most important results and figures. 
-								Register for a time slot via e-mail (szamszimmsc(at)gmail.com).
-								<a href="https://docs.google.com/spreadsheets/d/1SUB_-_q2CsBU_WvYQrEGILZhRcGsRYZN7aA9Ev-YsDQ/edit?usp=sharing">TIMETABLE</a></p>
-							<p><b>Presentations will be held online, on Microsoft Teams.</b></p>
-						</div>
-					</div>
-				</div>	 -->			
-	            </div>
-	          </div>
-	        </div>
-        </div>
+				<div class="deadline-cards" id="schedule-cards"><p class="text-muted">Loading schedule…</p></div>
+				<div class="mt-4 pt-3" id="schedule-description"></div>
 			</div>
 		</section>
 		
@@ -795,29 +695,139 @@
 		
 		<section class="ftco-section-parallax" id="results">
       <div class="parallax-img d-flex align-items-center">
-        <div class="container">
+        <div class="container py-4">
           <div class="row d-flex justify-content-center">
             <div class="col-md-7 text-center heading-section heading-section-white ftco-animate">
               <h2>Feedback and grades</h2>
-<!--               <p>Results of submissions and detailed feedback can be found <a style="color: #343a40; font-weight: bold;" href="https://docs.google.com/spreadsheets/d/1TSjHpzwu8iMJgROGt4GMMofEltnOcn1TYfCrR7qsLpw/edit?usp=sharing">here</a>.</p> -->
-				<p>Results of submissions and detailed feedback can be found <a style="color: #343a40; font-weight: bold;" href="https://docs.google.com/spreadsheets/d/1V2mHFHfB3dCdR3buSh-o_CBYimAoBVoH6xl6DVeBiW8/edit?usp=sharing">here</a>.</p>
-			</div>
-		  </div>
-		</div>
-	  </div>
-<!--               <div class="row d-flex justify-content-center mt-4 mb-4">
-                <div class="col-md-8">
-                  <form action="#" class="subscribe-form">
-                    <div class="form-group d-flex">
-                      <input type="text" class="form-control" placeholder="Enter email address">
-                      <input type="submit" value="Subscribe" class="submit px-3">
+              <p>Results of submissions and detailed feedback can be found <a id="results-sheet-link" style="color: #343a40; font-weight: bold;" href="#">here</a>.</p>
+            </div>
+          </div>
+          <div class="row justify-content-center mb-4 mt-3">
+            <div class="col-md-8">
+              <div class="card shadow-sm border-0">
+                <div class="card-body p-4">
+                  <p class="mb-3">Look up your grades by Neptun ID:</p>
+                  <div class="row align-items-end">
+                    <div class="col-md-6 form-group mb-md-0">
+                      <label class="mb-0">Neptun ID</label>
+                      <input type="text" class="form-control" id="results-neptun" placeholder="ABC123" maxlength="6" style="text-transform:uppercase">
                     </div>
-                  </form>
+                    <div class="col-md-6 form-group mb-0">
+                      <button type="button" class="btn btn-primary" id="results-fetch-btn">Show my results</button>
+                    </div>
+                  </div>
                 </div>
-              </div> -->
+              </div>
+            </div>
+          </div>
+          <div id="results-area" class="row justify-content-center"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Presentation Signup -->
+    <section class="ftco-section bg-light" id="signup">
+      <div class="container">
+        <div class="row justify-content-center mb-5 pb-3">
+          <div class="col-md-7 text-center heading-section ftco-animate">
+            <span class="subheading">Presentation time slots</span>
+            <h2 class="mb-4"><span>Sign</span> Up</h2>
+            <p class="mb-0">Choose a date and slot below.</p>
+          </div>
+        </div>
+        <div id="cancel-confirm-box" class="alert alert-warning mb-4" style="display:none;" role="alert">
+          <p class="mb-2">You are about to cancel the signup for <strong id="cancel-neptun"></strong> on <strong id="cancel-date"></strong>. Click confirm to free your slot.</p>
+          <div class="d-flex flex-wrap">
+            <button type="button" class="btn btn-danger mr-2 mb-2" id="cancel-confirm-btn">Confirm cancel</button>
+            <button type="button" class="btn btn-outline-secondary mb-2" id="cancel-cancel-btn">Keep my slot</button>
+          </div>
+          <p id="cancel-feedback" class="mt-2 mb-0 small"></p>
+        </div>
+        <p class="mb-3"><button type="button" class="btn btn-outline-secondary btn-sm" id="summary-refresh-btn">Refresh slot summary</button></p>
+        <div class="row mb-4" id="signup-date-cards">
+          <!-- Filled by JS -->
+        </div>
+        <div class="card shadow-sm border-0 mb-4">
+          <div class="card-body p-4">
+            <h3 class="h5 mb-3">Sign up</h3>
+            <form id="signup-form" class="row">
+              <div class="col-md-4 form-group">
+                <label>Name</label>
+                <input type="text" class="form-control" id="signup-name" required placeholder="Your name">
+              </div>
+              <div class="col-md-4 form-group">
+                <label>Neptun ID</label>
+                <input type="text" class="form-control" id="signup-neptun" required placeholder="ABC123" maxlength="6" style="text-transform:uppercase">
+              </div>
+              <div class="col-md-4 form-group">
+                <label>Email</label>
+                <input type="email" class="form-control" id="signup-email" required placeholder="you@example.com">
+              </div>
+              <div class="col-md-6 form-group">
+                <label>Date</label>
+                <select class="form-control" id="signup-date" required>
+                  <option value="">Select date…</option>
+                </select>
+              </div>
+              <div class="col-md-6 form-group d-flex align-items-end">
+                <button type="submit" class="btn btn-primary">Sign Up</button>
+              </div>
+            </form>
+            <p id="signup-feedback" class="mt-3 mb-0 small"></p>
+          </div>
+        </div>
+
+        <div class="modal fade" id="signup-error-modal" tabindex="-1" role="dialog" aria-labelledby="signup-error-modal-title" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="signup-error-modal-title">Sign-up not possible</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              </div>
+              <div class="modal-body" id="signup-error-modal-body"></div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+              </div>
             </div>
           </div>
         </div>
+        <div class="modal fade" id="signup-success-modal" tabindex="-1" role="dialog" aria-labelledby="signup-success-modal-title" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header border-0 pb-0">
+                <h5 class="modal-title text-success" id="signup-success-modal-title">Sign-up successful</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              </div>
+              <div class="modal-body pt-0" id="signup-success-modal-body"></div>
+              <div class="modal-footer border-0">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal fade" id="cancel-success-modal" tabindex="-1" role="dialog" aria-labelledby="cancel-success-modal-title" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header border-0 pb-0">
+                <h5 class="modal-title text-success" id="cancel-success-modal-title">Cancellation successful</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              </div>
+              <div class="modal-body pt-0" id="cancel-success-modal-body">Your presentation slot has been cancelled. A confirmation email has been sent to your inbox.</div>
+              <div class="modal-footer border-0">
+                <button type="button" class="btn btn-primary" id="cancel-success-ok-btn">OK</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <h3 class="h5 mb-2">Slot summary</h3>
+        <div class="table-responsive">
+          <table class="table table-bordered table-striped" id="summary-table">
+            <thead><tr id="summary-thead"></tr></thead>
+            <tbody id="summary-tbody"></tbody>
+          </table>
+        </div>
+        <p class="small text-muted mt-2 mb-0" id="summary-legend"></p>
       </div>
     </section>
 
@@ -929,7 +939,10 @@
 
   <!-- loader -->
   <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
-
+  <div id="api-spinner" aria-hidden="true">
+    <div class="api-spinner-circle" role="status" aria-label="Loading"></div>
+    <span class="api-spinner-text">Loading…</span>
+  </div>
 
   <script src="js/jquery.min.js"></script>
   <script src="js/jquery-migrate-3.0.1.min.js"></script>
@@ -948,6 +961,458 @@
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
   <script src="js/google-map.js"></script>
   <script src="js/main.js"></script>
+  <script>
+    (function() {
+      var APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxSAvnttkpmi3RQZqZS3gRAAlXFh9pLWpEXac2y8Jj7QxfIXoJ31wK5ndJ8NDkyxHbVdA/exec';
+      var GRADES_SHEET_ID = 'https://docs.google.com/spreadsheets/d/1V2mHFHfB3dCdR3buSh-o_CBYimAoBVoH6xl6DVeBiW8/edit?usp=sharing';
+      var GRADES_SHEET_API_KEY = '';
+      // Use a CORS proxy when the page is on another origin (e.g. university server) so fetch to Apps Script works. Set false if you host the page from the same script.
+      var USE_CORS_PROXY = true;
+      var CORS_PROXY_URL = 'https://corsproxy.io/?';
+      // Optional: use a different proxy for GET only. Leave empty to use CORS_PROXY_URL for both GET and POST.
+      var CORS_PROXY_GET_URL = '';
+      // If the main proxy is blocked (e.g. on institutional networks), fetchSlots will retry once with this. Leave empty to disable.
+      var CORS_PROXY_FALLBACK = 'https://api.allorigins.win/raw?url=';
+
+      var spinner = document.getElementById('api-spinner');
+      var SIGNUP_DATES_FALLBACK = ['18 Nov 2025', '25 Nov 2025', '2 Dec 2025', '9 Dec 2025'];
+      function showSpinner(show) { spinner.classList.toggle('show', !!show); }
+
+      function appScriptFetchUrl(queryOrFull, forGet) {
+        var url = (queryOrFull && queryOrFull.indexOf('http') === 0) ? queryOrFull : (APPS_SCRIPT_URL + (queryOrFull ? (queryOrFull.charAt(0) === '?' ? queryOrFull : '?' + queryOrFull) : ''));
+        if (forGet && CORS_PROXY_GET_URL) return CORS_PROXY_GET_URL + encodeURIComponent(url);
+        if (USE_CORS_PROXY && CORS_PROXY_URL) return CORS_PROXY_URL + encodeURIComponent(url);
+        return url;
+      }
+
+      function apiFetch(url, options) {
+        options = options || {};
+        var headers = { 'Content-Type': 'application/json' };
+        if (options.headers) for (var k in options.headers) headers[k] = options.headers[k];
+        return fetch(url, Object.assign({}, options, { headers: headers }));
+      }
+
+      // POST via form to hidden iframe (no CORS). Backend must return HTML that calls callback with JSON. Use when fetch is blocked (e.g. institutional site).
+      function postViaIframe(url, payload, callback) {
+        var iframe = document.getElementById('appscript-post-iframe');
+        if (!iframe) {
+          iframe = document.createElement('iframe');
+          iframe.name = 'appscript-post-iframe';
+          iframe.id = 'appscript-post-iframe';
+          iframe.style.cssText = 'position:absolute;width:0;height:0;border:0;visibility:hidden';
+          document.body.appendChild(iframe);
+        }
+        var cbName = '__postCb_' + Date.now() + '_' + Math.random().toString(36).slice(2);
+        var done = false;
+        var timeoutMs = 18000;
+        var timer = setTimeout(function() {
+          if (done) return;
+          done = true;
+          try { delete window[cbName]; } catch (e) { window[cbName] = undefined; }
+          callback({ error: 'Request timed out or could not be completed. Try again or use a different network.' });
+        }, timeoutMs);
+        window[cbName] = function(data) {
+          if (done) return;
+          done = true;
+          clearTimeout(timer);
+          try { delete window[cbName]; } catch (e) { window[cbName] = undefined; }
+          callback(data);
+        };
+        var form = document.createElement('form');
+        form.method = 'POST';
+        form.action = url;
+        form.target = iframe.name;
+        form.style.display = 'none';
+        payload.callback = cbName;
+        for (var k in payload) if (payload.hasOwnProperty(k) && payload[k] != null) {
+          var input = document.createElement('input');
+          input.type = 'hidden';
+          input.name = k;
+          input.value = payload[k];
+          form.appendChild(input);
+        }
+        document.body.appendChild(form);
+        form.submit();
+        document.body.removeChild(form);
+      }
+
+      function parseJsonResponse(text) {
+        var s = (text || '').trim();
+        if (/^\)\]\}['\s]*/.test(s)) s = s.replace(/^\)\]\}['\s]*/, '');
+        return JSON.parse(s);
+      }
+
+      function loadJsonp(url, timeoutMs) {
+        timeoutMs = timeoutMs || 12000;
+        return new Promise(function(resolve, reject) {
+          var cbName = '__jsonp_cb_' + Math.random().toString(36).slice(2);
+          var script = document.createElement('script');
+          var done = false;
+          var timer = setTimeout(function() {
+            if (done) return;
+            done = true;
+            cleanup();
+            reject(new Error('JSONP timeout'));
+          }, timeoutMs);
+
+          function cleanup() {
+            clearTimeout(timer);
+            try { delete window[cbName]; } catch (e) { window[cbName] = undefined; }
+            if (script && script.parentNode) script.parentNode.removeChild(script);
+          }
+
+          window[cbName] = function(data) {
+            if (done) return;
+            done = true;
+            cleanup();
+            resolve(data);
+          };
+
+          script.onerror = function() {
+            if (done) return;
+            done = true;
+            cleanup();
+            reject(new Error('JSONP load failed'));
+          };
+
+          var sep = url.indexOf('?') >= 0 ? '&' : '?';
+          script.src = url + sep + 'callback=' + encodeURIComponent(cbName);
+          document.head.appendChild(script);
+        });
+      }
+
+      function renderDateCards(data) {
+        var container = document.getElementById('signup-date-cards');
+        if (!data || !data.dates) { container.innerHTML = '<p class="text-muted">Loading slots…</p>'; return; }
+        var html = '';
+        for (var d = 0; d < data.dates.length; d++) {
+          var dt = data.dates[d];
+          var max = dt.maxSlots || 10;
+          var slots = dt.slots || [];
+          var taken = slots.length;
+          var dots = '';
+          for (var i = 0; i < taken; i++) {
+            dots += '<span class="slot-dot taken"></span>';
+          }
+          html += '<div class="col-md-6 col-lg-3 mb-3"><div class="card h-100 shadow-sm"><div class="card-body"><span class="text-muted small">12:00–14:00, online (Teams)</span><h3 class="h5 mt-2">' + dt.date + '</h3><div class="slot-dots">' + dots + '</div><p class="small mb-0 mt-2">' + taken + '/' + max + ' slots taken</p></div></div></div>';
+        }
+        container.innerHTML = html;
+      }
+
+      function renderSummaryTable(data) {
+        var thead = document.getElementById('summary-thead');
+        var tbody = document.getElementById('summary-tbody');
+        var legendEl = document.getElementById('summary-legend');
+        if (!legendEl) legendEl = { textContent: '' };
+        if (!data || !data.dates || !data.dates.length) {
+          thead.innerHTML = '<tr><th>Date</th></tr>';
+          tbody.innerHTML = '<tr><td class="text-muted">No data</td></tr>';
+          if (legendEl.textContent !== undefined) legendEl.textContent = '';
+          return;
+        }
+        var maxSlots = 10;
+        var h = ['Date'];
+        for (var i = 1; i <= maxSlots; i++) h.push('Slot ' + i);
+        thead.innerHTML = '<tr><th>' + h.join('</th><th>') + '</th></tr>';
+        var rows = '';
+        var hasNotEligible = false;
+        for (var d = 0; d < data.dates.length; d++) {
+          var dt = data.dates[d];
+          var row = ['<strong>' + dt.date + '</strong>'];
+          for (var s = 0; s < maxSlots; s++) {
+            var slot = dt.slots && dt.slots[s];
+            var neptun = slot && slot.neptunId ? slot.neptunId : '';
+            var notEligible = slot && slot.hasAllGrades === false;
+            if (notEligible) hasNotEligible = true;
+            var cell = neptun ? (notEligible ? '<span class="neptun-not-eligible">' + neptun + '</span>' : neptun) : '';
+            row.push(cell);
+          }
+          rows += '<tr><td>' + row.join('</td><td>') + '</td></tr>';
+        }
+        tbody.innerHTML = rows;
+        if (legendEl.textContent !== undefined) legendEl.textContent = hasNotEligible ? 'Neptun IDs in red do not yet have acceptable grades for both project submissions; they will need both before they can present.' : '';
+      }
+
+      function fillSignupDateDropdown(data) {
+        var sel = document.getElementById('signup-date');
+        sel.innerHTML = '<option value="">Select date…</option>';
+        var dates = (data && data.dates && data.dates.length) ? data.dates : null;
+        if (!dates) {
+          for (var i = 0; i < SIGNUP_DATES_FALLBACK.length; i++) {
+            var d = SIGNUP_DATES_FALLBACK[i];
+            sel.innerHTML += '<option value="' + d + '">' + d + '</option>';
+          }
+          return;
+        }
+        for (var j = 0; j < dates.length; j++) {
+          var dt = dates[j];
+          var dateStr = typeof dt === 'string' ? dt : (dt && dt.date);
+          if (dateStr) sel.innerHTML += '<option value="' + dateStr + '">' + dateStr + '</option>';
+        }
+      }
+
+      function fetchSlots(useFallbackProxy) {
+        if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL.indexOf('YOUR_') >= 0) {
+          return;
+        }
+        showSpinner(true);
+        // Use JSONP for GET to avoid CORS/proxy issues on institutional hosting.
+        var url = APPS_SCRIPT_URL + '?action=getSlots&_=' + Date.now();
+        loadJsonp(url)
+          .then(function(data) {
+            if (data && data.error) throw new Error(data.error);
+            renderDateCards(data);
+            renderSummaryTable(data);
+            fillSignupDateDropdown(data);
+          })
+          .catch(function() {
+            document.getElementById('signup-date-cards').innerHTML = '<p class="text-muted small">Live slot counts could not be loaded. You can still choose a date above and sign up — the form will work.</p>';
+          })
+          .then(function() { showSpinner(false); }, function() { showSpinner(false); });
+      }
+
+      document.getElementById('signup-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        var name = document.getElementById('signup-name').value.trim();
+        var neptun = document.getElementById('signup-neptun').value.trim().toUpperCase();
+        var email = document.getElementById('signup-email').value.trim();
+        var date = document.getElementById('signup-date').value;
+        var feedback = document.getElementById('signup-feedback');
+        if (!date) { feedback.textContent = 'Please select a date.'; feedback.className = 'mt-3 mb-0 small text-danger'; return; }
+        if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL.indexOf('YOUR_') >= 0) { feedback.textContent = 'Apps Script URL not configured.'; return; }
+        showSpinner(true);
+        feedback.textContent = '';
+        var signupUrl = APPS_SCRIPT_URL + '?action=signup&neptunId=' + encodeURIComponent(neptun) + '&name=' + encodeURIComponent(name) + '&email=' + encodeURIComponent(email) + '&date=' + encodeURIComponent(date) + '&_=' + Date.now();
+        loadJsonp(signupUrl, 28000)
+          .then(function(data) {
+            if (data.error) {
+              var msg = data.error;
+              var isRosterError = /not found.*roster|roster|course roster/i.test(msg);
+              var isAlreadySignedUp = /already has a signup|already signed up/i.test(msg);
+              var isDateFull = /date is full|this date is full/i.test(msg);
+              feedback.textContent = '';
+              if (isRosterError) {
+                document.getElementById('signup-error-modal-body').textContent = 'Sorry, this Neptun ID was not found among the course students. Please check that you typed it correctly. If the problem persists, please contact your instructor.';
+                $('#signup-error-modal').modal('show');
+              } else if (isAlreadySignedUp) {
+                document.getElementById('signup-error-modal-body').textContent = 'This Neptun ID is already signed up for a presentation slot. To change your date or cancel, use the link in your confirmation email, or contact your instructor.';
+                $('#signup-error-modal').modal('show');
+              } else if (isDateFull) {
+                document.getElementById('signup-error-modal-body').textContent = 'This date has no free slots. Please choose another date.';
+                $('#signup-error-modal').modal('show');
+              } else {
+                feedback.className = 'mt-3 mb-0 small text-danger';
+                feedback.textContent = msg;
+              }
+            } else {
+              feedback.textContent = '';
+              var msg = 'You are signed up for ' + data.date + ', slot ' + data.slot + '. Check your email for the confirmation and for the link to cancel or change your slot.';
+              if (data.hasAllGrades === false) {
+                msg += '<br><br><span class="text-danger">You do not yet have an acceptable grade for both project submissions. You will need both before you can present.</span>';
+              }
+              document.getElementById('signup-success-modal-body').innerHTML = msg;
+              $('#signup-success-modal').modal('show');
+              fetchSlots();
+            }
+          })
+          .catch(function() {
+            feedback.className = 'mt-3 mb-0 small text-danger';
+            feedback.textContent = 'Signup request failed or timed out. Try again.';
+          })
+          .then(function() { showSpinner(false); });
+      });
+
+      document.getElementById('signup-neptun').addEventListener('input', function() { this.value = this.value.toUpperCase(); });
+      document.getElementById('summary-refresh-btn').addEventListener('click', function() { if (APPS_SCRIPT_URL && APPS_SCRIPT_URL.indexOf('YOUR_') < 0) fetchSlots(); });
+
+      var urlParams = new URLSearchParams(window.location.search);
+      var cancelToken = urlParams.get('cancel');
+      var pendingCancelToken = null;
+      if (cancelToken) {
+        document.getElementById('cancel-confirm-box').style.display = 'block';
+        document.getElementById('signup').scrollIntoView({ behavior: 'smooth' });
+        showSpinner(true);
+        loadJsonp(APPS_SCRIPT_URL + '?action=getSignup&token=' + encodeURIComponent(cancelToken) + '&_=' + Date.now())
+          .then(function(data) {
+            if (data.error) throw new Error(data.error);
+            document.getElementById('cancel-neptun').textContent = data.neptunId || '';
+            document.getElementById('cancel-date').textContent = data.date || '';
+            pendingCancelToken = cancelToken;
+          })
+          .catch(function() {
+            document.getElementById('cancel-neptun').textContent = '—';
+            document.getElementById('cancel-date').textContent = '—';
+            document.getElementById('cancel-feedback').textContent = 'Invalid or expired cancel link.';
+            document.getElementById('cancel-feedback').className = 'mt-2 mb-0 small text-danger';
+          })
+          .then(function() { showSpinner(false); });
+      }
+      function redirectToSignupWithoutCancel() {
+        var params = new URLSearchParams(window.location.search);
+        params.delete('cancel');
+        var q = params.toString();
+        var url = window.location.pathname + (q ? '?' + q : '') + '#signup';
+        window.location.replace(url);
+      }
+
+      document.getElementById('cancel-confirm-btn').addEventListener('click', function() {
+        if (!pendingCancelToken) return;
+        if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL.indexOf('YOUR_') >= 0) return;
+        showSpinner(true);
+        document.getElementById('cancel-feedback').textContent = '';
+        var cancelUrl = APPS_SCRIPT_URL + '?action=cancel&token=' + encodeURIComponent(pendingCancelToken) + '&_=' + Date.now();
+        loadJsonp(cancelUrl)
+          .then(function(data) {
+            if (data.error) throw new Error(data.error);
+            if (APPS_SCRIPT_URL && APPS_SCRIPT_URL.indexOf('YOUR_') < 0) fetchSlots();
+            $('#cancel-success-modal').modal('show');
+          })
+          .catch(function(err) {
+            document.getElementById('cancel-feedback').textContent = (err && err.message) ? err.message : 'Cancel failed.';
+            document.getElementById('cancel-feedback').className = 'mt-2 mb-0 small text-danger';
+          })
+          .then(function() { showSpinner(false); });
+      });
+      $('#cancel-success-modal').on('hidden.bs.modal', function() {
+        redirectToSignupWithoutCancel();
+      });
+      document.getElementById('cancel-success-ok-btn').addEventListener('click', function() {
+        $('#cancel-success-modal').modal('hide');
+      });
+      document.getElementById('cancel-cancel-btn').addEventListener('click', function() {
+        redirectToSignupWithoutCancel();
+      });
+
+      function fetchResults() {
+        var neptun = document.getElementById('results-neptun').value.trim().toUpperCase();
+        var area = document.getElementById('results-area');
+        if (!neptun) { area.innerHTML = '<p class="text-muted">Enter your Neptun ID and click Show my results.</p>'; return; }
+        if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL.indexOf('YOUR_') >= 0) { area.innerHTML = '<p class="text-warning">Results lookup is not configured.</p>'; return; }
+        area.innerHTML = '';
+        showSpinner(true);
+        var url = APPS_SCRIPT_URL + '?action=getResults&neptunId=' + encodeURIComponent(neptun) + '&_=' + Date.now();
+        loadJsonp(url)
+          .then(function(data) {
+            if (data.error) { area.innerHTML = '<p class="text-danger">' + data.error + '</p>'; return; }
+            var results = data.results || [];
+            if (results.length === 0) { area.innerHTML = '<p class="text-muted">No results found for this Neptun ID yet.</p>'; return; }
+            var html = '';
+            for (var i = 0; i < results.length; i++) {
+              var r = results[i];
+              html += '<div class="card shadow-sm mb-3"><div class="card-body p-4"><h3 class="h6 mb-3">' + r.title + '</h3><div class="result-card">';
+              for (var j = 0; j < r.pairs.length; j++) html += '<div class="row"><span class="col-4 text-muted">' + r.pairs[j].label + '</span><span class="col-8">' + r.pairs[j].value + '</span></div>';
+              html += '</div></div></div>';
+            }
+            area.innerHTML = html;
+          })
+          .catch(function(err) { area.innerHTML = '<p class="text-danger">' + (err.message || 'Request failed. Try again later.') + '</p>'; })
+          .then(function() { showSpinner(false); });
+      }
+      document.getElementById('results-fetch-btn').addEventListener('click', fetchResults);
+      document.getElementById('results-neptun').addEventListener('input', function() { this.value = this.value.toUpperCase(); });
+
+      function applyConfig(config) {
+        if (!config) return;
+        var link = document.getElementById('results-sheet-link');
+        if (link && config.gradesSheetUrl) link.href = config.gradesSheetUrl;
+        if (config.signupDates && config.signupDates.length && typeof fillSignupDateDropdown === 'function') {
+          fillSignupDateDropdown({ dates: config.signupDates.map(function(d) { return { date: d }; }) });
+        }
+        var cards = config.deadlineCards || [];
+        if (cards.length === 0) return;
+        window.__DEADLINE_DATES = cards.map(function(c) { return c.dateValue; });
+        window.__DEADLINE_DATE_TEXTS = cards.map(function(c) { return c.dateText; });
+        var row1 = [], row2 = [];
+        for (var i = 0; i < cards.length; i++) {
+          var c = cards[i];
+          var html = '<div class="deadline-card" data-index="' + i + '"><div class="card shadow-sm border"><div class="card-body py-3">' +
+            '<div class="deadline-logo-wrap"><div class="deadline-logo ' + (c.logoClass || '') + '">' + (c.logo || '') + '</div></div>' +
+            '<div class="deadline-details"><div class="deadline-subtitle">' + (c.subtitle || '') + '</div><div class="deadline-date">' + (c.date || '') + '</div></div></div></div></div>';
+          if (i < 3) row1.push(html); else row2.push(html);
+        }
+        var container = document.getElementById('schedule-cards');
+        if (container) {
+          container.innerHTML = '<div class="deadline-row">' + row1.join('') + '</div><div class="deadline-row">' + row2.join('') + '</div>';
+          var descriptions = cards.map(function(c) { return c.description || ''; });
+          function firstUpcomingIndex() {
+            var now = Date.now();
+            for (var j = 0; j < window.__DEADLINE_DATES.length; j++) {
+              if (new Date(window.__DEADLINE_DATES[j]).getTime() > now) return j;
+            }
+            return 0;
+          }
+          function setActiveCard(index) {
+            var cardEls = container.querySelectorAll('.deadline-card');
+            for (var k = 0; k < cardEls.length; k++) {
+              var inner = cardEls[k].querySelector('.card');
+              if (inner) inner.classList.toggle('active', k === index);
+            }
+            var descEl = document.getElementById('schedule-description');
+            if (descEl) descEl.innerHTML = descriptions[index] ? '<div class="text">' + descriptions[index] + '</div>' : '';
+          }
+          setActiveCard(firstUpcomingIndex());
+          container.addEventListener('click', function(e) {
+            var card = e.target.closest('.deadline-card');
+            if (!card || card.getAttribute('data-index') == null) return;
+            setActiveCard(parseInt(card.getAttribute('data-index'), 10));
+          });
+        }
+        if (typeof window.restartDeadlineCounter === 'function') window.restartDeadlineCounter();
+      }
+      if (APPS_SCRIPT_URL && APPS_SCRIPT_URL.indexOf('YOUR_') < 0) {
+        loadJsonp(APPS_SCRIPT_URL + '?action=getConfig&_=' + Date.now()).then(applyConfig).catch(function() {
+          var sc = document.getElementById('schedule-cards');
+          if (sc) sc.innerHTML = '<p class="text-muted">Schedule could not be loaded.</p>';
+          // If config fails entirely, fall back to static signup dates.
+          if (typeof fillSignupDateDropdown === 'function') fillSignupDateDropdown(null);
+        });
+      } else {
+        // No Apps Script URL: use static signup dates.
+        if (typeof fillSignupDateDropdown === 'function') fillSignupDateDropdown(null);
+      }
+      if (APPS_SCRIPT_URL && APPS_SCRIPT_URL.indexOf('YOUR_') < 0) fetchSlots();
+
+      (function scrollSpy() {
+        var sectionIds = ['schedule', 'about', 'reqs', 'results', 'signup'];
+        var nav = document.querySelector('#ftco-navbar .navbar-nav');
+        if (!nav) return;
+        var offset = 120;
+        function updateActive() {
+          var scrollY = window.pageYOffset || document.documentElement.scrollTop;
+          var activeId = null;
+          for (var i = sectionIds.length - 1; i >= 0; i--) {
+            var el = document.getElementById(sectionIds[i]);
+            if (!el) continue;
+            var top = el.getBoundingClientRect().top + scrollY;
+            if (top <= scrollY + offset) { activeId = sectionIds[i]; break; }
+          }
+          var items = nav.querySelectorAll('.nav-item');
+          items.forEach(function(li) {
+            var a = li.querySelector('a');
+            if (!a) return;
+            var href = (a.getAttribute('href') || '').trim();
+            if (href.indexOf('#') === 0) {
+              var id = href.slice(1);
+              if (id === 'home') {
+                li.classList.toggle('active', !activeId);
+              } else {
+                li.classList.toggle('active', id === activeId);
+              }
+            }
+          });
+        }
+        var ticking = false;
+        function onScroll() {
+          if (ticking) return;
+          ticking = true;
+          requestAnimationFrame(function() { updateActive(); ticking = false; });
+        }
+        window.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('resize', onScroll);
+        updateActive();
+      })();
+    })();
+  </script>
     
   </body>
 </html>
