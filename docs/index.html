@@ -4,1415 +4,592 @@
     <title>Computer Simulations in Physics</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
+
     <link href="https://fonts.googleapis.com/css?family=Work+Sans:100,200,300,400,500,600,700,800,900" rel="stylesheet">
 
     <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
     <link rel="stylesheet" href="css/animate.css">
-    
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="css/magnific-popup.css">
-
-    <link rel="stylesheet" href="css/aos.css">
-
-    <link rel="stylesheet" href="css/ionicons.min.css">
-
-    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
-    <link rel="stylesheet" href="css/jquery.timepicker.css">
-
-    
-    <link rel="stylesheet" href="css/flaticon.css">
     <link rel="stylesheet" href="css/icomoon.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
     <style>
-      .slot-dots { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 0.5rem; }
-      .slot-dot { width: 10px; height: 10px; border-radius: 50%; background: #dee2e6; }
-      .slot-dot.taken { background: #007bff; }
-      .neptun-not-eligible { color: #c0392b; font-weight: 600; }
-      #api-spinner { position: fixed; inset: 0; background: rgba(255,255,255,0.85); display: none; align-items: center; justify-content: center; z-index: 9999; flex-direction: column; gap: 1rem; }
-      #api-spinner.show { display: flex; }
-      #api-spinner .api-spinner-circle { width: 56px; height: 56px; border: 4px solid #e9ecef; border-top-color: #007bff; border-radius: 50%; animation: api-spinner-rotate 0.9s linear infinite; }
-      #api-spinner .api-spinner-text { font-size: 0.95rem; color: #6c757d; }
-      @keyframes api-spinner-rotate { to { transform: rotate(360deg); } }
-      .result-card .row { margin-bottom: 0.35rem; }
-      .result-card .text-muted { font-size: 0.875rem; }
-      .deadline-cards { display: flex; flex-wrap: wrap; margin: 0 -0.25rem; flex-direction: column; }
-      .deadline-cards .deadline-row { display: flex; width: 100%; margin: 0; margin-bottom: 0.25rem; }
-      .deadline-cards .deadline-row:last-child { margin-bottom: 0; }
-      .deadline-cards .deadline-row .deadline-card { flex: 1 1 0; min-width: 0; padding: 0.25rem; }
-      .deadline-card .card { height: 100%; cursor: pointer; transition: box-shadow 0.2s, border-color 0.2s, background-color 0.2s; background: #f8f9fa; display: flex; align-items: center; }
-      .deadline-card .card:hover { box-shadow: 0 0.25rem 0.5rem rgba(0,0,0,0.1); }
-      .deadline-card .card.active { border-color: #007bff; background: #cce5ff !important; box-shadow: 0 0 0 2px #007bff; }
-      .deadline-card .card-body { display: flex; align-items: center; width: 100%; text-align: left; }
-      .deadline-logo-wrap { flex-shrink: 0; margin-right: 1.5rem; min-width: 2.5rem; }
-      .deadline-logo { font-family: "Work Sans", sans-serif; font-weight: 700; font-size: 1.5rem; letter-spacing: 0.02em; line-height: 1.2; }
-      .deadline-details { flex: 1; min-width: 0; }
-      .deadline-subtitle { font-size: 0.875rem; color: #212529; line-height: 1.3; margin-bottom: 0.15rem; }
-      .deadline-date { font-size: 0.8rem; color: #6c757d; }
-      .deadline-logo.sd { color: #495057; }
-      .deadline-logo.pv { color: #007bff; }
-      .deadline-logo.pr { color: #343a40; }
-      #schedule-description { min-height: 80px; }
-      /* Nav: Kooplex = plain link; Results = emphasized (black bold); Sign up = button */
-      /* At top (desktop): brand is black so area is light – use dark text for Kooplex and Results */
-      @media (min-width: 992px) {
-        #ftco-navbar .nav-item.nav-item-kooplex .nav-link { color: rgba(0,0,0,0.75); }
-        #ftco-navbar .nav-item.nav-item-kooplex .nav-link:hover { color: #000; }
-        #ftco-navbar .nav-item.nav-item-results .nav-link { font-weight: 600; color: rgba(0,0,0,0.9); }
-        #ftco-navbar .nav-item.nav-item-results .nav-link:hover { color: #000; }
-      }
-      /* When scrolled (or mobile): black bold for Results, dark link for Kooplex */
-      #ftco-navbar.scrolled .nav-item.nav-item-kooplex .nav-link { color: rgba(0,0,0,0.7); }
-      #ftco-navbar.scrolled .nav-item.nav-item-kooplex .nav-link:hover { color: #000; }
-      #ftco-navbar.scrolled .nav-item.nav-item-results .nav-link { font-weight: 600; color: rgba(0,0,0,0.9); }
-      #ftco-navbar.scrolled .nav-item.nav-item-results .nav-link:hover { color: #000; }
-      #ftco-navbar .nav-item.nav-item-results.active .nav-link { font-weight: 600; color: rgba(0,0,0,0.9); }
-      #ftco-navbar.scrolled .nav-item.nav-item-results.active .nav-link { font-weight: 600; color: rgba(0,0,0,0.9); }
-      #ftco-navbar .nav-item.nav-item-signup .nav-link {
-        background: #6b76ff; color: #fff !important; border-radius: 6px; padding: 0.45rem 1rem !important;
-        font-weight: 600; margin-left: 0.25rem;
-      }
-      #ftco-navbar .nav-item.nav-item-signup .nav-link:hover { background: #5a65e6; color: #fff !important; }
-      #ftco-navbar.scrolled .nav-item.nav-item-signup .nav-link { background: #6b76ff !important; color: #fff !important; border: none !important; }
-      #ftco-navbar.scrolled .nav-item.nav-item-signup .nav-link:hover { background: #5a65e6 !important; color: #fff !important; }
-      #ftco-navbar .nav-item.nav-item-signup.active .nav-link,
-      #ftco-navbar.scrolled .nav-item.nav-item-signup.active .nav-link { background: #6b76ff !important; color: #fff !important; }
-      @media (max-width: 991.98px) {
-        #ftco-navbar .nav-item.nav-item-signup .nav-link { margin-left: 0; margin-top: 0.5rem; }
-      }
+      /* keep the navbar visible once it docks at the top of the viewport on scroll */
+      #ftco-navbar.scrolled { margin-top: 0 !important; }
+      .next-lecture { display: none; background: rgba(255,255,255,0.82); border-radius: 14px; padding: 18px 24px; max-width: 480px; margin-bottom: 24px; }
+      .next-lecture-label { display: block; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; color: #6b76ff; margin-bottom: 4px; }
+      .next-lecture-title { font-size: 20px; font-weight: 700; margin: 0 0 4px; color: #1a1a1a; }
+      .next-lecture-room { font-size: 14px; color: #495057; margin: 0; }
+      .next-lecture-extra { margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(0,0,0,0.08); display: none; }
+      .next-lecture-extra p { font-size: 13.5px; color: #495057; margin: 0 0 4px; }
+      .next-lecture-extra p:last-child { margin-bottom: 0; }
+      .next-lecture-fallback { display: none; font-size: 14px; color: rgba(0,0,0,0.6); margin-bottom: 24px; }
+      .req-list { list-style: none; padding: 0; margin: 0; }
+      .req-list li { position: relative; padding-left: 34px; margin-bottom: 18px; color: #4d4d4d; }
+      .req-list li .icon-check-circle { position: absolute; left: 0; top: 3px; color: #6b76ff; }
+      .req-list li strong { color: #000; }
+      .topic-card { background: #fff; padding: 30px; height: 100%; box-shadow: 0px 24px 48px -13px rgba(0,0,0,0.05); transition: box-shadow .3s ease; }
+      .topic-card:hover { box-shadow: 0px 24px 48px -13px rgba(0,0,0,0.11); }
+      .topic-card .icon span { font-size: 34px; color: #6b76ff; }
+      /* the stock .services icon rule clips a gradient to the <span>'s own text, but the
+         icomoon glyph is painted by that span's :before pseudo (background isn't inherited),
+         so force a solid, guaranteed-visible fill instead of relying on the clip trick */
+      .services .icon span,
+      .services .icon span:before { background: none; -webkit-text-fill-color: #6b76ff; color: #6b76ff; }
+      .topic-card h3 { font-size: 17px; font-weight: 600; margin: 14px 0 8px; }
+      .topic-card p { font-size: 14.5px; color: #6b6b6b; margin: 0; }
+      .step-index { display: inline-block; font-size: 13px; font-weight: 700; letter-spacing: 1px; color: #6b76ff; margin-bottom: 6px; }
+      .sub-block-eyebrow { display: block; font-size: 13px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; color: #6b76ff; margin-bottom: 6px; }
+      .sub-block-heading { font-size: 26px; font-weight: 700; margin-bottom: 14px; }
+      .sub-block-divider { margin-top: 60px; padding-top: 50px; border-top: 1px solid #e9ecef; }
+      .topic-card p.topic-ref { font-size: 12.5px; color: #6b76ff; font-weight: 600; margin-top: 10px; }
+      /* buttons: a touch rounder than the stock 4px, short of a pill */
+      .btn { border-radius: 10px; }
+      .ftco-navbar-light .navbar-nav > .nav-item.cta > a,
+      .ftco-navbar-light.scrolled .nav-item.cta > a { border-radius: 10px !important; }
+      .resource-group h3 { font-size: 16px; text-transform: uppercase; letter-spacing: .5px; font-weight: 600; margin-bottom: 14px; }
+      .resource-group ul { padding-left: 18px; margin-bottom: 40px; }
+      .resource-group ul li { margin-bottom: 8px; color: #4d4d4d; }
+      .grading-note { font-size: 15px; color: #4d4d4d; background: #fff; border-left: 3px solid #6b76ff; padding: 18px 22px; }
+      #schedule table td, #schedule table th, #grading table td, #grading table th { vertical-align: middle; }
+      .cal-heading { text-align: center; font-size: 19px; font-weight: 600; margin-bottom: 2px; }
+      .cal-subheading { text-align: center; font-size: 13px; color: #868e96; margin-bottom: 30px; }
+      .cal-grid-wrap { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px 20px; }
+      @media (max-width: 991.98px) { .cal-grid-wrap { grid-template-columns: repeat(2, 1fr); gap: 24px 28px; } }
+      @media (max-width: 575.98px) { .cal-grid-wrap { grid-template-columns: 1fr; } }
+      .mini-cal h4 { font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: .03em; color: #495057; margin-bottom: 8px; }
+      .mini-cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px; }
+      .cal-dow { font-size: 9.5px; font-weight: 600; color: #adb5bd; text-align: center; padding-bottom: 2px; }
+      .cal-day { aspect-ratio: 1; display: flex; align-items: center; justify-content: center; font-size: 10.5px; border-radius: 4px; color: #6c757d; background: #f4f5f7; }
+      .cal-day.empty { background: transparent; }
+      .cal-day.intro { background: #8f9bb3; color: #fff; font-weight: 600; }
+      .cal-day.track-a { background: #6b76ff; color: #fff; font-weight: 600; }
+      .cal-day.track-b { background: #59b7ff; color: #fff; font-weight: 600; }
+      .cal-day.final { background: #e2a336; color: #fff; font-weight: 600; }
+      .cal-day.break { background: #e3e6ea; color: #adb5bd; }
+      .cal-day.weekend { background: #d3d7dc; color: #868e96; }
+      /* room, layered on top of the type color: plain fill = room 7.14, diagonal hatch = room 5.56 (computer lab) */
+      .cal-day.lab { background-image: repeating-linear-gradient(45deg, rgba(255,255,255,.45) 0 2px, rgba(255,255,255,0) 2px 5px); }
+      .cal-legend { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 22px; margin-top: 34px; font-size: 13px; color: #4d4d4d; }
+      .cal-legend .sw { display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: 6px; vertical-align: -1px; }
+      .cal-legend .sw.lab-sw { background: #adb5bd; background-image: repeating-linear-gradient(45deg, rgba(255,255,255,.6) 0 2px, rgba(255,255,255,0) 2px 5px); }
+      .cal-legend .sep { width: 1px; align-self: stretch; background: #dee2e6; margin: 0 2px; }
+      .weight-badge { display: inline-block; min-width: 54px; text-align: center; font-weight: 600; color: #6b76ff; }
     </style>
   </head>
   <body>
-    
-	  <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
-	    <div class="container">
-	      <a class="navbar-brand" href="index.html">Computer<span>Simulations</span>in<span>Physics</span></a>
-	      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
-	        <span class="oi oi-menu"></span> Menu
-	      </button>
 
-	      <div class="collapse navbar-collapse" id="ftco-nav">
-	        <ul class="navbar-nav ml-auto align-items-center">
-	          <li class="nav-item active"><a href="#home" class="nav-link">Home</a></li>
-	          <li class="nav-item"><a href="#schedule" class="nav-link">Deadlines</a></li>
-	          <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
-	          <li class="nav-item"><a href="#reqs" class="nav-link">Requirements</a></li>
-	          <li class="nav-item nav-item-kooplex"><a href="https://k8plex-edu.elte.hu/hub/" class="nav-link" target="_blank" rel="noopener noreferrer">Kooplex</a></li>
-	          <li class="nav-item nav-item-results"><a href="#results" class="nav-link">Results</a></li>
-	          <li class="nav-item nav-item-signup"><a href="#signup" class="nav-link">Sign Up</a></li>
-	        </ul>
-	      </div>
-	    </div>
-	  </nav>
+    <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">Computer<span>Simulations</span>in<span>Physics</span></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="oi oi-menu"></span> Menu
+        </button>
+
+        <div class="collapse navbar-collapse" id="ftco-nav">
+          <ul class="navbar-nav ml-auto align-items-center">
+            <li class="nav-item"><a href="#structure" class="nav-link">Course structure</a></li>
+            <li class="nav-item"><a href="#schedule" class="nav-link">Schedule</a></li>
+            <li class="nav-item"><a href="#grading" class="nav-link">Grading</a></li>
+            <li class="nav-item"><a href="#results" class="nav-link">Results</a></li>
+            <li class="nav-item"><a href="#topics" class="nav-link">Topics</a></li>
+            <li class="nav-item"><a href="#resources" class="nav-link">Resources</a></li>
+            <li class="nav-item cta cta-colored"><a href="https://k8plex-edu.elte.hu/hub/" class="nav-link" target="_blank" rel="noopener noreferrer"><span>Kooplex</span></a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
     <!-- END nav -->
-    
-    <div class="hero-wrap js-fullheight" id="home" style="background-image: url('images/bg_1.jpg');" data-stellar-background-ratio="0.5">
+
+    <div class="hero-wrap js-fullheight" id="home" style="background-image: url('images/bg_1.jpg');">
       <div class="overlay"></div>
       <div class="container">
-        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-start" data-scrollax-parent="true">
-          <div class="col-xl-10 ftco-animate" data-scrollax=" properties: { translateY: '70%' }">
-            <!-- <h1 id="deadline_text" class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"> Until <br><span>next deadline</span></h1> -->
-			<h1 id="deadline_text" class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"></h1>
-			<!-- date can be changed in js/main.js by searching for "deadline counter" -->
-            <!-- <p id="date_text" class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }">November 17, 2023 (Friday) - Project 2</p> -->
-			<p id="date_text" class="mb-4" data-scrollax="properties: { translateY: '30%', opacity: 1.6 }"></p>
-            <div id="timer" class="d-flex mb-3">
-						  <div class="time" id="days"></div>
-						  <div class="time pl-4" id="hours"></div>
-						  <div class="time pl-4" id="minutes"></div>
-						  <div class="time pl-4" id="seconds"></div>
-						</div>
+        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-start">
+          <div class="col-xl-10 ftco-animate">
+            <!-- <p class="mb-2" style="letter-spacing:.15em; text-transform:uppercase; font-size:14px; font-weight:600; color:rgba(0,0,0,0.55);">Computer Simulations in Physics</p> -->
+            <!-- <h1 class="mb-4">A task-based course in <span>computational physics</span></h1> -->
+            <h1 class="mb-4" style="font-size:46px; font-weight:600;">Computer Simulations </br>in Physics</h1>
+            <div id="next-lecture" class="next-lecture">
+              <span class="next-lecture-label" id="nl-label">Next Lecture</span>
+              <h3 class="next-lecture-title" id="nl-title"></h3>
+              <p class="next-lecture-room" id="nl-room"></p>
+              <div class="next-lecture-extra" id="nl-extra">
+                <p id="nl-topic"></p>
+                <p id="nl-textbook"></p>
+              </div>
+            </div>
+            <p id="next-lecture-fallback" class="next-lecture-fallback">No more sessions scheduled this semester.</p>
+            <p class="mt-2">
+              <a href="#structure" class="btn btn-primary px-4 py-3">Course format</a>
+              <a href="#results" class="btn btn-primary px-4 py-3 ml-2">Results</a>
+              <!-- TODO: replace with the actual group assignments Google Sheet URL -->
+              <a href="#" class="btn btn-primary px-4 py-3 ml-2" target="_blank" rel="noopener noreferrer" title="Google Sheet link to be added">Group assignments</a>
+            </p>
           </div>
         </div>
       </div>
     </div>
 
-<!--     <section class="ftco-section services-section bg-light">
-      <div class="container">
-        <div class="row d-flex">
-          <div class="col-md-3 d-flex align-self-stretch ftco-animate">
-            <div class="media block-6 services d-block">
-              <div class="icon"><span class="flaticon-placeholder"></span></div>
-              <div class="media-body">
-                <h3 class="heading mb-3">Venue</h3>
-                <p>	203 Fake St. Mountain View, San Francisco, California, USA</p>
-              </div>
-            </div>      
-          </div>
-          <div class="col-md-3 d-flex align-self-stretch ftco-animate">
-            <div class="media block-6 services d-block">
-              <div class="icon"><span class="flaticon-world"></span></div>
-              <div class="media-body">
-                <h3 class="heading mb-3">Transport</h3>
-                <p>A small river named Duden flows by their place and supplies.</p>
-              </div>
-            </div>    
-          </div>
-          <div class="col-md-3 d-flex align-self-stretch ftco-animate">
-            <div class="media block-6 services d-block">
-              <div class="icon"><span class="flaticon-hotel"></span></div>
-              <div class="media-body">
-                <h3 class="heading mb-3">Hotel</h3>
-                <p>A small river named Duden flows by their place and supplies.</p>
-              </div>
-            </div>      
-          </div>
-          <div class="col-md-3 d-flex align-self-stretch ftco-animate">
-            <div class="media block-6 services d-block">
-              <div class="icon"><span class="flaticon-cooking"></span></div>
-              <div class="media-body">
-                <h3 class="heading mb-3">Restaurant</h3>
-                <p>A small river named Duden flows by their place and supplies.</p>
-              </div>
-            </div>      
-          </div>
-        </div>
-      </div>
-    </section> -->
-   	
-<!--     <section class="ftco-counter img" id="section-counter">
-    	<div class="container">
-    		<div class="row d-flex">
-    			<div class="col-md-6 d-flex">
-    				<div class="img d-flex align-self-stretch" style="background-image:url(images/about.jpg);"></div>
-    			</div>
-    			<div class="col-md-6 pl-md-5 py-5">
-    				<div class="row justify-content-start pb-3">
-		          <div class="col-md-12 heading-section ftco-animate">
-		          	<span class="subheading">Fun Facts</span>
-		            <h2 class="mb-4"><span>Fun</span> Facts</h2>
-		            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>
-		          </div>
-		        </div>
-		    		<div class="row">
-		          <div class="col-md-6 justify-content-center counter-wrap ftco-animate">
-		            <div class="block-18 text-center py-4 bg-light mb-4">
-		              <div class="text">
-		              	<div class="icon d-flex justify-content-center align-items-center">
-		              		<span class="flaticon-guest"></span>
-		              	</div>
-		                <strong class="number" data-number="30">0</strong>
-		                <span>Speakers</span>
-		              </div>
-		            </div>
-		          </div>
-		          <div class="col-md-6 justify-content-center counter-wrap ftco-animate">
-		            <div class="block-18 text-center py-4 bg-light mb-4">
-		              <div class="text">
-		              	<div class="icon d-flex justify-content-center align-items-center">
-		              		<span class="flaticon-handshake"></span>
-		              	</div>
-		                <strong class="number" data-number="200">0</strong>
-		                <span>Sponsor</span>
-		              </div>
-		            </div>
-		          </div>
-		          <div class="col-md-6 justify-content-center counter-wrap ftco-animate">
-		            <div class="block-18 text-center py-4 bg-light mb-4">
-		              <div class="text">
-		              	<div class="icon d-flex justify-content-center align-items-center">
-		              		<span class="flaticon-chair"></span>
-		              	</div>
-		                <strong class="number" data-number="2500">0</strong>
-		                <span>Total Seats</span>
-		              </div>
-		            </div>
-		          </div>
-		          <div class="col-md-6 justify-content-center counter-wrap ftco-animate">
-		            <div class="block-18 text-center py-4 bg-light mb-4">
-		              <div class="text">
-		              	<div class="icon d-flex justify-content-center align-items-center">
-		              		<span class="flaticon-idea"></span>
-		              	</div>
-		                <strong class="number" data-number="40">0</strong>
-		                <span>Topics</span>
-		              </div>
-		            </div>
-		          </div>
-		        </div>
-	        </div>
-        </div>
-    	</div>
-    </section> -->
+    <script>
+      (function () {
+        // One entry per held class session (the Oct 28 break Wednesday is intentionally omitted).
+        // Room and, for task sessions, topic/textbook are placeholders until the semester plan is finalized.
+        var SESSIONS = [
+          { date: '2026-09-09', type: 'intro', title: 'Introduction I', room: 'Room 7.14' },
+          { date: '2026-09-16', type: 'intro', title: 'Introduction II', room: 'Room 7.14' },
+          { date: '2026-09-23', type: 'task', title: 'Task Session — Track A', room: 'Room 5.56 (computer lab)', topic: '[Topic — to be announced]', textbook: '[Textbook, Ch. __]' },
+          { date: '2026-09-30', type: 'task', title: 'Task Session — Track B', room: 'Room 5.56 (computer lab)', topic: '[Topic — to be announced]', textbook: '[Textbook, Ch. __]' },
+          { date: '2026-10-07', type: 'task', title: 'Task Session — Track A', room: 'Room 5.56 (computer lab)', topic: '[Topic — to be announced]', textbook: '[Textbook, Ch. __]' },
+          { date: '2026-10-14', type: 'task', title: 'Task Session — Track B', room: 'Room 5.56 (computer lab)', topic: '[Topic — to be announced]', textbook: '[Textbook, Ch. __]' },
+          { date: '2026-10-21', type: 'task', title: 'Task Session — Track A', room: 'Room 5.56 (computer lab)', topic: '[Topic — to be announced]', textbook: '[Textbook, Ch. __]' },
+          { date: '2026-11-04', type: 'task', title: 'Task Session — Track B', room: 'Room 5.56 (computer lab)', topic: '[Topic — to be announced]', textbook: '[Textbook, Ch. __]' },
+          { date: '2026-11-11', type: 'task', title: 'Task Session — Track A', room: 'Room 5.56 (computer lab)', topic: '[Topic — to be announced]', textbook: '[Textbook, Ch. __]' },
+          { date: '2026-11-18', type: 'task', title: 'Task Session — Track B', room: 'Room 5.56 (computer lab)', topic: '[Topic — to be announced]', textbook: '[Textbook, Ch. __]' },
+          { date: '2026-11-25', type: 'final', title: 'Final Project Session', room: 'Room 5.56 (computer lab)' },
+          { date: '2026-12-02', type: 'final', title: 'Final Project Session', room: 'Room 5.56 (computer lab)' },
+          { date: '2026-12-09', type: 'final', title: 'Final Project Session (last class)', room: 'Room 5.56 (computer lab)' }
+        ];
+        var CLASS_END_HOUR = 16; // 2–4pm sessions; a day counts as "past" once this hour rolls by
 
-<!--     <section class="ftco-section">
-    	<div class="container">
-    		<div class="row justify-content-center mb-5 pb-3">
-          <div class="col-md-7 text-center heading-section ftco-animate">
-          	<span class="subheading">Speaker</span>
-            <h2 class="mb-4"><span>Our</span> Speakers</h2>
-          </div>
-        </div>
-        <div class="row">
-        	<div class="col-md-12 ftco-animate">
-        		<div class="carousel-testimony owl-carousel">
-        			<div class="item">
-        				<div class="speaker">
-			        		<img src="images/speaker-1.jpg" class="img-fluid" alt="Colorlib HTML5 Template">
-			        		<div class="text text-center py-3">
-			        			<h3>John Adams</h3>
-			        			<span class="position">Web Developer</span>
-			        			<ul class="ftco-social mt-3">
-			                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-			                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-			                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-			              </ul>
-			        		</div>
-			        	</div>
-        			</div>
+        function dateFromISO(iso, hour) {
+          var p = iso.split('-').map(Number);
+          return new Date(p[0], p[1] - 1, p[2], hour || 0, 0, 0);
+        }
+        function isSameLocalDate(a, b) {
+          return a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate();
+        }
 
-        			<div class="item">
-        				<div class="speaker">
-			        		<img src="images/speaker-2.jpg" class="img-fluid" alt="Colorlib HTML5 Template">
-			        		<div class="text text-center py-3">
-			        			<h3>Paul George</h3>
-			        			<span class="position">Web Developer</span>
-			        			<ul class="ftco-social mt-3">
-			                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-			                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-			                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-			              </ul>
-			        		</div>
-			        	</div>
-        			</div>
+        var now = new Date();
+        var next = null;
+        for (var i = 0; i < SESSIONS.length; i++) {
+          if (dateFromISO(SESSIONS[i].date, CLASS_END_HOUR) > now) { next = SESSIONS[i]; break; }
+        }
 
-        			<div class="item">
-        				<div class="speaker">
-			        		<img src="images/speaker-3.jpg" class="img-fluid" alt="Colorlib HTML5 Template">
-			        		<div class="text text-center py-3">
-			        			<h3>James Smith</h3>
-			        			<span class="position">Web Developer</span>
-			        			<ul class="ftco-social mt-3">
-			                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-			                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-			                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-			              </ul>
-			        		</div>
-			        	</div>
-        			</div>
+        var wrap = document.getElementById('next-lecture');
+        var fallback = document.getElementById('next-lecture-fallback');
+        if (!next) {
+          if (fallback) fallback.style.display = 'block';
+          return;
+        }
 
-        			<div class="item">
-        				<div class="speaker">
-			        		<img src="images/speaker-4.jpg" class="img-fluid" alt="Colorlib HTML5 Template">
-			        		<div class="text text-center py-3">
-			        			<h3>Angelie Crawford</h3>
-			        			<span class="position">Web Developer</span>
-			        			<ul class="ftco-social mt-3">
-			                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-			                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-			                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-			              </ul>
-			        		</div>
-			        	</div>
-        			</div>
+        document.getElementById('nl-label').textContent = isSameLocalDate(dateFromISO(next.date), now) ? "Today's Lecture" : 'Next Lecture';
+        document.getElementById('nl-title').textContent = next.title;
+        document.getElementById('nl-room').textContent = next.room;
 
-        			<div class="item">
-        				<div class="speaker">
-			        		<img src="images/speaker-5.jpg" class="img-fluid" alt="Colorlib HTML5 Template">
-			        		<div class="text text-center py-3">
-			        			<h3>Jackie Spears</h3>
-			        			<span class="position">Entrepreneur</span>
-			        			<ul class="ftco-social mt-3">
-			                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-			                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-			                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-			              </ul>
-			        		</div>
-			        	</div>
-        			</div>
-        		</div>
-        	</div>
-        </div>
-    	</div>
-    </section> -->
-		
+        if (next.type === 'task') {
+          document.getElementById('nl-topic').textContent = 'Topic: ' + next.topic;
+          document.getElementById('nl-textbook').textContent = 'Background material: ' + next.textbook;
+          document.getElementById('nl-extra').style.display = 'block';
+        }
 
-		<section class="ftco-section bg-light" id="schedule">
-			<div class="container">
-				<div class="row justify-content-center mb-5 pb-3">
-					<div class="col-md-7 text-center heading-section ftco-animate">
-						<span class="subheading">Submission deadlines</span>
-						<h2 class="mb-4"><span>Course</span> Schedule</h2>
-					</div>
-				</div>
-				<div class="deadline-cards" id="schedule-cards"><p class="text-muted">Loading schedule…</p></div>
-				<div class="mt-4 pt-3" id="schedule-description"></div>
-			</div>
-		</section>
-		
+        wrap.style.display = 'block';
+      })();
+    </script>
 
-    <section class="ftco-section testimony-section" id="about">
+    <section class="ftco-section" id="structure">
       <div class="container">
         <div class="row justify-content-center mb-5 pb-3">
           <div class="col-md-7 text-center heading-section ftco-animate">
-          	<span class="subheading">About the course</span>
-            <h2 class="mb-4"><span>Computer</span> Simulations <span>in</span> Physics</h2>
+            <span class="subheading">Overview</span>
+            <h2 class="mb-4">Course <span>Structure</span></h2>
+            <p>The course starts with two introductory sessions, with lectures given by Professor Csabai in the various topics of modern computational physics. 
+              These two sessions are followed by 8 weeks of interactive "task sessions", where you will be expected to work on specific computational tasks in 
+              groups and briefly present your results. The language of the course is English, but within-group discussions can be held in any language. At the end 
+              of the semester, each group will choose their favourite topic and present it in more detail. Grading during the semester will be based on both group work 
+              and individual performance.</p>
           </div>
         </div>
-<!-- 		<h3>Registration for presentation time slots</h3>
-		<ul>
-			<li><a href="https://docs.google.com/spreadsheets/d/1SUB_-_q2CsBU_WvYQrEGILZhRcGsRYZN7aA9Ev-YsDQ/edit?usp=sharing">TIMETABLE</a></li>
-			<li><b>Register for a time slot via e-mail (szamszimmsc(at)gmail.com)</b></li>
-			<li>The e-mail should contain your <b>name</b> and <b>neptun ID</b>.</li>
-			<li>The e-mail should contain <b>at least 5 empty time slots</b> in the order of your preference.</li>
-			<li>Time slots will be handed out on a first come, first served basis.</li>
-		</ul>		
-		<h3>Project 1 summary</h3>
-		<ul>
-			<li>A short summary of the common mistakes and exeptional solutions of Project 1 can be found <a href="https://icsabai.github.io/simulationsMsc/project1_summary.pdf">here</a></li>
-		</ul> -->	
-		<h3><b>How to get a grade</b></h3>
-		During the semester, you will receive three grades, one for each versions of your project and one
-		for your presentation. Your final grade will be determined as the average of these three grades.
-		(No further examination will be held in the exam period.)
-		Detailed requirements can be found <a href="szamszim_req2025.pdf">here</a>.<br><br>
-		<h3>Schedule for 2025/26 Fall semester</h3>
-		<b>During the semester, both online and in person consultation is available upon request. Do not hesitate to ask if you have any questions!</b>
-		<ul>
-			<li><b>9 Sept, 2025:</b> Introductory session 1 (Tuesday, 12-2pm, Northern Building, Room 3.67 (Békésy))</li>
-			<li><b>16 Sept, 2025:</b> Introductory session 2 (Tuesday, 12-2pm, Northern Building, Room 3.67 (Békésy))</li>
-			<li><b>21 Sept, 2025:</b> Deadline for short description (Sunday, 11:59pm, <a href="https://k8plex-edu.elte.hu/hub">Kooplex</a>)</li>
-			<li><b>23 Sept, 2025:</b> Introductory session 3 (Tuesday, 12-2pm, Northern Building, Room 3.67 (Békésy))</li>
-			<li><b>30 Sept, 2025:</b> Introductory session 4 (Tuesday, 12-2pm, Northern Building, Room 3.67 (Békésy))</li>
-			<li><b>12 Oct, 2025:</b> Deadline for Project v1.0 (Sunday, 11:59pm, <a href="https://k8plex-edu.elte.hu/hub">Kooplex</a>)</li>
-			<li><b>9 Nov, 2025:</b> Deadline for Project v2.0 and response letter (Sunday, 11:59pm, <a href="https://k8plex-edu.elte.hu/hub">Kooplex</a>)</li>
-			<li><b>18 Nov, 2025:</b> Presentations day 1 (Tuesday, 12-2pm, online on Microsoft Teams)</li>
-			<li><b>25 Nov, 2025:</b> Presentations day 2 (Tuesday, 12-2pm, online on Microsoft Teams)</li>
-			<li><b>2 Dec, 2025:</b> Presentations day 3 (Tuesday, 12-2pm, online on Microsoft Teams)</li>
-			<li><b>9 Dec, 2025:</b> Presentations day 4 (Tuesday, 12-2pm, online on Microsoft Teams)</li>
-		</ul>
-		<h3>Textbook</h3>
-		<ul>
-			<li><a href="https://sites.science.oregonstate.edu/~landaur/">Rubin H Landau</a>, Manuel J Paez, & Cristian Bordeianu: <a href="https://sites.science.oregonstate.edu/~landaur/Books/Survey/index.html">A Survey of Computational Physics</a> - introductory computational science, 
-				Princeton University Press, 2008 (<a href="https://www.compadre.org/portal/items/detail.cfm?ID=11578">download PDF</a> from Compadre, the author's <a href="https://sites.science.oregonstate.edu/~landaur/">website</a> or see the <a href="https://seafile.vo.elte.hu/f/4bb7d00910c14cb8ba3c/">annotated local copy</a>)</li>
-		</ul>
-		<h3>Department server</h3>
-		<ul>
-			<li><b>Department server: <a href="https://k8plex-edu.elte.hu/hub/">Kooplex</a></b> Use this to upload the project reports! You can log in with your Neptun or Caesar (ELTE) account and find the course by Neptun ID.</li>
-			<li><a href="kooplex_tutorial2019.pdf">Kooplex tutorial</a></li>
-		</ul>		
-		<h3>Lecture recordings of 2020</h3>
-		<ul>
-			<li><a href="https://eltehu.sharepoint.com/:f:/s/Crs25-26-1compsimf20em1Szmtgpesszimulcik/Ehxbe12mD1xOmWTUE0-9hL0BpzXM77itDz6M7cVeLJnglw">Recordings</a> of the 2020/2021 semester</li>
-		</ul>	
-		<h3>Resources</h3>
-		<ul>
-			<li><b>Contact: szamszimmsc(at)gmail.com</b> Questions, requests, etc. concerning the class</li>
-			<li><a href="https://icsabai.github.io/classes/compsimf17em/">News and announcements</a></li>
-			<li><a href="https://ams206-winter18-01.courses.soe.ucsc.edu/system/files/attachments/ams-206-lecture-notes-part-4.pdf">Neumann rejection sampling</a></li>
-			<li><a href="https://jupyter.org/">Jupyter project</a></li>
-			<li><a href="https://cloud.sagemath.com/">Sagemath Cloud</a> - free of charge access to linux virtual machines with Jupyter Notebooks</li>
-			<li><a href="https://docs.python.org/2/tutorial/">Python intro</a> - English</li>
-<!-- 			<li><a href="http://harp.pythonanywhere.com/python_doc/tutorial">Python bevezető </a> - magyarul (Python Software Foundation)</li> -->
-			<li>Crash Course in Python for Scientists <a href="http://csabai.web.elte.hu/http/szamSzimMsc/CrashCourse.html">html</a> version, 
-				<a href="http://csabai.web.elte.hu/http/szamSzimMsc/CrashCourse.ipynb">notebook</a> version (notebooks can be downloaded/uploaded to sagemathcloud, and run)</li>
-			<li><a href="https://github.com/jupyter/jupyter/wiki#a-gallery-of-interesting-jupyter-notebooks">A gallery</a> of interesting Jupyter Notebooks</li>
-		</ul>		
-		<h3>Books and similar courses</h3>
-		<ul>
-			<li>Andi Klein, Alexander Godunov: Introductory Computational Physics, Cambridge University Press; 1 edition (March 20, 2006)</li>
-			<li>Eric Ayars: <a href="http://www.e-booksdirectory.com/details.php?ebook=10286">Computational Physics with Python</a>, California State University (2013)</li>
-			<li>Franz J. Vesely: Computational Physics. An Introduction, Springer; 2nd edition (September 30, 2001)</li>
-			<li>Huff, Kathryn D.; Scopatz, Anthony: Effective computation in physics field guide to research with Python, O'Reilly Media; 1 edition (July 5, 2015)</li>
-			<li>Danaila, I., Joly, P., Kaber, S.M., Postel, M: An introduction to scientific computing. Twelve computational projects solved with MATLAB, Springer 2006</li>
-			<li>Morten Hjorth-Jensen: Computational Physics, University of Oslo, 2012</li>
-			<li>Paul L. DeVries: A first course in computational physics, Jones & Bartlett Learning; 2 edition (March 26, 2010)</li>
-			<li>Tao Pang: An Introduction to Computational Physics, Cambridge University Press; 2 edition (February 13, 2006)</li>
-			<li>Gould, Tobochnik, Christian: <a href="https://www.compadre.org/osp/items/detail.cfm?ID=7375">An Introduction to Computer Simulation Methods</a> Addison-Wesley 2006-2016</li>
-			<li>Some of the books are available free <a href="http://www.freebookcentre.net/Physics/Computational-Physics-Books.html">here</a>.</li>
-			<li>Nice set of notebooks and related teaching materials at <a href="http://asu-compmethodsphysics-phy494.github.io/ASU-PHY494/">ASU</a>, Arizona, USA. (navigation buttons at the bottom)</li>
-		</ul>				
-<!--         <div class="row ftco-animate">
+        <div class="row d-flex mb-5 pb-3">
+          <div class="col-md-4 d-flex align-self-stretch ftco-animate">
+            <div class="media block-6 services d-block">
+              <div class="icon"><span class="icon-users"></span></div>
+              <div class="media-body">
+                <h3 class="heading mb-3">Groups of 4</h3>
+                <p>At the start of the semester you're placed into a group of four. Groups are assigned randomly, and stay fixed for the whole semester.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 d-flex align-self-stretch ftco-animate">
+            <div class="media block-6 services d-block">
+              <div class="icon"><span class="icon-sync"></span></div>
+              <div class="media-body">
+                <h3 class="heading mb-3">Two alternating tracks</h3>
+                <p>Each group is assigned to Track A or Track B. Only one track meets in a given week, so you attend every second week during the interactive task sessions.</p>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 d-flex align-self-stretch ftco-animate">
+            <div class="media block-6 services d-block">
+              <div class="icon"><span class="icon-book"></span></div>
+              <div class="media-body">
+                <h3 class="heading mb-3">Reading in advance</h3>
+                <p>A short background document will be handed out before each task. 
+                  It won't reveal the specific task or the code you'll be working on, only the concepts you'll need.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="sub-block ftco-animate">
+          <div class="row justify-content-center mb-4">
+            <div class="col-md-8 text-center">
+              <span class="sub-block-eyebrow">Weeks 3–10</span>
+              <h3 class="sub-block-heading">Structure of a task session</h3>
+              <!-- <p class="text-muted mb-0">Each session is one class slot, about two hours, and follows the same structure. Each group faces 4 tasks in total over the semester.</p> -->
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4 ftco-animate">
+              <div class="block-7">
+                <div class="text-center">
+                  <span class="step-index">START OF SESSION</span></br>
+                  <h2 class="heading"><b>Task handed out</b></h2>
+                  <ul class="pricing-text mb-5">
+                    <li>Your group receives a task notebook (Jupyter/Python)</li>
+                    <li>It contains a partially working or simplified simulation</li>
+                    <li>Plus some specific, concrete questions to answer, e.g. a number, a threshold, an estimate</li>
+                    <!-- <li>e.g. a number, a threshold, an estimate</li> -->
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 ftco-animate">
+              <div class="block-7">
+                <div class="text-center">
+                  <span class="step-index">ABOUT 60 MINUTES</span></br>
+                  <h2 class="heading"><b>Working time</b></h2>
+                  <ul class="pricing-text mb-5">
+                    <li>Your group works on the task together</li>
+                    <li>You may use any tools, including LLM models or AI agents</li>
+                    <li>However, you need to have good understanding of what your code does</li>
+                    <li>The goal is arriving at a concrete, defendable answer</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4 ftco-animate">
+              <div class="block-7">
+                <div class="text-center">
+                  <span class="step-index">ABOUT 30 MINUTES</span></br>
+                  <h2 class="heading"><b>Presentation round</b></h2>
+                  <ul class="pricing-text mb-5">
+                    <li>All groups meeting that week present in turn</li>
+                    <li>One member presents your result in 2 minutes (NOT LONGER)</li>
+                    <li>One member of another group asks questions regarding the presentation in 2 minutes (NOT LONGER)</li>
+                    <li>Roles rotate, so everyone gets to present and ask questions at least once during the semester</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row justify-content-center">
+            <div class="col-md-9 text-center ftco-animate">
+              <p class="text-muted">Before each session, a short background reading is provided, containing physics/math concepts, 
+                key equations, and a textbook reference where relevant. Reading it is optional but recommended, as it makes the working time more productive.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="sub-block sub-block-divider ftco-animate">
+          <div class="row justify-content-center">
+            <div class="col-md-8 text-center">
+              <span class="sub-block-eyebrow">Last 3 weeks</span>
+              <h3 class="sub-block-heading">Final project presentations</h3>
+              <p>Each group picks the task it found most interesting or successful during the semester, and develops it further at home. 
+                The results are presented in more depth (15 minutes), and every group member is expected to take an active role: you may be asked to explain any part of the work, not just the part you personally worked on.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="ftco-section bg-light" id="schedule">
+      <div class="container">
+        <div class="row justify-content-center mb-5 pb-3">
+          <div class="col-md-7 text-center heading-section ftco-animate">
+            <span class="subheading">2026/26 Fall Semester</span>
+            <h2 class="mb-4">Course <span>schedule</span></h2>
+            <!-- <p>Because course sign-up runs during the first week, some students' first session may fall in week 2 rather than week 1.</p> -->
+          </div>
+        </div>
+        <div class="row ftco-animate">
           <div class="col-md-12">
-            <div class="carousel-testimony owl-carousel ftco-owl">
-              <div class="item">
-                <div class="testimony-wrap text-center py-4 pb-5">
-                  <div class="user-img mb-4" style="background-image: url(images/person_1.jpg)">
-                    <span class="quote d-flex align-items-center justify-content-center">
-                      <i class="icon-quote-left"></i>
-                    </span>
-                  </div>
-                  <div class="text">
-                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                    <p class="name">Roger Scott</p>
-                    <span class="position">Marketing Manager</span>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="testimony-wrap text-center py-4 pb-5">
-                  <div class="user-img mb-4" style="background-image: url(images/person_2.jpg)">
-                    <span class="quote d-flex align-items-center justify-content-center">
-                      <i class="icon-quote-left"></i>
-                    </span>
-                  </div>
-                  <div class="text">
-                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                    <p class="name">Roger Scott</p>
-                    <span class="position">Interface Designer</span>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="testimony-wrap text-center py-4 pb-5">
-                  <div class="user-img mb-4" style="background-image: url(images/person_3.jpg)">
-                    <span class="quote d-flex align-items-center justify-content-center">
-                      <i class="icon-quote-left"></i>
-                    </span>
-                  </div>
-                  <div class="text">
-                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                    <p class="name">Roger Scott</p>
-                    <span class="position">UI Designer</span>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="testimony-wrap text-center py-4 pb-5">
-                  <div class="user-img mb-4" style="background-image: url(images/person_1.jpg)">
-                    <span class="quote d-flex align-items-center justify-content-center">
-                      <i class="icon-quote-left"></i>
-                    </span>
-                  </div>
-                  <div class="text">
-                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                    <p class="name">Roger Scott</p>
-                    <span class="position">Web Developer</span>
-                  </div>
-                </div>
-              </div>
-              <div class="item">
-                <div class="testimony-wrap text-center py-4 pb-5">
-                  <div class="user-img mb-4" style="background-image: url(images/person_1.jpg)">
-                    <span class="quote d-flex align-items-center justify-content-center">
-                      <i class="icon-quote-left"></i>
-                    </span>
-                  </div>
-                  <div class="text">
-                    <p class="mb-4">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                    <p class="name">Roger Scott</p>
-                    <span class="position">System Analyst</span>
-                  </div>
-                </div>
-              </div>
+            <div class="table-responsive">
+              <table class="table table-bordered table-striped bg-white">
+                <thead>
+                  <tr><th style="width:20%">Weeks</th><th>What to expect</th></tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>1-2</strong></td>
+                    <td>Introductory sessions. You will be introduced to the course format, the tools you can use, and you'll be assigned to a group and a track (A or B) by week 2 
+                      (when sign-up to courses are officially closed). Additionally, Professor Csabai will give an overview of modern computational physics.</td>
+                  </tr>
+                  <tr>
+                    <td><strong>3-10</strong></td>
+                    <td>Task sessions. Only one track (A or B) meets each week, so each student attends every second week. You'll work on specific computational problems in groups and 
+                      present and discuss your results.
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><strong>11-13</strong></td>
+                    <td>Final project presentations. All students will attend and watch the presentations of each group based on their favourite task of the semester.</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
+            <!-- <p class="text-muted small mb-0">Since only one track meets per week, an individual student attends roughly half as many sessions as there are weeks in the task phase.</p> -->
           </div>
         </div>
- -->     
-	 </div>
-    </section>
 
-    <section class="ftco-section bg-light" id="reqs">
-      <div class="container">
-        <div class="row justify-content-center mb-5 pb-3">
-          <div class="col-md-7 heading-section ftco-animate text-center">
-            <span class="subheading">Submissions</span>
-            <h2 class="mb-1"><span>Submission</span> requirements</h2>
-			<p>Details on requirements and grading can be found <a href="szamszim_req2025.pdf">here</a>.</p>
-          </div>
-        </div>
-        <div class="row">
-	        <div class="col-md-4 ftco-animate">
-	          <div class="block-7">
-	            <div class="text-center">
-	            <h2 class="heading"><b>Short description</b></h2>
-<!-- 	            <span class="price"><span class="number">Short description</span></span> -->
-<!-- 	            <span class="excerpt d-block">per Month</span> -->
-	            
-	            <h3 class="heading-2 my-4"></h3>
-	            
-	            <ul class="pricing-text mb-5">
-	              <li>Introduction (most important equations, figures)</li>
-	              <li>Background, broader context</li>
-	              <li>Motivation (why you chose the topic)</li>
-	              <li>Proposed solution (methods and tools you will need)</li>
-	              <li>Obstacles (potentional difficulties)</li>
-	              <li>Expected results, hypothesis</li>
-				  <li>About 1-page long</li>
-	              <li>Upload as PDF to Kooplex</li>
-	            </ul>
+        <div class="row justify-content-center mt-5 pt-4 ftco-animate">
+          <div class="col-md-12 col-lg-11">
+            <p class="cal-heading">Class calendar</p>
+            <p class="cal-subheading">Classes are held on <strong>Wednesdays, 2-4pm</strong></p>
+            <div class="cal-grid-wrap">
 
-<!-- 	            <a href="#" class="btn btn-primary d-block px-2 py-3">Buy Ticket</a> -->
-	            </div>
-	          </div>
-	        </div>
-	        <div class="col-md-4 ftco-animate">
-	          <div class="block-7">
-	            <div class="text-center">
-	            <h2 class="heading"><b>Project report</b></h2>
-<!-- 	            <span class="price"><sup>$</sup> <span class="number">200</span></span>
-	            <span class="excerpt d-block">per Month</span> -->
-	            
-	            <h3 class="heading-2 my-4"></h3>
-	            
-	            <ul class="pricing-text mb-5">
-	              <li>Introduction with motivation and theoretical background</li>
-	              <li>Methods</li>
-	              <li>Results, emphasizing your own contribution</li>
-	              <li>Discussion, Conclusion</li>
-	              <li>Format (scientific language!)</li>
-	              <li>Figures (easily understandable, asthetic figures with legends)</li>
-				  <li>References</li>
-				  <li>Upload as PDF to Kooplex, with additional code files</li>
-				  <li>Grades decay after deadline</li>
-	            </ul>
-
-	            <a href="szamszim_req2025.pdf" class="btn btn-primary d-block px-2 py-3">Details</a>
-	            </div>
-	          </div>
-	        </div>
-	        <div class="col-md-4 ftco-animate">
-	          <div class="block-7">
-	            <div class="text-center">
-	            <h2 class="heading"><b>Presentation</b></h2>
-<!-- 	            <span class="price"><sup>$</sup> <span class="number">499</span></span>
-	            <span class="excerpt d-block">per Month</span> -->
-	            
-	            <h3 class="heading-2 my-4"></h3>
-	            
-	            <ul class="pricing-text mb-5">
-	              <li>10-minute long!</li>
-	              <li>prepared in English (if possible)</li>
-	              <li>appropriate slides</li>
-	              <li>about <b>both</b> projects</li>
-	              <li>concise</li>
-	              <li>special emphasis on own contribution</li>
-	              <li>questions about submissions and course material</li>
-<!-- 				  <li><b>Register via e-mail!</b></li>
-				  <li><a href="https://docs.google.com/spreadsheets/d/1SUB_-_q2CsBU_WvYQrEGILZhRcGsRYZN7aA9Ev-YsDQ/edit?usp=sharing">Timetable</a></li> -->
-	            </ul>
-
-<!-- 	            <a href="#" class="btn btn-primary d-block px-2 py-3">Buy Ticket</a> -->
-	            </div>
-	          </div>
-	        </div>
-	      </div>
-      </div>
-    </section>
-
-    <section class="ftco-section bg-light" id="templates">
-      <div class="container">
-        <div class="row justify-content-center mb-5 pb-3">
-          <div class="col-md-7 heading-section text-center ftco-animate">
-          	<span class="subheading">Templates</span>
-            <h2><span>Submission</span> examples</h2>
-          </div>
-        </div>
-        <div class="row d-flex">
-          <div class="col-md-4 d-flex ftco-animate">
-          	<div class="blog-entry justify-content-end">
-<!--               <a href="" class="block-20" style="background-image: url('images/image_1.jpg');">
-              </a> -->
-			  <img style="width: 100%;" src="images/image_1.jpg">
-              <div class="text p-4 float-right d-block">
-<!--               	<div class="d-flex align-items-center pt-2 mb-4">
-              		<div class="one">
-              			<span class="day">07</span>
-              		</div>
-              		<div class="two">
-              			<span class="yr">2019</span>
-              			<span class="mos">January</span>
-              		</div>
-              	</div> -->
-                <h3 class="heading mt-2">Empty Latex project templates</h3>
-                <p><a href="template.pdf">PDF</a></p>
-				<p><a href="template.tex">tex file</a></p>
-				<p><a href="sample.bib">bibliography</a></p>
-				<p><a href="ising.png">sample image</a></p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 d-flex ftco-animate">
-          	<div class="blog-entry justify-content-center">
-<!--               <a href="" class="block-20" style="background-image: url('images/image_2.jpg');">
-              </a> -->
-			  <img style="width: 100%;" src="images/image_2.jpg">
-              <div class="text p-4 float-right d-block">
-<!--               	<div class="d-flex align-items-center pt-2 mb-4">
-              		<div class="one">
-              			<span class="day">07</span>
-              		</div>
-              		<div class="two">
-              			<span class="yr">2019</span>
-              			<span class="mos">January</span>
-              		</div>
-              	</div> -->
-                <h3 class="heading mt-2">Example reports (English)</h3>
-                <p><a href="LotkaVolterra_final.pdf">Lotka-Volterra models</a></p>
-				<p><a href="ProjectFPU.pdf">Fermi-Pasta-Ulam problem</a></p>
-				<p><a href="kai83h.pdf">Projectile motion simulation</a></p>
-				<p><a href="bkf0jp.pdf">Fractal dimension of the Julia set</a></p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 d-flex ftco-animate">
-          	<div class="blog-entry justify-content-center">
-<!--               <a href="" class="block-20" style="background-image: url('images/image_3.jpg');">
-              </a> -->
-			  <img style="width: 100%;" src="images/image_3.jpg">
-              <div class="text p-4 float-right d-block">
-<!--               	<div class="d-flex align-items-center pt-2 mb-4">
-              		<div class="one">
-              			<span class="day">06</span>
-              		</div>
-              		<div class="two">
-              			<span class="yr">2019</span>
-              			<span class="mos">January</span>
-              		</div>
-              	</div> -->
-                <h3 class="heading mt-2">Example reports (Hungarian)</h3>
-                <p><a href="example_report.pdf">Kaotikus dinamika</a></p>
-				<p><a href="q9nw33.pdf">Másodrendű fázisátalakulás az Ising-modellben</a></p>
-              </div>
-            </div>
-          </div>
-          <div class="col-md-4 d-flex ftco-animate">
-			<div class="blog-entry justify-content-center">
-<!--               <a href="" class="block-20" style="background-image: url('images/image_3.jpg');">
-			</a> -->
-			<img style="width: 100%;" src="images/image_4.jpg">
-			<div class="text p-4 float-right d-block">
-<!--               	<div class="d-flex align-items-center pt-2 mb-4">
-					<div class="one">
-						<span class="day">06</span>
-					</div>
-					<div class="two">
-						<span class="yr">2019</span>
-						<span class="mos">January</span>
-					</div>
-				</div> -->
-			  <h3 class="heading mt-2">Example short descriptions</h3>
-			  <p><a href="c0ko9h_sd.pdf">Atomic motion in a magnetic trap</a></p>
-			  <p><a href="dvtulf_sd.pdf">Double pendulum and deep learning</a></p>
-			  <p><a href="kai83h_sd.pdf">Path integral on the lattice</a></p>
-			</div>
-		  </div>
-		</div>		  
-        </div>
-      </div>
-    </section>
-		
-		<section class="ftco-section-parallax" id="results">
-      <div class="parallax-img d-flex align-items-center">
-        <div class="container py-4">
-          <div class="row d-flex justify-content-center">
-            <div class="col-md-7 text-center heading-section heading-section-white ftco-animate">
-              <h2>Feedback and grades</h2>
-              <p>Results of submissions and detailed feedback can be found <a id="results-sheet-link" style="color: #343a40; font-weight: bold;" href="#">here</a>.</p>
-            </div>
-          </div>
-          <div class="row justify-content-center mb-4 mt-3">
-            <div class="col-md-8">
-              <div class="card shadow-sm border-0">
-                <div class="card-body p-4">
-                  <p class="mb-3">Look up your grades by Neptun ID:</p>
-                  <div class="row align-items-end">
-                    <div class="col-md-6 form-group mb-md-0">
-                      <label class="mb-0">Neptun ID</label>
-                      <input type="text" class="form-control" id="results-neptun" placeholder="ABC123" maxlength="6" style="text-transform:uppercase">
-                    </div>
-                    <div class="col-md-6 form-group mb-0">
-                      <button type="button" class="btn btn-primary" id="results-fetch-btn">Show my results</button>
-                    </div>
-                  </div>
+              <div class="mini-cal">
+                <h4>September 2026</h4>
+                <div class="mini-cal-grid">
+                  <span class="cal-dow">Mo</span><span class="cal-dow">Tu</span><span class="cal-dow">We</span><span class="cal-dow">Th</span><span class="cal-dow">Fr</span><span class="cal-dow">Sa</span><span class="cal-dow">Su</span>
+                  <span class="cal-day empty"></span><span class="cal-day">1</span><span class="cal-day">2</span><span class="cal-day">3</span><span class="cal-day">4</span><span class="cal-day weekend">5</span><span class="cal-day weekend">6</span>
+                  <span class="cal-day">7</span><span class="cal-day">8</span><span class="cal-day intro" title="Introductory session · Room 7.14">9</span><span class="cal-day">10</span><span class="cal-day">11</span><span class="cal-day weekend">12</span><span class="cal-day weekend">13</span>
+                  <span class="cal-day">14</span><span class="cal-day">15</span><span class="cal-day intro" title="Introductory session · Room 7.14">16</span><span class="cal-day">17</span><span class="cal-day">18</span><span class="cal-day weekend">19</span><span class="cal-day weekend">20</span>
+                  <span class="cal-day">21</span><span class="cal-day">22</span><span class="cal-day track-a lab" title="Track A — task session · Room 5.56 (computer lab)">23</span><span class="cal-day">24</span><span class="cal-day">25</span><span class="cal-day weekend">26</span><span class="cal-day weekend">27</span>
+                  <span class="cal-day">28</span><span class="cal-day">29</span><span class="cal-day track-b lab" title="Track B — task session · Room 5.56 (computer lab)">30</span><span class="cal-day empty"></span><span class="cal-day empty"></span><span class="cal-day empty"></span><span class="cal-day empty"></span>
                 </div>
               </div>
+
+              <div class="mini-cal">
+                <h4>October 2026</h4>
+                <div class="mini-cal-grid">
+                  <span class="cal-dow">Mo</span><span class="cal-dow">Tu</span><span class="cal-dow">We</span><span class="cal-dow">Th</span><span class="cal-dow">Fr</span><span class="cal-dow">Sa</span><span class="cal-dow">Su</span>
+                  <span class="cal-day empty"></span><span class="cal-day empty"></span><span class="cal-day empty"></span><span class="cal-day">1</span><span class="cal-day">2</span><span class="cal-day weekend">3</span><span class="cal-day weekend">4</span>
+                  <span class="cal-day">5</span><span class="cal-day">6</span><span class="cal-day track-a lab" title="Track A — task session · Room 5.56 (computer lab)">7</span><span class="cal-day">8</span><span class="cal-day">9</span><span class="cal-day weekend">10</span><span class="cal-day weekend">11</span>
+                  <span class="cal-day">12</span><span class="cal-day">13</span><span class="cal-day track-b lab" title="Track B — task session · Room 5.56 (computer lab)">14</span><span class="cal-day">15</span><span class="cal-day">16</span><span class="cal-day weekend">17</span><span class="cal-day weekend">18</span>
+                  <span class="cal-day">19</span><span class="cal-day">20</span><span class="cal-day track-a lab" title="Track A — task session · Room 5.56 (computer lab)">21</span><span class="cal-day">22</span><span class="cal-day">23</span><span class="cal-day weekend">24</span><span class="cal-day weekend">25</span>
+                  <span class="cal-day break" title="Fall break">26</span><span class="cal-day break" title="Fall break">27</span><span class="cal-day break" title="Fall break — no class">28</span><span class="cal-day break" title="Fall break">29</span><span class="cal-day break" title="Fall break">30</span><span class="cal-day weekend">31</span><span class="cal-day empty"></span>
+                </div>
+              </div>
+
+              <div class="mini-cal">
+                <h4>November 2026</h4>
+                <div class="mini-cal-grid">
+                  <span class="cal-dow">Mo</span><span class="cal-dow">Tu</span><span class="cal-dow">We</span><span class="cal-dow">Th</span><span class="cal-dow">Fr</span><span class="cal-dow">Sa</span><span class="cal-dow">Su</span>
+                  <span class="cal-day empty"></span><span class="cal-day empty"></span><span class="cal-day empty"></span><span class="cal-day empty"></span><span class="cal-day empty"></span><span class="cal-day empty"></span><span class="cal-day weekend">1</span>
+                  <span class="cal-day">2</span><span class="cal-day">3</span><span class="cal-day track-b lab" title="Track B — task session · Room 5.56 (computer lab)">4</span><span class="cal-day">5</span><span class="cal-day">6</span><span class="cal-day weekend">7</span><span class="cal-day weekend">8</span>
+                  <span class="cal-day">9</span><span class="cal-day">10</span><span class="cal-day track-a lab" title="Track A — task session · Room 5.56 (computer lab)">11</span><span class="cal-day">12</span><span class="cal-day">13</span><span class="cal-day weekend">14</span><span class="cal-day weekend">15</span>
+                  <span class="cal-day">16</span><span class="cal-day">17</span><span class="cal-day track-b lab" title="Track B — task session · Room 5.56 (computer lab)">18</span><span class="cal-day">19</span><span class="cal-day">20</span><span class="cal-day weekend">21</span><span class="cal-day weekend">22</span>
+                  <span class="cal-day">23</span><span class="cal-day">24</span><span class="cal-day final lab" title="Final project session · Room 5.56 (computer lab)">25</span><span class="cal-day">26</span><span class="cal-day">27</span><span class="cal-day weekend">28</span><span class="cal-day weekend">29</span>
+                  <span class="cal-day">30</span><span class="cal-day empty"></span><span class="cal-day empty"></span><span class="cal-day empty"></span><span class="cal-day empty"></span><span class="cal-day empty"></span><span class="cal-day empty"></span>
+                </div>
+              </div>
+
+              <div class="mini-cal">
+                <h4>December 2026</h4>
+                <div class="mini-cal-grid">
+                  <span class="cal-dow">Mo</span><span class="cal-dow">Tu</span><span class="cal-dow">We</span><span class="cal-dow">Th</span><span class="cal-dow">Fr</span><span class="cal-dow">Sa</span><span class="cal-dow">Su</span>
+                  <span class="cal-day empty"></span><span class="cal-day">1</span><span class="cal-day final lab" title="Final project session · Room 5.56 (computer lab)">2</span><span class="cal-day">3</span><span class="cal-day">4</span><span class="cal-day weekend">5</span><span class="cal-day weekend">6</span>
+                  <span class="cal-day">7</span><span class="cal-day">8</span><span class="cal-day final lab" title="Final project session · Room 5.56 (computer lab) — last class">9</span><span class="cal-day">10</span><span class="cal-day">11</span><span class="cal-day weekend">12</span><span class="cal-day weekend">13</span>
+                </div>
+                <p class="text-muted small mt-2 mb-0">Semester ends December 9.</p>
+              </div>
+
+            </div>
+
+            <div class="cal-legend">
+              <span><span class="sw" style="background:#8f9bb3;"></span>Introductory session</span>
+              <span><span class="sw" style="background:#6b76ff;"></span>Track A</span>
+              <span><span class="sw" style="background:#59b7ff;"></span>Track B</span>
+              <span><span class="sw" style="background:#e2a336;"></span>Final project</span>
+              <span><span class="sw" style="background:#e3e6ea; box-shadow: inset 0 0 0 1px #ced4da;"></span>Fall break</span>
+              <span class="sep"></span>
+              <span><span class="sw" style="background:#adb5bd;"></span>Room 7.14</span>
+              <span><span class="sw lab-sw"></span>Room 5.56 (computer lab)</span>
             </div>
           </div>
-          <div id="results-area" class="row justify-content-center"></div>
         </div>
       </div>
     </section>
 
-    <!-- Presentation Signup -->
-    <section class="ftco-section bg-light" id="signup">
+    <section class="ftco-section" id="grading">
       <div class="container">
         <div class="row justify-content-center mb-5 pb-3">
           <div class="col-md-7 text-center heading-section ftco-animate">
-            <span class="subheading">Presentation time slots</span>
-            <h2 class="mb-4"><span>Sign</span> Up</h2>
-            <p class="mb-0">Choose a date and slot below.</p>
+            <span class="subheading">Grade composition</span>
+            <h2 class="mb-4">Grading</h2>
           </div>
         </div>
-        <div id="cancel-confirm-box" class="alert alert-warning mb-4" style="display:none;" role="alert">
-          <p class="mb-2">You are about to cancel the signup for <strong id="cancel-neptun"></strong> on <strong id="cancel-date"></strong>. Click confirm to free your slot.</p>
-          <div class="d-flex flex-wrap">
-            <button type="button" class="btn btn-danger mr-2 mb-2" id="cancel-confirm-btn">Confirm cancel</button>
-            <button type="button" class="btn btn-outline-secondary mb-2" id="cancel-cancel-btn">Keep my slot</button>
-          </div>
-          <p id="cancel-feedback" class="mt-2 mb-0 small"></p>
-        </div>
-        <p class="mb-3"><button type="button" class="btn btn-outline-secondary btn-sm" id="summary-refresh-btn">Refresh slot summary</button></p>
-        <div class="row mb-4" id="signup-date-cards">
-          <!-- Filled by JS -->
-        </div>
-        <div class="card shadow-sm border-0 mb-4">
-          <div class="card-body p-4">
-            <h3 class="h5 mb-3">Sign up</h3>
-            <form id="signup-form" class="row">
-              <div class="col-md-4 form-group">
-                <label>Name</label>
-                <input type="text" class="form-control" id="signup-name" required placeholder="Your name">
-              </div>
-              <div class="col-md-4 form-group">
-                <label>Neptun ID</label>
-                <input type="text" class="form-control" id="signup-neptun" required placeholder="ABC123" maxlength="6" style="text-transform:uppercase">
-              </div>
-              <div class="col-md-4 form-group">
-                <label>Email</label>
-                <input type="email" class="form-control" id="signup-email" required placeholder="you@example.com">
-              </div>
-              <div class="col-md-6 form-group">
-                <label>Date</label>
-                <select class="form-control" id="signup-date" required>
-                  <option value="">Select date…</option>
-                </select>
-              </div>
-              <div class="col-md-6 form-group d-flex align-items-end">
-                <button type="submit" class="btn btn-primary">Sign Up</button>
-              </div>
-            </form>
-            <p id="signup-feedback" class="mt-3 mb-0 small"></p>
-          </div>
-        </div>
-
-        <div class="modal fade" id="signup-error-modal" tabindex="-1" role="dialog" aria-labelledby="signup-error-modal-title" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="signup-error-modal-title">Sign-up not possible</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              </div>
-              <div class="modal-body" id="signup-error-modal-body"></div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
-              </div>
+        <div class="row ftco-animate">
+          <div class="col-md-12">
+            <div class="table-responsive">
+              <table class="table table-bordered table-striped bg-white">
+                <thead>
+                  <tr><th>Component</th><th>What it reflects</th><th style="width:12%">Number of grades</th><th style="width:12%">Weight</th></tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Group grade for task solution</td>
+                    <td>Quality of your group's answer, assigned to each group member uniformly. Awarded for each task.</td>
+                    <td><span class="weight-badge">4</span></td>
+                    <td><span class="weight-badge">6.25%</span></td>
+                  </tr>
+                  <tr>
+                    <td>Presentation performance</td>
+                    <td>How well you present your group's result, on the one occasion you're the presenter. Awarded to the individual member.</td>
+                    <td><span class="weight-badge">1</span></td>
+                    <td><span class="weight-badge">25%</span></td>
+                  </tr>
+                  <tr>
+                    <td>Question-asking performance</td>
+                    <td>Quality of the questions you ask another group, on the one occasion you're the questioner. Awarded to the individual member.</td>
+                    <td><span class="weight-badge">1</span></td>
+                    <td><span class="weight-badge">25%</span></td>
+                  </tr>
+                  <tr>
+                    <td>Final project presentation</td>
+                    <td>Depth and quality of your group's extended project, and your individual contribution to it, assigned to each group member individually, 
+                      based on their perceived contribution and preformance. <strong>It is your own and your group's responsibility to make sure that each member 
+                        is represented equally during the final project presentation.</strong>
+                      </strong>
+                    </td>
+                    <td><span class="weight-badge">1</span></td>
+                    <td><span class="weight-badge">25%</span></td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
-        <div class="modal fade" id="signup-success-modal" tabindex="-1" role="dialog" aria-labelledby="signup-success-modal-title" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-              <div class="modal-header border-0 pb-0">
-                <h5 class="modal-title text-success" id="signup-success-modal-title">Sign-up successful</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              </div>
-              <div class="modal-body pt-0" id="signup-success-modal-body"></div>
-              <div class="modal-footer border-0">
-                <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
-              </div>
-            </div>
+        <!-- <div class="row justify-content-center mt-2">
+          <div class="col-md-10 ftco-animate">
+            <p class="grading-note mb-0">This is a <strong>weighted</strong> combination, not a simple average of every grade you receive: your 4 task-solution grades are first averaged into a single score, so that component isn't outweighed by the single presentation grade and single question grade. As a result, presentation and question-asking together carry as much weight as all task solutions combined.</p>
           </div>
-        </div>
-        <div class="modal fade" id="cancel-success-modal" tabindex="-1" role="dialog" aria-labelledby="cancel-success-modal-title" aria-hidden="true">
-          <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-              <div class="modal-header border-0 pb-0">
-                <h5 class="modal-title text-success" id="cancel-success-modal-title">Cancellation successful</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              </div>
-              <div class="modal-body pt-0" id="cancel-success-modal-body">Your presentation slot has been cancelled. A confirmation email has been sent to your inbox.</div>
-              <div class="modal-footer border-0">
-                <button type="button" class="btn btn-primary" id="cancel-success-ok-btn">OK</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <h3 class="h5 mb-2">Slot summary</h3>
-        <div class="table-responsive">
-          <table class="table table-bordered table-striped" id="summary-table">
-            <thead><tr id="summary-thead"></tr></thead>
-            <tbody id="summary-tbody"></tbody>
-          </table>
-        </div>
-        <p class="small text-muted mt-2 mb-0" id="summary-legend"></p>
+        </div> -->
       </div>
     </section>
 
-<!--     <section class="ftco-gallery">
-    	<div class="container-wrap">
-    		<div class="row no-gutters">
-					<div class="col-md-3 ftco-animate">
-						<a href="images/image_1.jpg" class="gallery image-popup img d-flex align-items-center" style="background-image: url(images/image_1.jpg);">
-							<div class="icon mb-4 d-flex align-items-center justify-content-center">
-    						<span class="icon-instagram"></span>
-    					</div>
-						</a>
-					</div>
-					<div class="col-md-3 ftco-animate">
-						<a href="images/image_2.jpg" class="gallery image-popup img d-flex align-items-center" style="background-image: url(images/image_2.jpg);">
-							<div class="icon mb-4 d-flex align-items-center justify-content-center">
-    						<span class="icon-instagram"></span>
-    					</div>
-						</a>
-					</div>
-					<div class="col-md-3 ftco-animate">
-						<a href="images/image_3.jpg" class="gallery image-popup img d-flex align-items-center" style="background-image: url(images/image_3.jpg);">
-							<div class="icon mb-4 d-flex align-items-center justify-content-center">
-    						<span class="icon-instagram"></span>
-    					</div>
-						</a>
-					</div>
-					<div class="col-md-3 ftco-animate">
-						<a href="images/image_4.jpg" class="gallery image-popup img d-flex align-items-center" style="background-image: url(images/image_4.jpg);">
-							<div class="icon mb-4 d-flex align-items-center justify-content-center">
-    						<span class="icon-instagram"></span>
-    					</div>
-						</a>
-					</div>
+    <section class="ftco-section bg-light" id="results">
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-md-8 text-center heading-section ftco-animate">
+            <span class="subheading">Grade records</span>
+            <h2 class="mb-4">Results</h2>
+            <p>Task, presentation, question, and final project grades are recorded in a shared spreadsheet as the semester progresses.</p>
+            <p class="mt-4"><a href="#" class="btn btn-primary px-4 py-3">Open results sheet</a></p>
+            <p class="text-muted small mt-2 mb-0"><!-- TODO: replace the link above with the actual results spreadsheet URL -->Link to be added once the sheet is set up.</p>
+          </div>
         </div>
-    	</div>
-    </section> -->
+      </div>
+    </section>
+
+    <section class="ftco-section" id="topics">
+      <div class="container">
+        <div class="row justify-content-center mb-5 pb-3">
+          <div class="col-md-7 text-center heading-section ftco-animate">
+            <span class="subheading">Topic areas</span>
+            <h2 class="mb-4">Topics <span>Covered</span></h2>
+            <p>Over the semester, groups work through a range of computational physics tasks, covering areas:</p>
+          </div>
+        </div>
+        <div class="row d-flex">
+          <div class="col-md-6 col-lg-3 d-flex mb-4 ftco-animate">
+            <div class="topic-card">
+              <div class="icon"><span class="icon-bolt"></span></div>
+              <h3>[Topic 1]</h3>
+              <!-- <p>e.g. chaotic dynamics — driven oscillators, discrete nonlinear maps.</p> -->
+              <p class="topic-ref">Textbook: [Ch. __]</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3 d-flex mb-4 ftco-animate">
+            <div class="topic-card">
+              <div class="icon"><span class="icon-thermometer-half"></span></div>
+              <h3>[Topic 2]</h3>
+              <!-- <p>e.g. critical phenomena &amp; phase transitions — magnetic systems, random connectivity models.</p> -->
+              <p class="topic-ref">Textbook: [Ch. __]</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3 d-flex mb-4 ftco-animate">
+            <div class="topic-card">
+              <div class="icon"><span class="icon-bar-chart"></span></div>
+              <h3>[Topic 3]</h3>
+              <!-- <p>e.g. estimating physical parameters — from noisy or stochastic simulated data.</p> -->
+              <p class="topic-ref">Textbook: [Ch. __]</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3 d-flex mb-4 ftco-animate">
+            <div class="topic-card">
+              <div class="icon"><span class="icon-globe"></span></div>
+              <h3>[Topic 4]</h3>
+              <!-- <p>e.g. conservative dynamics &amp; few-body systems — orbital mechanics, coupled oscillator chains.</p> -->
+              <p class="topic-ref">Textbook: [Ch. __]</p>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="row justify-content-center">
+          <div class="col-md-8 text-center ftco-animate">
+            <p class="text-muted mb-0">Specific task topics and their background reading will be released progressively throughout the semester, timed to each session.</p>
+          </div>
+        </div> -->
+      </div>
+    </section>
+
+    <section class="ftco-section bg-light" id="resources">
+      <div class="container">
+        <div class="row justify-content-center mb-5 pb-3">
+          <div class="col-md-7 text-center heading-section ftco-animate">
+            <span class="subheading">Background material</span>
+            <h2 class="mb-4">Resources</h2>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-4 ftco-animate resource-group">
+            <h3>Textbook</h3>
+            <ul>
+              <li><a href="https://sites.science.oregonstate.edu/~landaur/">Rubin H. Landau</a>, Manuel J. Páez &amp; Cristian Bordeianu — <a href="https://sites.science.oregonstate.edu/~landaur/Books/Survey/index.html">A Survey of Computational Physics</a>, Princeton University Press, 2008 (<a href="https://www.compadre.org/portal/items/detail.cfm?ID=11578">download PDF</a> from Compadre or the author's <a href="https://sites.science.oregonstate.edu/~landaur/">website</a>)</li>
+            </ul>
+          </div>
+          <div class="col-md-4 ftco-animate resource-group">
+            <h3>Python &amp; Jupyter</h3>
+            <ul>
+              <li><a href="https://jupyter.org/">Jupyter project</a></li>
+              <li><a href="https://docs.python.org/3/tutorial/">Python tutorial</a> (official docs)</li>
+              <li>Crash Course in Python for Scientists — <a href="http://csabai.web.elte.hu/http/szamSzimMsc/CrashCourse.html">html</a> / <a href="http://csabai.web.elte.hu/http/szamSzimMsc/CrashCourse.ipynb">notebook</a> version</li>
+              <li><a href="https://github.com/jupyter/jupyter/wiki#a-gallery-of-interesting-jupyter-notebooks">A gallery</a> of interesting Jupyter notebooks</li>
+            </ul>
+          </div>
+          <div class="col-md-4 ftco-animate resource-group">
+            <h3>Further reading</h3>
+            <ul>
+              <li>Tao Pang: <em>An Introduction to Computational Physics</em>, Cambridge University Press, 2nd ed. (2006)</li>
+              <li>Gould, Tobochnik &amp; Christian: <a href="https://www.compadre.org/osp/items/detail.cfm?ID=7375">An Introduction to Computer Simulation Methods</a>, Addison-Wesley</li>
+              <li>Morten Hjorth-Jensen: <em>Computational Physics</em>, University of Oslo (2012)</li>
+              <li>Some titles are available free <a href="http://www.freebookcentre.net/Physics/Computational-Physics-Books.html">here</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <footer class="ftco-footer ftco-bg-dark ftco-section">
       <div class="container">
-<!--         <div class="row mb-5">
-          <div class="col-md">
-            <div class="ftco-footer-widget mb-4">
-              <h2 class="ftco-heading-2">Eventalk</h2>
-              <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-              <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
-                <li class="ftco-animate"><a href="#"><span class="icon-twitter"></span></a></li>
-                <li class="ftco-animate"><a href="#"><span class="icon-facebook"></span></a></li>
-                <li class="ftco-animate"><a href="#"><span class="icon-instagram"></span></a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md">
-            <div class="ftco-footer-widget mb-4 ml-md-5">
-              <h2 class="ftco-heading-2">Useful Links</h2>
-              <ul class="list-unstyled">
-                <li><a href="#" class="py-2 d-block">Speakers</a></li>
-                <li><a href="#" class="py-2 d-block">Shcedule</a></li>
-                <li><a href="#" class="py-2 d-block">Events</a></li>
-                <li><a href="#" class="py-2 d-block">Blog</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md">
-             <div class="ftco-footer-widget mb-4">
-              <h2 class="ftco-heading-2">Privacy</h2>
-              <ul class="list-unstyled">
-                <li><a href="#" class="py-2 d-block">Career</a></li>
-                <li><a href="#" class="py-2 d-block">About Us</a></li>
-                <li><a href="#" class="py-2 d-block">Contact Us</a></li>
-                <li><a href="#" class="py-2 d-block">Services</a></li>
-              </ul>
-            </div>
-          </div>
-          <div class="col-md">
-            <div class="ftco-footer-widget mb-4">
-            	<h2 class="ftco-heading-2">Have a Questions?</h2>
-            	<div class="block-23 mb-3">
-	              <ul>
-	                <li><span class="icon icon-map-marker"></span><span class="text">203 Fake St. Mountain View, San Francisco, California, USA</span></li>
-	                <li><a href="#"><span class="icon icon-phone"></span><span class="text">+2 392 3929 210</span></a></li>
-	                <li><a href="#"><span class="icon icon-envelope"></span><span class="text">info@yourdomain.com</span></a></li>
-	              </ul>
-	            </div>
-            </div>
-          </div>
-        </div> -->
-        <div class="row">
-			<div class="col-md-6 text-center">
-			  <p><i class="icon-info-circle" aria-hidden="false"></i> szamszimmsc[at]gmail.com</p>
-			</div>
-			<div class="col-md-6 text-center">
-				<p><i class="icon-wrench" aria-hidden="false"></i> kooplex[at]complex.elte.hu</p>
-			  </div>
-		</div>
-		<br><br><br>		
         <div class="row">
           <div class="col-md-12 text-center">
-
-            <p style="font-size: small;"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-  Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart color-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+            <p><i class="icon-info-circle" aria-hidden="true"></i> szamszimmsc[at]gmail.com</p>
+          </div>
+        </div>
+        <br><br>
+        <div class="row">
+          <div class="col-md-12 text-center">
+            <p style="font-size: small;">Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="icon-heart color-danger" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" rel="noopener noreferrer">Colorlib</a></p>
           </div>
         </div>
       </div>
     </footer>
-    
-  
 
-  <!-- loader -->
-  <div id="ftco-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00"/></svg></div>
-  <div id="api-spinner" aria-hidden="true">
-    <div class="api-spinner-circle" role="status" aria-label="Loading"></div>
-    <span class="api-spinner-text">Loading…</span>
-  </div>
-
-  <script src="js/jquery.min.js"></script>
-  <script src="js/jquery-migrate-3.0.1.min.js"></script>
-  <script src="js/popper.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/jquery.easing.1.3.js"></script>
-  <script src="js/jquery.waypoints.min.js"></script>
-  <script src="js/jquery.stellar.min.js"></script>
-  <script src="js/owl.carousel.min.js"></script>
-  <script src="js/jquery.magnific-popup.min.js"></script>
-  <script src="js/aos.js"></script>
-  <script src="js/jquery.animateNumber.min.js"></script>
-  <script src="js/bootstrap-datepicker.js"></script>
-  <script src="js/jquery.timepicker.min.js"></script>
-  <script src="js/scrollax.min.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-  <script src="js/google-map.js"></script>
-  <script src="js/main.js"></script>
-  <script>
-    (function() {
-      var APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxSAvnttkpmi3RQZqZS3gRAAlXFh9pLWpEXac2y8Jj7QxfIXoJ31wK5ndJ8NDkyxHbVdA/exec';
-      var GRADES_SHEET_ID = 'https://docs.google.com/spreadsheets/d/1V2mHFHfB3dCdR3buSh-o_CBYimAoBVoH6xl6DVeBiW8/edit?usp=sharing';
-      var GRADES_SHEET_API_KEY = '';
-      // Use a CORS proxy when the page is on another origin (e.g. university server) so fetch to Apps Script works. Set false if you host the page from the same script.
-      var USE_CORS_PROXY = true;
-      var CORS_PROXY_URL = 'https://corsproxy.io/?';
-      // Optional: use a different proxy for GET only. Leave empty to use CORS_PROXY_URL for both GET and POST.
-      var CORS_PROXY_GET_URL = '';
-      // If the main proxy is blocked (e.g. on institutional networks), fetchSlots will retry once with this. Leave empty to disable.
-      var CORS_PROXY_FALLBACK = 'https://api.allorigins.win/raw?url=';
-
-      var spinner = document.getElementById('api-spinner');
-      var SIGNUP_DATES_FALLBACK = ['18 Nov 2025', '25 Nov 2025', '2 Dec 2025', '9 Dec 2025'];
-      function showSpinner(show) { spinner.classList.toggle('show', !!show); }
-
-      function appScriptFetchUrl(queryOrFull, forGet) {
-        var url = (queryOrFull && queryOrFull.indexOf('http') === 0) ? queryOrFull : (APPS_SCRIPT_URL + (queryOrFull ? (queryOrFull.charAt(0) === '?' ? queryOrFull : '?' + queryOrFull) : ''));
-        if (forGet && CORS_PROXY_GET_URL) return CORS_PROXY_GET_URL + encodeURIComponent(url);
-        if (USE_CORS_PROXY && CORS_PROXY_URL) return CORS_PROXY_URL + encodeURIComponent(url);
-        return url;
-      }
-
-      function apiFetch(url, options) {
-        options = options || {};
-        var headers = { 'Content-Type': 'application/json' };
-        if (options.headers) for (var k in options.headers) headers[k] = options.headers[k];
-        return fetch(url, Object.assign({}, options, { headers: headers }));
-      }
-
-      // POST via form to hidden iframe (no CORS). Backend must return HTML that calls callback with JSON. Use when fetch is blocked (e.g. institutional site).
-      function postViaIframe(url, payload, callback) {
-        var iframe = document.getElementById('appscript-post-iframe');
-        if (!iframe) {
-          iframe = document.createElement('iframe');
-          iframe.name = 'appscript-post-iframe';
-          iframe.id = 'appscript-post-iframe';
-          iframe.style.cssText = 'position:absolute;width:0;height:0;border:0;visibility:hidden';
-          document.body.appendChild(iframe);
-        }
-        var cbName = '__postCb_' + Date.now() + '_' + Math.random().toString(36).slice(2);
-        var done = false;
-        var timeoutMs = 18000;
-        var timer = setTimeout(function() {
-          if (done) return;
-          done = true;
-          try { delete window[cbName]; } catch (e) { window[cbName] = undefined; }
-          callback({ error: 'Request timed out or could not be completed. Try again or use a different network.' });
-        }, timeoutMs);
-        window[cbName] = function(data) {
-          if (done) return;
-          done = true;
-          clearTimeout(timer);
-          try { delete window[cbName]; } catch (e) { window[cbName] = undefined; }
-          callback(data);
-        };
-        var form = document.createElement('form');
-        form.method = 'POST';
-        form.action = url;
-        form.target = iframe.name;
-        form.style.display = 'none';
-        payload.callback = cbName;
-        for (var k in payload) if (payload.hasOwnProperty(k) && payload[k] != null) {
-          var input = document.createElement('input');
-          input.type = 'hidden';
-          input.name = k;
-          input.value = payload[k];
-          form.appendChild(input);
-        }
-        document.body.appendChild(form);
-        form.submit();
-        document.body.removeChild(form);
-      }
-
-      function parseJsonResponse(text) {
-        var s = (text || '').trim();
-        if (/^\)\]\}['\s]*/.test(s)) s = s.replace(/^\)\]\}['\s]*/, '');
-        return JSON.parse(s);
-      }
-
-      function loadJsonp(url, timeoutMs) {
-        timeoutMs = timeoutMs || 12000;
-        return new Promise(function(resolve, reject) {
-          var cbName = '__jsonp_cb_' + Math.random().toString(36).slice(2);
-          var script = document.createElement('script');
-          var done = false;
-          var timer = setTimeout(function() {
-            if (done) return;
-            done = true;
-            cleanup();
-            reject(new Error('JSONP timeout'));
-          }, timeoutMs);
-
-          function cleanup() {
-            clearTimeout(timer);
-            try { delete window[cbName]; } catch (e) { window[cbName] = undefined; }
-            if (script && script.parentNode) script.parentNode.removeChild(script);
-          }
-
-          window[cbName] = function(data) {
-            if (done) return;
-            done = true;
-            cleanup();
-            resolve(data);
-          };
-
-          script.onerror = function() {
-            if (done) return;
-            done = true;
-            cleanup();
-            reject(new Error('JSONP load failed'));
-          };
-
-          var sep = url.indexOf('?') >= 0 ? '&' : '?';
-          script.src = url + sep + 'callback=' + encodeURIComponent(cbName);
-          document.head.appendChild(script);
-        });
-      }
-
-      function renderDateCards(data) {
-        var container = document.getElementById('signup-date-cards');
-        if (!data || !data.dates) { container.innerHTML = '<p class="text-muted">Loading slots…</p>'; return; }
-        var html = '';
-        for (var d = 0; d < data.dates.length; d++) {
-          var dt = data.dates[d];
-          var max = dt.maxSlots || 10;
-          var slots = dt.slots || [];
-          var taken = slots.length;
-          var dots = '';
-          for (var i = 0; i < taken; i++) {
-            dots += '<span class="slot-dot taken"></span>';
-          }
-          html += '<div class="col-md-6 col-lg-3 mb-3"><div class="card h-100 shadow-sm"><div class="card-body"><span class="text-muted small">12:00–14:00, online (Teams)</span><h3 class="h5 mt-2">' + dt.date + '</h3><div class="slot-dots">' + dots + '</div><p class="small mb-0 mt-2">' + taken + '/' + max + ' slots taken</p></div></div></div>';
-        }
-        container.innerHTML = html;
-      }
-
-      function renderSummaryTable(data) {
-        var thead = document.getElementById('summary-thead');
-        var tbody = document.getElementById('summary-tbody');
-        var legendEl = document.getElementById('summary-legend');
-        if (!legendEl) legendEl = { textContent: '' };
-        if (!data || !data.dates || !data.dates.length) {
-          thead.innerHTML = '<tr><th>Date</th></tr>';
-          tbody.innerHTML = '<tr><td class="text-muted">No data</td></tr>';
-          if (legendEl.textContent !== undefined) legendEl.textContent = '';
-          return;
-        }
-        var maxSlots = 10;
-        var h = ['Date'];
-        for (var i = 1; i <= maxSlots; i++) h.push('Slot ' + i);
-        thead.innerHTML = '<tr><th>' + h.join('</th><th>') + '</th></tr>';
-        var rows = '';
-        var hasNotEligible = false;
-        for (var d = 0; d < data.dates.length; d++) {
-          var dt = data.dates[d];
-          var row = ['<strong>' + dt.date + '</strong>'];
-          for (var s = 0; s < maxSlots; s++) {
-            var slot = dt.slots && dt.slots[s];
-            var neptun = slot && slot.neptunId ? slot.neptunId : '';
-            var notEligible = slot && slot.hasAllGrades === false;
-            if (notEligible) hasNotEligible = true;
-            var cell = neptun ? (notEligible ? '<span class="neptun-not-eligible">' + neptun + '</span>' : neptun) : '';
-            row.push(cell);
-          }
-          rows += '<tr><td>' + row.join('</td><td>') + '</td></tr>';
-        }
-        tbody.innerHTML = rows;
-        if (legendEl.textContent !== undefined) legendEl.textContent = hasNotEligible ? 'Neptun IDs in red do not yet have acceptable grades for both project submissions; they will need both before they can present.' : '';
-      }
-
-      function fillSignupDateDropdown(data) {
-        var sel = document.getElementById('signup-date');
-        sel.innerHTML = '<option value="">Select date…</option>';
-        var dates = (data && data.dates && data.dates.length) ? data.dates : null;
-        if (!dates) {
-          for (var i = 0; i < SIGNUP_DATES_FALLBACK.length; i++) {
-            var d = SIGNUP_DATES_FALLBACK[i];
-            sel.innerHTML += '<option value="' + d + '">' + d + '</option>';
-          }
-          return;
-        }
-        for (var j = 0; j < dates.length; j++) {
-          var dt = dates[j];
-          var dateStr = typeof dt === 'string' ? dt : (dt && dt.date);
-          if (dateStr) sel.innerHTML += '<option value="' + dateStr + '">' + dateStr + '</option>';
-        }
-      }
-
-      function fetchSlots(useFallbackProxy) {
-        if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL.indexOf('YOUR_') >= 0) {
-          return;
-        }
-        showSpinner(true);
-        // Use JSONP for GET to avoid CORS/proxy issues on institutional hosting.
-        var url = APPS_SCRIPT_URL + '?action=getSlots&_=' + Date.now();
-        loadJsonp(url)
-          .then(function(data) {
-            if (data && data.error) throw new Error(data.error);
-            renderDateCards(data);
-            renderSummaryTable(data);
-            fillSignupDateDropdown(data);
-          })
-          .catch(function() {
-            document.getElementById('signup-date-cards').innerHTML = '<p class="text-muted small">Live slot counts could not be loaded. You can still choose a date above and sign up — the form will work.</p>';
-          })
-          .then(function() { showSpinner(false); }, function() { showSpinner(false); });
-      }
-
-      document.getElementById('signup-form').addEventListener('submit', function(e) {
-        e.preventDefault();
-        var name = document.getElementById('signup-name').value.trim();
-        var neptun = document.getElementById('signup-neptun').value.trim().toUpperCase();
-        var email = document.getElementById('signup-email').value.trim();
-        var date = document.getElementById('signup-date').value;
-        var feedback = document.getElementById('signup-feedback');
-        if (!date) { feedback.textContent = 'Please select a date.'; feedback.className = 'mt-3 mb-0 small text-danger'; return; }
-        if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL.indexOf('YOUR_') >= 0) { feedback.textContent = 'Apps Script URL not configured.'; return; }
-        showSpinner(true);
-        feedback.textContent = '';
-        var signupUrl = APPS_SCRIPT_URL + '?action=signup&neptunId=' + encodeURIComponent(neptun) + '&name=' + encodeURIComponent(name) + '&email=' + encodeURIComponent(email) + '&date=' + encodeURIComponent(date) + '&_=' + Date.now();
-        loadJsonp(signupUrl, 28000)
-          .then(function(data) {
-            if (data.error) {
-              var msg = data.error;
-              var isRosterError = /not found.*roster|roster|course roster/i.test(msg);
-              var isAlreadySignedUp = /already has a signup|already signed up/i.test(msg);
-              var isDateFull = /date is full|this date is full/i.test(msg);
-              feedback.textContent = '';
-              if (isRosterError) {
-                document.getElementById('signup-error-modal-body').textContent = 'Sorry, this Neptun ID was not found among the course students. Please check that you typed it correctly. If the problem persists, please contact your instructor.';
-                $('#signup-error-modal').modal('show');
-              } else if (isAlreadySignedUp) {
-                document.getElementById('signup-error-modal-body').textContent = 'This Neptun ID is already signed up for a presentation slot. To change your date or cancel, use the link in your confirmation email, or contact your instructor.';
-                $('#signup-error-modal').modal('show');
-              } else if (isDateFull) {
-                document.getElementById('signup-error-modal-body').textContent = 'This date has no free slots. Please choose another date.';
-                $('#signup-error-modal').modal('show');
-              } else {
-                feedback.className = 'mt-3 mb-0 small text-danger';
-                feedback.textContent = msg;
-              }
-            } else {
-              feedback.textContent = '';
-              var msg = 'You are signed up for ' + data.date + ', slot ' + data.slot + '. Check your email for the confirmation and for the link to cancel or change your slot.';
-              if (data.hasAllGrades === false) {
-                msg += '<br><br><span class="text-danger">You do not yet have an acceptable grade for both project submissions. You will need both before you can present.</span>';
-              }
-              document.getElementById('signup-success-modal-body').innerHTML = msg;
-              $('#signup-success-modal').modal('show');
-              fetchSlots();
-            }
-          })
-          .catch(function() {
-            feedback.className = 'mt-3 mb-0 small text-danger';
-            feedback.textContent = 'Signup request failed or timed out. Try again.';
-          })
-          .then(function() { showSpinner(false); });
-      });
-
-      document.getElementById('signup-neptun').addEventListener('input', function() { this.value = this.value.toUpperCase(); });
-      document.getElementById('summary-refresh-btn').addEventListener('click', function() { if (APPS_SCRIPT_URL && APPS_SCRIPT_URL.indexOf('YOUR_') < 0) fetchSlots(); });
-
-      var urlParams = new URLSearchParams(window.location.search);
-      var cancelToken = urlParams.get('cancel');
-      var pendingCancelToken = null;
-      if (cancelToken) {
-        document.getElementById('cancel-confirm-box').style.display = 'block';
-        document.getElementById('signup').scrollIntoView({ behavior: 'smooth' });
-        showSpinner(true);
-        loadJsonp(APPS_SCRIPT_URL + '?action=getSignup&token=' + encodeURIComponent(cancelToken) + '&_=' + Date.now())
-          .then(function(data) {
-            if (data.error) throw new Error(data.error);
-            document.getElementById('cancel-neptun').textContent = data.neptunId || '';
-            document.getElementById('cancel-date').textContent = data.date || '';
-            pendingCancelToken = cancelToken;
-          })
-          .catch(function() {
-            document.getElementById('cancel-neptun').textContent = '—';
-            document.getElementById('cancel-date').textContent = '—';
-            document.getElementById('cancel-feedback').textContent = 'Invalid or expired cancel link.';
-            document.getElementById('cancel-feedback').className = 'mt-2 mb-0 small text-danger';
-          })
-          .then(function() { showSpinner(false); });
-      }
-      function redirectToSignupWithoutCancel() {
-        var params = new URLSearchParams(window.location.search);
-        params.delete('cancel');
-        var q = params.toString();
-        var url = window.location.pathname + (q ? '?' + q : '') + '#signup';
-        window.location.replace(url);
-      }
-
-      document.getElementById('cancel-confirm-btn').addEventListener('click', function() {
-        if (!pendingCancelToken) return;
-        if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL.indexOf('YOUR_') >= 0) return;
-        showSpinner(true);
-        document.getElementById('cancel-feedback').textContent = '';
-        var cancelUrl = APPS_SCRIPT_URL + '?action=cancel&token=' + encodeURIComponent(pendingCancelToken) + '&_=' + Date.now();
-        loadJsonp(cancelUrl)
-          .then(function(data) {
-            if (data.error) throw new Error(data.error);
-            if (APPS_SCRIPT_URL && APPS_SCRIPT_URL.indexOf('YOUR_') < 0) fetchSlots();
-            $('#cancel-success-modal').modal('show');
-          })
-          .catch(function(err) {
-            document.getElementById('cancel-feedback').textContent = (err && err.message) ? err.message : 'Cancel failed.';
-            document.getElementById('cancel-feedback').className = 'mt-2 mb-0 small text-danger';
-          })
-          .then(function() { showSpinner(false); });
-      });
-      $('#cancel-success-modal').on('hidden.bs.modal', function() {
-        redirectToSignupWithoutCancel();
-      });
-      document.getElementById('cancel-success-ok-btn').addEventListener('click', function() {
-        $('#cancel-success-modal').modal('hide');
-      });
-      document.getElementById('cancel-cancel-btn').addEventListener('click', function() {
-        redirectToSignupWithoutCancel();
-      });
-
-      function fetchResults() {
-        var neptun = document.getElementById('results-neptun').value.trim().toUpperCase();
-        var area = document.getElementById('results-area');
-        if (!neptun) { area.innerHTML = '<p class="text-muted">Enter your Neptun ID and click Show my results.</p>'; return; }
-        if (!APPS_SCRIPT_URL || APPS_SCRIPT_URL.indexOf('YOUR_') >= 0) { area.innerHTML = '<p class="text-warning">Results lookup is not configured.</p>'; return; }
-        area.innerHTML = '';
-        showSpinner(true);
-        var url = APPS_SCRIPT_URL + '?action=getResults&neptunId=' + encodeURIComponent(neptun) + '&_=' + Date.now();
-        loadJsonp(url)
-          .then(function(data) {
-            if (data.error) { area.innerHTML = '<p class="text-danger">' + data.error + '</p>'; return; }
-            var results = data.results || [];
-            if (results.length === 0) { area.innerHTML = '<p class="text-muted">No results found for this Neptun ID yet.</p>'; return; }
-            var html = '';
-            for (var i = 0; i < results.length; i++) {
-              var r = results[i];
-              html += '<div class="card shadow-sm mb-3"><div class="card-body p-4"><h3 class="h6 mb-3">' + r.title + '</h3><div class="result-card">';
-              for (var j = 0; j < r.pairs.length; j++) html += '<div class="row"><span class="col-4 text-muted">' + r.pairs[j].label + '</span><span class="col-8">' + r.pairs[j].value + '</span></div>';
-              html += '</div></div></div>';
-            }
-            area.innerHTML = html;
-          })
-          .catch(function(err) { area.innerHTML = '<p class="text-danger">' + (err.message || 'Request failed. Try again later.') + '</p>'; })
-          .then(function() { showSpinner(false); });
-      }
-      document.getElementById('results-fetch-btn').addEventListener('click', fetchResults);
-      document.getElementById('results-neptun').addEventListener('input', function() { this.value = this.value.toUpperCase(); });
-
-      function applyConfig(config) {
-        if (!config) return;
-        var link = document.getElementById('results-sheet-link');
-        if (link && config.gradesSheetUrl) link.href = config.gradesSheetUrl;
-        if (config.signupDates && config.signupDates.length && typeof fillSignupDateDropdown === 'function') {
-          fillSignupDateDropdown({ dates: config.signupDates.map(function(d) { return { date: d }; }) });
-        }
-        var cards = config.deadlineCards || [];
-        if (cards.length === 0) return;
-        window.__DEADLINE_DATES = cards.map(function(c) { return c.dateValue; });
-        window.__DEADLINE_DATE_TEXTS = cards.map(function(c) { return c.dateText; });
-        var row1 = [], row2 = [];
-        for (var i = 0; i < cards.length; i++) {
-          var c = cards[i];
-          var html = '<div class="deadline-card" data-index="' + i + '"><div class="card shadow-sm border"><div class="card-body py-3">' +
-            '<div class="deadline-logo-wrap"><div class="deadline-logo ' + (c.logoClass || '') + '">' + (c.logo || '') + '</div></div>' +
-            '<div class="deadline-details"><div class="deadline-subtitle">' + (c.subtitle || '') + '</div><div class="deadline-date">' + (c.date || '') + '</div></div></div></div></div>';
-          if (i < 3) row1.push(html); else row2.push(html);
-        }
-        var container = document.getElementById('schedule-cards');
-        if (container) {
-          container.innerHTML = '<div class="deadline-row">' + row1.join('') + '</div><div class="deadline-row">' + row2.join('') + '</div>';
-          var descriptions = cards.map(function(c) { return c.description || ''; });
-          function firstUpcomingIndex() {
-            var now = Date.now();
-            for (var j = 0; j < window.__DEADLINE_DATES.length; j++) {
-              if (new Date(window.__DEADLINE_DATES[j]).getTime() > now) return j;
-            }
-            return 0;
-          }
-          function setActiveCard(index) {
-            var cardEls = container.querySelectorAll('.deadline-card');
-            for (var k = 0; k < cardEls.length; k++) {
-              var inner = cardEls[k].querySelector('.card');
-              if (inner) inner.classList.toggle('active', k === index);
-            }
-            var descEl = document.getElementById('schedule-description');
-            if (descEl) descEl.innerHTML = descriptions[index] ? '<div class="text">' + descriptions[index] + '</div>' : '';
-          }
-          setActiveCard(firstUpcomingIndex());
-          container.addEventListener('click', function(e) {
-            var card = e.target.closest('.deadline-card');
-            if (!card || card.getAttribute('data-index') == null) return;
-            setActiveCard(parseInt(card.getAttribute('data-index'), 10));
-          });
-        }
-        if (typeof window.restartDeadlineCounter === 'function') window.restartDeadlineCounter();
-      }
-      if (APPS_SCRIPT_URL && APPS_SCRIPT_URL.indexOf('YOUR_') < 0) {
-        loadJsonp(APPS_SCRIPT_URL + '?action=getConfig&_=' + Date.now()).then(applyConfig).catch(function() {
-          var sc = document.getElementById('schedule-cards');
-          if (sc) sc.innerHTML = '<p class="text-muted">Schedule could not be loaded.</p>';
-          // If config fails entirely, fall back to static signup dates.
-          if (typeof fillSignupDateDropdown === 'function') fillSignupDateDropdown(null);
-        });
-      } else {
-        // No Apps Script URL: use static signup dates.
-        if (typeof fillSignupDateDropdown === 'function') fillSignupDateDropdown(null);
-      }
-      if (APPS_SCRIPT_URL && APPS_SCRIPT_URL.indexOf('YOUR_') < 0) fetchSlots();
-
-      (function scrollSpy() {
-        var sectionIds = ['schedule', 'about', 'reqs', 'results', 'signup'];
-        var nav = document.querySelector('#ftco-navbar .navbar-nav');
-        if (!nav) return;
-        var offset = 120;
-        function updateActive() {
-          var scrollY = window.pageYOffset || document.documentElement.scrollTop;
-          var activeId = null;
-          for (var i = sectionIds.length - 1; i >= 0; i--) {
-            var el = document.getElementById(sectionIds[i]);
-            if (!el) continue;
-            var top = el.getBoundingClientRect().top + scrollY;
-            if (top <= scrollY + offset) { activeId = sectionIds[i]; break; }
-          }
-          var items = nav.querySelectorAll('.nav-item');
-          items.forEach(function(li) {
-            var a = li.querySelector('a');
-            if (!a) return;
-            var href = (a.getAttribute('href') || '').trim();
-            if (href.indexOf('#') === 0) {
-              var id = href.slice(1);
-              if (id === 'home') {
-                li.classList.toggle('active', !activeId);
-              } else {
-                li.classList.toggle('active', id === activeId);
-              }
-            }
-          });
-        }
-        var ticking = false;
-        function onScroll() {
-          if (ticking) return;
-          ticking = true;
-          requestAnimationFrame(function() { updateActive(); ticking = false; });
-        }
-        window.addEventListener('scroll', onScroll, { passive: true });
-        window.addEventListener('resize', onScroll);
-        updateActive();
-      })();
-    })();
-  </script>
-    
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.easing.1.3.js"></script>
+    <script src="js/jquery.waypoints.min.js"></script>
+    <script src="js/main.js"></script>
   </body>
 </html>
