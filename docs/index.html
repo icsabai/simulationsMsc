@@ -46,6 +46,11 @@
       .btn { border-radius: 10px; }
       .ftco-navbar-light .navbar-nav > .nav-item.cta > a,
       .ftco-navbar-light.scrolled .nav-item.cta > a { border-radius: 10px !important; }
+      /* shrink-wraps to the width of the 3-button row, then centers the row below it against that width */
+      .hero-actions { display: inline-flex; flex-direction: column; align-items: center; }
+      /* secondary hero action, set apart from the primary purple buttons above it */
+      .btn-example { background: #e2a336; border: 1px solid #e2a336; color: #fff; }
+      .btn-example:hover, .btn-example:focus { background: transparent; border-color: #e2a336; color: #e2a336; }
       .resource-group h3 { font-size: 16px; text-transform: uppercase; letter-spacing: .5px; font-weight: 600; margin-bottom: 14px; }
       .resource-group ul { padding-left: 18px; margin-bottom: 40px; }
       .resource-group ul li { margin-bottom: 8px; color: #4d4d4d; }
@@ -118,11 +123,16 @@
               </div>
             </div>
             <p id="next-lecture-fallback" class="next-lecture-fallback">No more sessions scheduled this semester.</p>
-            <p class="mt-2">
-              <a href="#structure" class="btn btn-primary px-4 py-3">Course format</a>
-              <a href="#results" class="btn btn-primary px-4 py-3 ml-2">Results</a>
-              <a href="https://docs.google.com/spreadsheets/d/1oOIDNLmIABLlx-9EffEkSGclrdHDh5pqrVdLjPCFWvk/edit?usp=sharing" class="btn btn-primary px-4 py-3 ml-2" target="_blank" rel="noopener noreferrer">Group assignments</a>
-            </p>
+            <div class="hero-actions">
+              <p class="mt-2 mb-0">
+                <a href="#structure" class="btn btn-primary px-4 py-3">Course format</a>
+                <a href="#results" class="btn btn-primary px-4 py-3 ml-2">Results</a>
+                <a href="https://docs.google.com/spreadsheets/d/1oOIDNLmIABLlx-9EffEkSGclrdHDh5pqrVdLjPCFWvk/edit?usp=sharing" class="btn btn-primary px-4 py-3 ml-2" target="_blank" rel="noopener noreferrer">Group assignments</a>
+              </p>
+              <p class="mt-2 mb-0">
+                <a href="example_task_with_solution.html" class="btn btn-example px-4 py-3" target="_blank" rel="noopener noreferrer">Example task &amp; solution</a>
+              </p>
+            </div>
           </div>
         </div>
       </div>
