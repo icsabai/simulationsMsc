@@ -74,6 +74,8 @@
       .cal-day.weekend { background: #d3d7dc; color: #868e96; }
       /* room, layered on top of the type color: plain fill = room 7.14, diagonal hatch = room 5.56 (computer lab) */
       .cal-day.lab { background-image: repeating-linear-gradient(45deg, rgba(255,255,255,.45) 0 2px, rgba(255,255,255,0) 2px 5px); }
+      /* JS-added, marks whichever date is the upcoming session */
+      .cal-day.upcoming { box-shadow: 0 0 0 2px #000; }
       .cal-legend { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 22px; margin-top: 34px; font-size: 13px; color: #4d4d4d; }
       .cal-legend .sw { display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: 6px; vertical-align: -1px; }
       .cal-legend .sw.lab-sw { background: #adb5bd; background-image: repeating-linear-gradient(45deg, rgba(255,255,255,.6) 0 2px, rgba(255,255,255,0) 2px 5px); }
@@ -147,8 +149,8 @@
           { date: '2026-09-16', type: 'intro', title: 'Introduction II', room: 'Room 7.14' },
           { date: '2026-09-23', type: 'task', title: 'Task Session — Track A', room: 'Room 5.56 (computer lab)', topic: 'The onset of chaos in continuous and discrete systems', textbook: 'Textbook, Ch. 12' },
           { date: '2026-09-30', type: 'task', title: 'Task Session — Track B', room: 'Room 5.56 (computer lab)', topic: 'The onset of chaos in continuous and discrete systems', textbook: 'Textbook, Ch. 12' },
-          { date: '2026-10-07', type: 'task', title: 'Task Session — Track A', room: 'Room 5.56 (computer lab)', topic: '[Topic — to be announced]', textbook: '[Textbook, Ch. __]' },
-          { date: '2026-10-14', type: 'task', title: 'Task Session — Track B', room: 'Room 5.56 (computer lab)', topic: '[Topic — to be announced]', textbook: '[Textbook, Ch. __]' },
+          { date: '2026-10-07', type: 'task', title: 'Task Session — Track A', room: 'Room 5.56 (computer lab)', topic: 'Statistical growth and fractals', textbook: 'Textbook, Ch. 13' },
+          { date: '2026-10-14', type: 'task', title: 'Task Session — Track B', room: 'Room 5.56 (computer lab)', topic: 'Statistical growth and fractals', textbook: 'Textbook, Ch. 13' },
           { date: '2026-10-21', type: 'task', title: 'Task Session — Track A', room: 'Room 5.56 (computer lab)', topic: '[Topic — to be announced]', textbook: '[Textbook, Ch. __]' },
           { date: '2026-11-04', type: 'task', title: 'Task Session — Track B', room: 'Room 5.56 (computer lab)', topic: '[Topic — to be announced]', textbook: '[Textbook, Ch. __]' },
           { date: '2026-11-11', type: 'task', title: 'Task Session — Track A', room: 'Room 5.56 (computer lab)', topic: '[Topic — to be announced]', textbook: '[Textbook, Ch. __]' },
@@ -171,6 +173,15 @@
         var next = null;
         for (var i = 0; i < SESSIONS.length; i++) {
           if (dateFromISO(SESSIONS[i].date, CLASS_END_HOUR) > now) { next = SESSIONS[i]; break; }
+        }
+
+        if (next) {
+          // the calendar markup lives further down the page and isn't parsed yet at this point,
+          // so wait for the full document before looking up its cell
+          document.addEventListener('DOMContentLoaded', function () {
+            var upcomingCell = document.querySelector('.cal-day[data-date="' + next.date + '"]');
+            if (upcomingCell) upcomingCell.classList.add('upcoming');
+          });
         }
 
         var wrap = document.getElementById('next-lecture');
@@ -361,10 +372,10 @@
                 <div class="mini-cal-grid">
                   <span class="cal-dow">Mo</span><span class="cal-dow">Tu</span><span class="cal-dow">We</span><span class="cal-dow">Th</span><span class="cal-dow">Fr</span><span class="cal-dow">Sa</span><span class="cal-dow">Su</span>
                   <span class="cal-day empty"></span><span class="cal-day">1</span><span class="cal-day">2</span><span class="cal-day">3</span><span class="cal-day">4</span><span class="cal-day weekend">5</span><span class="cal-day weekend">6</span>
-                  <span class="cal-day">7</span><span class="cal-day">8</span><span class="cal-day intro" title="Introductory session · Room 7.14">9</span><span class="cal-day">10</span><span class="cal-day">11</span><span class="cal-day weekend">12</span><span class="cal-day weekend">13</span>
-                  <span class="cal-day">14</span><span class="cal-day">15</span><span class="cal-day intro" title="Introductory session · Room 7.14">16</span><span class="cal-day">17</span><span class="cal-day">18</span><span class="cal-day weekend">19</span><span class="cal-day weekend">20</span>
-                  <span class="cal-day">21</span><span class="cal-day">22</span><span class="cal-day track-a lab" title="Track A — task session · Room 5.56 (computer lab)">23</span><span class="cal-day">24</span><span class="cal-day">25</span><span class="cal-day weekend">26</span><span class="cal-day weekend">27</span>
-                  <span class="cal-day">28</span><span class="cal-day">29</span><span class="cal-day track-b lab" title="Track B — task session · Room 5.56 (computer lab)">30</span><span class="cal-day empty"></span><span class="cal-day empty"></span><span class="cal-day empty"></span><span class="cal-day empty"></span>
+                  <span class="cal-day">7</span><span class="cal-day">8</span><span class="cal-day intro" data-date="2026-09-09" title="Introductory session · Room 7.14">9</span><span class="cal-day">10</span><span class="cal-day">11</span><span class="cal-day weekend">12</span><span class="cal-day weekend">13</span>
+                  <span class="cal-day">14</span><span class="cal-day">15</span><span class="cal-day intro" data-date="2026-09-16" title="Introductory session · Room 7.14">16</span><span class="cal-day">17</span><span class="cal-day">18</span><span class="cal-day weekend">19</span><span class="cal-day weekend">20</span>
+                  <span class="cal-day">21</span><span class="cal-day">22</span><span class="cal-day track-a lab" data-date="2026-09-23" title="Track A — task session · Room 5.56 (computer lab)">23</span><span class="cal-day">24</span><span class="cal-day">25</span><span class="cal-day weekend">26</span><span class="cal-day weekend">27</span>
+                  <span class="cal-day">28</span><span class="cal-day">29</span><span class="cal-day track-b lab" data-date="2026-09-30" title="Track B — task session · Room 5.56 (computer lab)">30</span><span class="cal-day empty"></span><span class="cal-day empty"></span><span class="cal-day empty"></span><span class="cal-day empty"></span>
                 </div>
               </div>
 
@@ -373,9 +384,9 @@
                 <div class="mini-cal-grid">
                   <span class="cal-dow">Mo</span><span class="cal-dow">Tu</span><span class="cal-dow">We</span><span class="cal-dow">Th</span><span class="cal-dow">Fr</span><span class="cal-dow">Sa</span><span class="cal-dow">Su</span>
                   <span class="cal-day empty"></span><span class="cal-day empty"></span><span class="cal-day empty"></span><span class="cal-day">1</span><span class="cal-day">2</span><span class="cal-day weekend">3</span><span class="cal-day weekend">4</span>
-                  <span class="cal-day">5</span><span class="cal-day">6</span><span class="cal-day track-a lab" title="Track A — task session · Room 5.56 (computer lab)">7</span><span class="cal-day">8</span><span class="cal-day">9</span><span class="cal-day weekend">10</span><span class="cal-day weekend">11</span>
-                  <span class="cal-day">12</span><span class="cal-day">13</span><span class="cal-day track-b lab" title="Track B — task session · Room 5.56 (computer lab)">14</span><span class="cal-day">15</span><span class="cal-day">16</span><span class="cal-day weekend">17</span><span class="cal-day weekend">18</span>
-                  <span class="cal-day">19</span><span class="cal-day">20</span><span class="cal-day track-a lab" title="Track A — task session · Room 5.56 (computer lab)">21</span><span class="cal-day">22</span><span class="cal-day">23</span><span class="cal-day weekend">24</span><span class="cal-day weekend">25</span>
+                  <span class="cal-day">5</span><span class="cal-day">6</span><span class="cal-day track-a lab" data-date="2026-10-07" title="Track A — task session · Room 5.56 (computer lab)">7</span><span class="cal-day">8</span><span class="cal-day">9</span><span class="cal-day weekend">10</span><span class="cal-day weekend">11</span>
+                  <span class="cal-day">12</span><span class="cal-day">13</span><span class="cal-day track-b lab" data-date="2026-10-14" title="Track B — task session · Room 5.56 (computer lab)">14</span><span class="cal-day">15</span><span class="cal-day">16</span><span class="cal-day weekend">17</span><span class="cal-day weekend">18</span>
+                  <span class="cal-day">19</span><span class="cal-day">20</span><span class="cal-day track-a lab" data-date="2026-10-21" title="Track A — task session · Room 5.56 (computer lab)">21</span><span class="cal-day">22</span><span class="cal-day">23</span><span class="cal-day weekend">24</span><span class="cal-day weekend">25</span>
                   <span class="cal-day break" title="Fall break">26</span><span class="cal-day break" title="Fall break">27</span><span class="cal-day break" title="Fall break — no class">28</span><span class="cal-day break" title="Fall break">29</span><span class="cal-day break" title="Fall break">30</span><span class="cal-day weekend">31</span><span class="cal-day empty"></span>
                 </div>
               </div>
@@ -385,10 +396,10 @@
                 <div class="mini-cal-grid">
                   <span class="cal-dow">Mo</span><span class="cal-dow">Tu</span><span class="cal-dow">We</span><span class="cal-dow">Th</span><span class="cal-dow">Fr</span><span class="cal-dow">Sa</span><span class="cal-dow">Su</span>
                   <span class="cal-day empty"></span><span class="cal-day empty"></span><span class="cal-day empty"></span><span class="cal-day empty"></span><span class="cal-day empty"></span><span class="cal-day empty"></span><span class="cal-day weekend">1</span>
-                  <span class="cal-day">2</span><span class="cal-day">3</span><span class="cal-day track-b lab" title="Track B — task session · Room 5.56 (computer lab)">4</span><span class="cal-day">5</span><span class="cal-day">6</span><span class="cal-day weekend">7</span><span class="cal-day weekend">8</span>
-                  <span class="cal-day">9</span><span class="cal-day">10</span><span class="cal-day track-a lab" title="Track A — task session · Room 5.56 (computer lab)">11</span><span class="cal-day">12</span><span class="cal-day">13</span><span class="cal-day weekend">14</span><span class="cal-day weekend">15</span>
-                  <span class="cal-day">16</span><span class="cal-day">17</span><span class="cal-day track-b lab" title="Track B — task session · Room 5.56 (computer lab)">18</span><span class="cal-day">19</span><span class="cal-day">20</span><span class="cal-day weekend">21</span><span class="cal-day weekend">22</span>
-                  <span class="cal-day">23</span><span class="cal-day">24</span><span class="cal-day final lab" title="Final project session · Room 5.56 (computer lab)">25</span><span class="cal-day">26</span><span class="cal-day">27</span><span class="cal-day weekend">28</span><span class="cal-day weekend">29</span>
+                  <span class="cal-day">2</span><span class="cal-day">3</span><span class="cal-day track-b lab" data-date="2026-11-04" title="Track B — task session · Room 5.56 (computer lab)">4</span><span class="cal-day">5</span><span class="cal-day">6</span><span class="cal-day weekend">7</span><span class="cal-day weekend">8</span>
+                  <span class="cal-day">9</span><span class="cal-day">10</span><span class="cal-day track-a lab" data-date="2026-11-11" title="Track A — task session · Room 5.56 (computer lab)">11</span><span class="cal-day">12</span><span class="cal-day">13</span><span class="cal-day weekend">14</span><span class="cal-day weekend">15</span>
+                  <span class="cal-day">16</span><span class="cal-day">17</span><span class="cal-day track-b lab" data-date="2026-11-18" title="Track B — task session · Room 5.56 (computer lab)">18</span><span class="cal-day">19</span><span class="cal-day">20</span><span class="cal-day weekend">21</span><span class="cal-day weekend">22</span>
+                  <span class="cal-day">23</span><span class="cal-day">24</span><span class="cal-day final lab" data-date="2026-11-25" title="Final project session · Room 5.56 (computer lab)">25</span><span class="cal-day">26</span><span class="cal-day">27</span><span class="cal-day weekend">28</span><span class="cal-day weekend">29</span>
                   <span class="cal-day">30</span><span class="cal-day empty"></span><span class="cal-day empty"></span><span class="cal-day empty"></span><span class="cal-day empty"></span><span class="cal-day empty"></span><span class="cal-day empty"></span>
                 </div>
               </div>
@@ -397,8 +408,8 @@
                 <h4>December 2026</h4>
                 <div class="mini-cal-grid">
                   <span class="cal-dow">Mo</span><span class="cal-dow">Tu</span><span class="cal-dow">We</span><span class="cal-dow">Th</span><span class="cal-dow">Fr</span><span class="cal-dow">Sa</span><span class="cal-dow">Su</span>
-                  <span class="cal-day empty"></span><span class="cal-day">1</span><span class="cal-day final lab" title="Final project session · Room 5.56 (computer lab)">2</span><span class="cal-day">3</span><span class="cal-day">4</span><span class="cal-day weekend">5</span><span class="cal-day weekend">6</span>
-                  <span class="cal-day">7</span><span class="cal-day">8</span><span class="cal-day final lab" title="Final project session · Room 5.56 (computer lab) — last class">9</span><span class="cal-day">10</span><span class="cal-day">11</span><span class="cal-day weekend">12</span><span class="cal-day weekend">13</span>
+                  <span class="cal-day empty"></span><span class="cal-day">1</span><span class="cal-day final lab" data-date="2026-12-02" title="Final project session · Room 5.56 (computer lab)">2</span><span class="cal-day">3</span><span class="cal-day">4</span><span class="cal-day weekend">5</span><span class="cal-day weekend">6</span>
+                  <span class="cal-day">7</span><span class="cal-day">8</span><span class="cal-day final lab" data-date="2026-12-09" title="Final project session · Room 5.56 (computer lab) — last class">9</span><span class="cal-day">10</span><span class="cal-day">11</span><span class="cal-day weekend">12</span><span class="cal-day weekend">13</span>
                 </div>
                 <p class="text-muted small mt-2 mb-0">Semester ends December 9.</p>
               </div>
@@ -414,6 +425,8 @@
               <span class="sep"></span>
               <span><span class="sw" style="background:#adb5bd;"></span>Room 7.14</span>
               <span><span class="sw lab-sw"></span>Room 5.56 (computer lab)</span>
+              <span class="sep"></span>
+              <span><span class="sw" style="background:#f4f5f7; box-shadow: 0 0 0 2px #000;"></span>Upcoming session</span>
             </div>
           </div>
         </div>
@@ -509,10 +522,9 @@
           </div>
           <div class="col-md-6 col-lg-3 d-flex mb-4 ftco-animate">
             <div class="topic-card">
-              <div class="icon"><span class="icon-question-circle"></span></div>
-              <h3>[Topic 2]</h3>
-              <!-- <p>e.g. critical phenomena &amp; phase transitions — magnetic systems, random connectivity models.</p> -->
-              <p class="topic-ref"><a href="SurvCompPhys-LandauPaezBordeianu-Full.pdf" target="_blank" rel="noopener noreferrer">Textbook: [Ch. __]</a></p>
+              <div class="icon"><span class="icon-snowflake-o"></span></div>
+              <h3>Statistical growth and fractals</h3>
+              <p class="topic-ref"><a href="SurvCompPhys-LandauPaezBordeianu-Full.pdf" target="_blank" rel="noopener noreferrer">Textbook: Ch. 13</a></p>
             </div>
           </div>
           <div class="col-md-6 col-lg-3 d-flex mb-4 ftco-animate">
